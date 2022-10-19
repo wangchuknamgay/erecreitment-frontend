@@ -12,6 +12,7 @@ import Profile from "./components/Profile";
 import BoardUser from "./components/BoardUser";
 import BoardModerator from "./components/BoardModerator";
 import BoardAdmin from "./components/BoardAdmin";
+import Test from "./components/Test";
 
 import { logout } from "./actions/auth";
 import { clearMessage } from "./actions/message";
@@ -60,12 +61,18 @@ const App = () => {
     <div>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <Link to={"/"} className="navbar-brand">
-          bezKoder
+          E-Recruitment
         </Link>
         <div className="navbar-nav mr-auto">
           <li className="nav-item">
             <Link to={"/home"} className="nav-link">
               Home
+            </Link>
+          </li>
+
+          <li className="nav-item">
+            <Link to={"/test"} className="nav-link">
+              Test
             </Link>
           </li>
 
@@ -134,6 +141,7 @@ const App = () => {
           <Route path="/user" element={<BoardUser />} />
           <Route path="/mod" element={<BoardModerator />} />
           <Route path="/admin" element={<BoardAdmin />} />
+          <Route path="/test" element={<Test />} />
         </Routes>
       </div>
 

@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Home = () => {
+const Test = () => {
     const [content, setContent] = useState("");
     const classes = useStyles();
     const [name, setName] = useState("");
@@ -48,24 +48,25 @@ const Home = () => {
 
     return (
         <div className="container">
-            <Form className={classes.root}>
-                <div>
-                    <TextField id="outlined-error"
-                               label="Name"
-                               variant="standard" value={name} onChange={e => setName(e.target.value)}
-                    />
-                    <TextField
-                        id="outlined-error-helper-text"
-                        label="Description"
-                        variant="standard"  value={description} onChange={e => setDescription(e.target.value)}
-                    />
-                </div>
-                <Button variant="contained" color="primary" onClick={submitForm}>
-                    submit
-                </Button>
-            </Form>
+            in test
+            {/*<Form className={classes.root}>*/}
+            {/*    <div>*/}
+            {/*        <TextField id="outlined-error"*/}
+            {/*                   label="Name"*/}
+            {/*                   variant="standard" value={name} onChange={e => setName(e.target.value)}*/}
+            {/*        />*/}
+            {/*        <TextField*/}
+            {/*            id="outlined-error-helper-text"*/}
+            {/*            label="Description"*/}
+            {/*            variant="standard"  value={description} onChange={e => setDescription(e.target.value)}*/}
+            {/*        />*/}
+            {/*    </div>*/}
+            {/*    <Button variant="contained" color="primary" onClick={submitForm}>*/}
+            {/*        submit*/}
+            {/*    </Button>*/}
+            {/*</Form>*/}
         </div>
     );
 };
 
-export default Home;
+export default Test;
