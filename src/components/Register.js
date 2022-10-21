@@ -128,8 +128,7 @@ const Register = () => {
           src={repic}
           alt="profile-img"
           className="profile-img-card"
-        />
-
+        /> 
         <Form onSubmit={handleRegister} ref={form}>
           {!successful && (
             <div>
@@ -345,7 +344,7 @@ const Register = () => {
                 <button className="btn">Sign Up</button>
               </div>
               <p className="reglink">
-              <a href="#">Already have account</a> or <Link to="/login">Sign in</Link>
+              <a href="#">Already have account</a> <Link className="sign-text" to="/login">Sign in</Link>
              </p>
             </div>
           )}
