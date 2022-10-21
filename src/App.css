@@ -2,6 +2,11 @@ label {
   display: block;
   margin-top: 10px;
 }
+.apple{
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+  
+}
 
 .card-container.card {
   max-width: 350px !important;
@@ -37,6 +42,15 @@ label {
   border-radius: 50%;
  
 }
+.profile-img-card-header {
+  width: 40px;
+  height: 40px;
+  display: block;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+
 button{
   width: 270px;
   height: 40px;
