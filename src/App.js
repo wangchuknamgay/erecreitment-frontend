@@ -148,8 +148,16 @@ const App = () => {
     <React.Fragment>
       <CssBaseline />
       <Container maxWidth="lg">
+      <Header sections={sections} />
+      {/* {!currentUser && (
         <Header sections={sections} />
-        <main>
+      )}
+
+    {!currentUser && (
+        <Header sections={sections} />
+      )} */}
+        
+        {/* <main> */}
           {/* <MainFeaturedPost post={mainFeaturedPost} />
           <Grid container spacing={4}>
             {featuredPosts.map((post) => (
@@ -173,7 +181,7 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
           </Routes>
-        </main>
+        {/* </main> */}
       </Container>
       <Footer
         title="Footer"
@@ -181,7 +189,6 @@ const App = () => {
       />
     </React.Fragment>
     // <div>
-
     //   <div>
     //     <Routes>
     //       <Route path="/" element={<Blog />} />

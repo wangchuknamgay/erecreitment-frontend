@@ -12,6 +12,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 import EventBus from "../common/EventBus";
 import { logout } from "../actions/auth";
+import { Avatar } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -61,24 +62,19 @@ export default function Header(props) {
   return (
     <React.Fragment>
       <Toolbar className={classes.toolbar}>
-        {/* <Button size="small">Open Recruitment</Button> */}
-        <img
+
+      <Avatar alt="Remy Sharp" src={logo} style={{ width: 90, height: 90 }}/>
+        {/* <img
           src={logo}
           alt="logo"
           className="avater-rounded m-2"
           style={{ width: 150, height: 70 }}
-        />
+        /> */}
         <p className="m-4">
           <b>E-Recruitment</b>
         </p>
         <Typography
-          component="h2"
-          variant="h5"
-          color="inherit"
-          align="center"
-          noWrap
-          className={classes.toolbarTitle}
-        >
+          component="h2" variant="h5" color="inherit" align="center" noWrap className={classes.toolbarTitle}>
           {title}
         </Typography>
         {/* <IconButton>
@@ -105,10 +101,12 @@ export default function Header(props) {
         )}
         {currentUser && (
           <>
-            Profile <strong>{currentUser.username}</strong>
-            <span className="nav-link" onClick={logOut}>
-              LogOut
-            </span>
+          <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" className="profile-img-card-header" alt="IMG" />
+            <strong>{currentUser.username}</strong>
+
+            <Button variant="contained" color="primary" onClick={logOut}>
+            Logout
+            </Button>
           </>
         )}
       </Toolbar>

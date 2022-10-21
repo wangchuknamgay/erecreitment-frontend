@@ -2,31 +2,34 @@ label {
   display: block;
   margin-top: 10px;
 }
-.apple{
+
+.apple {
   padding-left: 15px !important;
   padding-right: 15px !important;
-  
+
 }
 
 .card-container.card {
   max-width: 350px !important;
   padding: 40px 40px;
   box-shadow: 11px 12px 13px 12px rgb(207, 207, 207);
-  border-radius: 10px; 
-  margin-top: 125px;
- 
-  
+  border-radius: 10px;
+  margin-top: 10px;
+
+
 }
+
 .regcard-container.regcard {
   max-width: 800px !important;
   height: 950px;
   padding: 40px 40px;
   box-shadow: 11px 12px 13px 12px rgb(207, 207, 207);
-  border-radius: 10px; 
-  margin-top: 125px;
- 
-  
+  border-radius: 10px;
+  margin-top: 10px;
+
+
 }
+
 .regcard {
   background-color: #f7f7f7;
   padding: 20px 25px 30px;
@@ -40,7 +43,8 @@ label {
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 
 }
-.formControl{
+
+.formControl {
   width: 350px;
 }
 
@@ -66,8 +70,9 @@ label {
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   border-radius: 50%;
- 
+
 }
+
 .profile-img-card-header {
   width: 40px;
   height: 40px;
@@ -77,7 +82,7 @@ label {
   border-radius: 50%;
 }
 
-button{
+button {
   width: 270px;
   height: 40px;
   border-radius: 60px;
@@ -86,17 +91,20 @@ button{
   font-size: 20px;
   border: none;
   margin-bottom: 10px;
-  
+
 }
-.link{
+
+.link {
   font-size: 13px;
   font-weight: 400;
   margin-left: 17px;
 }
-a{
-   color: rgb(0, 0, 0);
+
+a {
+  color: rgb(0, 0, 0);
 }
-.btn{
+
+.btn {
   width: 720px;
   height: 40px;
   border-radius: 60px;
@@ -106,7 +114,8 @@ a{
   border: none;
   margin-bottom: 1px;
 }
-.reglink{
+
+.reglink {
   font-size: 13px;
   font-weight: 400;
   margin-left: 520px;
