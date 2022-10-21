@@ -120,8 +120,6 @@ const Register = () => {
   };
   // const classes = useStyles();
   return (
-    
-
     <div className="col-md-12">
       <div className="regcard regcard-container">
         <img

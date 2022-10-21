@@ -8,9 +8,10 @@ import Link from '@material-ui/core/Link';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      System developed and maintained by Thimphu TechPark Limited 
+      {' Copyright © '}
+      <Link color="primary" href="https://thimphutechpark.bt/">
+        Thimphu Techpark Limited
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -21,8 +22,8 @@ function Copyright() {
 const useStyles = makeStyles((theme) => ({
   footer: {
     backgroundColor: theme.palette.background.paper,
-    // marginTop: theme.spacing(8),
-    padding: theme.spacing(6, 0),
+    marginTop: theme.spacing(4),
+    padding: theme.spacing(4, 0),
   },
 }));
 
@@ -31,21 +32,21 @@ export default function Footer(props) {
   const { description, title } = props;
 
   return (
-    <footer className={classes.footer}>
-      <Container maxWidth="lg">
-        <Typography variant="h6" align="center" gutterBottom>
+    <footer className={classes.footer} >
+      {/* <Container maxWidth="lg"> */}
+        {/* <Typography variant="h6" align="center" gutterBottom>
           {title}
         </Typography>
         <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
           {description}
-        </Typography>
+        </Typography> */}
         <Copyright />
-      </Container>
+      {/* </Container> */}
     </footer>
   );
 }
 
-Footer.propTypes = {
-  description: PropTypes.string,
-  title: PropTypes.string,
-};
+// Footer.propTypes = {
+//   description: PropTypes.string,
+//   title: PropTypes.string,
+// };
