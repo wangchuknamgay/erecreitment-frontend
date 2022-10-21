@@ -1,10 +1,12 @@
 import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate  } from 'react-router-dom';
-
+import logpic from "../images/log.jpg";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
+import TextField from '@material-ui/core/TextField';
+import Grid from "@material-ui/core/Grid";
 
 import { login } from "../actions/auth";
 
@@ -72,14 +74,43 @@ const Login = (props) => {
     <div className="col-md-12">
       <div className="card card-container">
         <img
-          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+          src={logpic}
           alt="profile-img"
           className="profile-img-card"
         />
 
         <Form onSubmit={handleLogin} ref={form}>
           <div className="form-group">
-            <label htmlFor="username">Username</label>
+          <Grid container spacing={2}>
+          <Grid item xs={12} sm={12}>
+              <TextField
+                autoComplete="username"
+                type="text"
+                variant="outlined"
+                required
+                fullWidth
+                id="username"
+                label="Username"
+                onChange={onChangeUsername}
+                validations={[required]}
+                autoFocus
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                onChange={onChangePassword}
+                validations={[required]}
+              />
+            </Grid>
+            </Grid>
+            {/* <label htmlFor="username">Username</label>
             <Input
               type="text"
               className="form-control"
@@ -87,10 +118,10 @@ const Login = (props) => {
               value={username}
               onChange={onChangeUsername}
               validations={[required]}
-            />
+            /> */}
           </div>
 
-          <div className="form-group">
+          {/* <div className="form-group">
             <label htmlFor="password">Password</label>
             <Input
               type="password"
@@ -100,15 +131,18 @@ const Login = (props) => {
               onChange={onChangePassword}
               validations={[required]}
             />
-          </div>
+          </div> */}
 
           <div className="form-group">
-            <button className="btn btn-primary btn-block" disabled={loading}>
+            <button className="login-button" disabled={loading}>
               {loading && (
                 <span className="spinner-border spinner-border-sm"></span>
               )}
               <span>Login</span>
             </button>
+             <p className="link">
+              <a href="#">Forgot password?</a> or <a href="#">Create new account</a>
+             </p>
           </div>
 
           {message && (
@@ -117,6 +151,7 @@ const Login = (props) => {
                 {message}
               </div>
             </div>
+            
           )}
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </Form>
