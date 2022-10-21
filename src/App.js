@@ -19,6 +19,7 @@ import { clearMessage } from "./actions/message";
 
 // import AuthVerify from "./common/AuthVerify";
 import EventBus from "./common/EventBus";
+import Blog from "./mui/Blog";
 
 const App = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
@@ -59,7 +60,7 @@ const App = () => {
 
   return (
     <div>
-      <nav className="navbar navbar-expand navbar-dark bg-dark">
+      {/* <nav className="navbar navbar-expand navbar-dark bg-dark">
         <Link to={"/"} className="navbar-brand">
           E-Recruitment
         </Link>
@@ -129,11 +130,16 @@ const App = () => {
             </li>
           </div>
         )}
-      </nav>
+      </nav> */}
 
-      <div className="container mt-3">
+      <div>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Blog />} />
+          <Route path="/home" element={<Blog />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/profile" element={<Profile />} />
+          {/* <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -141,7 +147,7 @@ const App = () => {
           <Route path="/user" element={<BoardUser />} />
           <Route path="/mod" element={<BoardModerator />} />
           <Route path="/admin" element={<BoardAdmin />} />
-          <Route path="/test" element={<Test />} />
+          <Route path="/test" element={<Test />} /> */}
         </Routes>
       </div>
 
