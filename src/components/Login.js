@@ -1,9 +1,9 @@
 import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useNavigate  } from 'react-router-dom';
+import { Navigate, useNavigate, Link  } from 'react-router-dom';
 import logpic from "../images/log.jpg";
 import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
+//import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import TextField from '@material-ui/core/TextField';
 import Grid from "@material-ui/core/Grid";
@@ -141,7 +141,7 @@ const Login = (props) => {
               <span>Login</span>
             </button>
              <p className="link">
-              <a href="#">Forgot password?</a> or <a href="#">Create new account</a>
+              <a href="#">Forgot password?</a> or <Link to="/register">Create new account</Link>
              </p>
           </div>
 
