@@ -86,15 +86,9 @@ export default function Header(props) {
     <React.Fragment>
       <Toolbar className={classes.toolbar}>
         <Avatar alt="Remy Sharp" src={logo} style={{ width: 90, height: 90 }} />
-        {/* <img
-          src={logo}
-          alt="logo"
-          className="avater-rounded m-2"
-          style={{ width: 150, height: 70 }}
-        /> */}
-        <p className="m-4">
+        <h4 className="m-4">
           <b>E-Recruitment</b>
-        </p>
+        </h4>
         <Typography
           component="h2"
           variant="h5"
@@ -200,32 +194,27 @@ export default function Header(props) {
                 <Divider />
               </div>
             </Popover>
-
-            {/* <Tooltip arrow title="Logout" TransitionComponent={Fade} TransitionProps={{ timeout: 1000 }}>
-                <IconButton color="inherit" onClick={logOut}>
-                    <ExitToAppIcon />
-                </IconButton>
-            </Tooltip> */}
           </>
         )}
       </Toolbar>
-      <Toolbar
-        component="nav"
-        variant="dense"
-        className={classes.toolbarSecondary}
-      >
-        {sections.map((section) => (
-          <Link
-            color="inherit"
-            noWrap
-            key={section.title}
-            variant="body2"
-            href={section.url}
-            className={classes.toolbarLink}
-          >
-            {section.title}
-          </Link>
-        ))}
+      <Toolbar>
+         {currentUser && (
+          <>
+          {sections.map((section) => (
+            <Link
+              color="inherit"
+              noWrap
+              key={section.title}
+              variant="body2"
+              href={section.url}
+              className={classes.toolbarLink}
+            >
+              {section.title}
+            </Link>
+          ))}
+          </>
+         )}
+        
       </Toolbar>
     </React.Fragment>
   );

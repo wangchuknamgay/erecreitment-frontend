@@ -3,7 +3,6 @@ import { Navigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import EventBus from "../common/EventBus";
 import { logout } from "../actions/auth";
-import InnerHeader from "../pages/InnerHeader";
 
 import { useNavigate } from "react-router-dom";
 
@@ -40,19 +39,7 @@ const Profile = () => {
     return <Navigate to="/home" />;
   }
 
-  const sections = [
-    { title: "Technology", url: "#" },
-    { title: "Design", url: "#" },
-    { title: "Culture", url: "#" },
-    { title: "Business", url: "#" },
-    { title: "Politics", url: "#" },
-    { title: "Opinion", url: "#" },
-    { title: "Science", url: "#" },
-    { title: "Health", url: "#" },
-    { title: "Style", url: "#" },
-    { title: "Travel", url: "#" },
-  ];
-
+  
   return (
     <div className="apple">
       {/* <InnerHeader sections={sections} /> */}
