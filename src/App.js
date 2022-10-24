@@ -7,6 +7,8 @@ import "./App.css";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Profile from "./components/Profile";
+import UserRegistration from "./components/UserRegistration";
+
 
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -107,6 +109,7 @@ const App = () => {
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/userRegistration" element={<UserRegistration />} />
           </Routes>
         {/* </main> */}
       </Container>

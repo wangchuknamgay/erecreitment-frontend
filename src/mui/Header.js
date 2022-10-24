@@ -108,7 +108,7 @@ export default function Header(props) {
             <Button
               variant="outlined"
               size="small"
-              onClick={() => navigate("/register")}
+              onClick={() => navigate("/userRegistration")}
             >
               Sign up
             </Button>
