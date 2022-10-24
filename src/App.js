@@ -13,6 +13,7 @@ import BoardUser from "./components/BoardUser";
 import BoardModerator from "./components/BoardModerator";
 import BoardAdmin from "./components/BoardAdmin";
 import Test from "./components/Test";
+import UserRegistration from "./components/UserRegistration";
 
 import { logout } from "./actions/auth";
 import { clearMessage } from "./actions/message";
@@ -139,6 +140,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/userRegistration" element={<UserRegistration />} />
           {/* <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
