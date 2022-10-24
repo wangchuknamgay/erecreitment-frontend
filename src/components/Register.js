@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link  } from 'react-router-dom';
-import regpic from "../images/regpic.png";
+import repic from "../images/repic.png";
 import Form from "react-validation/build/form";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
@@ -120,16 +120,13 @@ const Register = () => {
   };
   // const classes = useStyles();
   return (
-    
-
     <div className="col-md-12">
       <div className="regcard regcard-container">
         <img
-          src={regpic}
+          src={repic}
           alt="profile-img"
           className="profile-img-card"
-        />
-
+        /> 
         <Form onSubmit={handleRegister} ref={form}>
           {!successful && (
             <div>
@@ -164,7 +161,7 @@ const Register = () => {
               />
             </Grid>
             <Grid item xs={12} sm={6}>
-               <FormControl variant="outlined" className="formControl">
+               <FormControl variant="outlined" className="formControl" required>
                <InputLabel id="demo-simple-select-outlined-label">Gender</InputLabel>
                  <Select
                      labelId="demo-simple-select-outlined-label"
@@ -293,6 +290,18 @@ const Register = () => {
                 validations={[required, vpassword]}
               />
             </Grid>
+            <Grid item xs={6} >
+            <InputLabel id="demo-simple-select-outlined-label">Passport Photo *</InputLabel>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                type="file"
+                id="file"
+                autoComplete="file"
+               
+              />
+            </Grid>
             </Grid>
                 {/* <label htmlFor="username">Username</label>
                 <Input
@@ -332,8 +341,8 @@ const Register = () => {
               <div className="form-group">
                 <button className="btn">Sign Up</button>
               </div>
-              <p className="link">
-              <a href="#">Already have account</a> or <Link to="/login">Sign in</Link>
+              <p className="reglink">
+              <a href="#">Already have account</a> <Link className="sign-text" to="/login">Sign in</Link>
              </p>
             </div>
           )}
