@@ -96,6 +96,12 @@ const Profile = () => {
               </Link>
             </li>
           )}
+
+          <li className="nav-item">
+            <Link to={"/loginprofile"} className="nav-link">
+              Login Profile
+            </Link>
+          </li>
         </div>
 
         {currentUser ? (

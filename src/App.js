@@ -33,6 +33,7 @@ import { clearMessage } from "./actions/message";
 // import AuthVerify from "./common/AuthVerify";
 import EventBus from "./common/EventBus";
 import Blog from "./mui/Blog";
+import Loginprofile from "./components/logprofile/Loginprofile";
 
 const useStyles = makeStyles((theme) => ({
   mainGrid: {
@@ -180,6 +181,8 @@ const App = () => {
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/loginprofile" element={<Loginprofile/>} />
+            
           </Routes>
         {/* </main> */}
       </Container>
