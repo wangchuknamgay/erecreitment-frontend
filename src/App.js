@@ -8,6 +8,8 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Profile from "./components/Profile";
 
+
+
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
@@ -20,7 +22,7 @@ import { clearMessage } from "./actions/message";
 // import AuthVerify from "./common/AuthVerify";
 import EventBus from "./common/EventBus";
 import Blog from "./mui/Blog";
-import Loginprofile from "./components/logprofile/Loginprofile";
+
 
 const useStyles = makeStyles((theme) => ({
   mainGrid: {
@@ -109,7 +111,8 @@ const App = () => {
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/loginprofile" element={<Loginprofile/>} />
+            
+          
             
           </Routes>
         {/* </main> */}
