@@ -204,7 +204,6 @@ const UserRegistration = () => {
                       onChange={onChangeFullName}
                       validations={[required, vfullname]}
                       label="Full Name"
-                      autoFocus
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
@@ -218,7 +217,6 @@ const UserRegistration = () => {
                       onChange={onChangeCid}
                       value={cid}
                       label="CID"
-                      autoFocus
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
@@ -255,7 +253,6 @@ const UserRegistration = () => {
                       fullWidth
                       id="dzongkhag"
                       label="Dzongkhag"
-                      autoFocus
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
@@ -284,7 +281,7 @@ const UserRegistration = () => {
                       fullWidth
                       id="village"
                       label="Village"
-                      autoFocus
+                      
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
@@ -311,8 +308,7 @@ const UserRegistration = () => {
                       variant="outlined"
                       required
                       fullWidth
-                      id="date"
-                      autoFocus
+                      id="date"                      
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
