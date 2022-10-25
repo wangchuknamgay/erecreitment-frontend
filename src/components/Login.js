@@ -141,7 +141,7 @@ const Login = (props) => {
               <span>Login</span>
             </button>
              <p className="link">
-              <a href="#">Forgot password?</a> or <Link to="/register">Create new account</Link>
+              <a href="#">Forgot password?</a> or <Link to="/userRegistration">Create new account</Link>
              </p>
           </div>
 

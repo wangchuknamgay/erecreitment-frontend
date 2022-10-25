@@ -120,11 +120,18 @@ a {
   font-weight: 400;
   margin-left: 520px;
   margin-top: 10px;
-
 }
 /* profile */
 .gendersize{
   width: 271px;
 }
 
+.buttonW {
+  width: "10px" !important;
+  height: "30px" !important;
+}
 
+/* .MuiButton-containedPrimary {
+  color: #fff;
+  background-color: #e7b323 !important;
+} */

@@ -7,6 +7,8 @@ import "./App.css";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Profile from "./components/Profile";
+import Home from "./components/Home";
+import UserRegistration from "./components/UserRegistration";
 
 
 
@@ -22,6 +24,7 @@ import { clearMessage } from "./actions/message";
 // import AuthVerify from "./common/AuthVerify";
 import EventBus from "./common/EventBus";
 import Blog from "./mui/Blog";
+// import { Home } from "@material-ui/icons";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -31,12 +34,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const sections = [
-  { title: "Home", url: "/home" },
+  { title: "Home", url: "/index" },
   { title: "Profile", url: "/profile" },
   { title: "Apply Vacancy", url: "#" },
   { title: "Add Vacancy", url: "#" },
   { title: "Result", url: "#" }
 ];
+
+
 
 const App = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
@@ -83,7 +88,6 @@ const App = () => {
       {/* {!currentUser && (
         <Header sections={sections} />
       )}
-
     {!currentUser && (
         <Header sections={sections} />
       )} */}
@@ -114,22 +118,14 @@ const App = () => {
             
           
             
+            <Route path="/index" element={<Home />} />
+            <Route path="/userRegistration" element={<UserRegistration />} />
           </Routes>
         {/* </main> */}
       </Container>
       <Footer/>
     </React.Fragment>
-    // <div>
-    //   <div>
-    //     <Routes>
-    //       <Route path="/" element={<Blog />} />
-    //       <Route path="/home" element={<Blog />} />
-    //       <Route path="/register" element={<Register />} />
-    //       <Route path="/login" element={<Login />} />
-    //       <Route path="/profile" element={<Profile />} />
-    //     </Routes>
-    //   </div>
-    // </div>
+   
   );
 };
 

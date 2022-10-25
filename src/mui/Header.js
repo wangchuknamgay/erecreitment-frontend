@@ -20,7 +20,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import PersonIcon from "@material-ui/icons/Person";
-import LockOpenIcon from '@material-ui/icons/LockOpen';
+import LockOpenIcon from "@material-ui/icons/LockOpen";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -63,16 +63,10 @@ export default function Header(props) {
 
   const logOut = useCallback(() => {
     dispatch(logout());
+    navigate("/home");
   }, [dispatch]);
 
   useEffect(() => {
-    // if (currentUser) {
-    //   setShowModeratorBoard(currentUser.roles.includes("ROLE_MODERATOR"));
-    //   setShowAdminBoard(currentUser.roles.includes("ROLE_ADMIN"));
-    // } else {
-    //   setShowModeratorBoard(false);
-    //   setShowAdminBoard(false);
-    // }
 
     EventBus.on("logout", () => {
       logOut();
@@ -108,15 +102,9 @@ export default function Header(props) {
             <Button
               variant="outlined"
               size="small"
-              onClick={() => navigate("/register")}
-            >
-              Sign up
-            </Button>
-            <Button
-              variant="outlined"
-              size="small"
               onClick={() => navigate("/login")}
             >
+              <ExitToAppIcon />
               Sign In
             </Button>
           </>
@@ -170,10 +158,10 @@ export default function Header(props) {
                     setAnchorEl(null);
                   }}
                 >
-                   <PersonIcon />
+                  <PersonIcon />
                   <ListItemText primary=" Profile" />
-                 
-                  <ListItemIcon>{/* <HelpOutlineIcon /> */}</ListItemIcon>
+
+                  <ListItemIcon></ListItemIcon>
                 </ListItem>
                 <ListItem
                   button
@@ -182,12 +170,12 @@ export default function Header(props) {
                     setAnchorEl(null);
                   }}
                 >
-                  <LockOpenIcon/>
+                  <LockOpenIcon />
                   <ListItemText primary=" Change Password" />
-                  <ListItemIcon>{/* <HelpOutlineIcon /> */}</ListItemIcon>
+                  <ListItemIcon></ListItemIcon>
                 </ListItem>
 
-                <ListItem button onClick={logOut}>
+                <ListItem button  onClick={logOut}>
                   <ExitToAppIcon></ExitToAppIcon>
                   <ListItemText primary=" Logout" />
                 </ListItem>
@@ -198,23 +186,22 @@ export default function Header(props) {
         )}
       </Toolbar>
       <Toolbar>
-         {currentUser && (
+        {currentUser && (
           <>
-          {sections.map((section) => (
-            <Link
-              color="inherit"
-              noWrap
-              key={section.title}
-              variant="body2"
-              href={section.url}
-              className={classes.toolbarLink}
-            >
-              {section.title}
-            </Link>
-          ))}
+            {sections.map((section) => (
+              <Link
+                color="inherit"
+                noWrap
+                key={section.title}
+                variant="body2"
+                href={section.url}
+                className={classes.toolbarLink}
+              >
+                {section.title}
+              </Link>
+            ))}
           </>
-         )}
-        
+        )}
       </Toolbar>
     </React.Fragment>
   );
