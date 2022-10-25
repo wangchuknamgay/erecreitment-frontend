@@ -100,8 +100,8 @@ export default function Header(props) {
         {!currentUser && (
           <>
             <Button
-              variant="contained"
-              color="primary"
+              variant="outlined"
+              size="small"
               onClick={() => navigate("/login")}
             >
               <ExitToAppIcon />

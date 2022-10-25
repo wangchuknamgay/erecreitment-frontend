@@ -8,6 +8,8 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Profile from "./components/Profile";
 import Home from "./components/Home";
+import UserRegistration from "./components/UserRegistration";
+
 
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -81,6 +83,30 @@ const App = () => {
       <CssBaseline />
       <Container maxWidth="lg">
       <Header sections={sections} />
+      {/* {!currentUser && (
+        <Header sections={sections} />
+      )}
+    {!currentUser && (
+        <Header sections={sections} />
+      )} */}
+        
+        {/* <main> */}
+          {/* <MainFeaturedPost post={mainFeaturedPost} />
+          <Grid container spacing={4}>
+            {featuredPosts.map((post) => (
+              <FeaturedPost key={post.title} post={post} />
+            ))}
+          </Grid>
+          <Grid container spacing={5} className={classes.mainGrid}>
+            <Main title="From the firehose" posts={posts} />
+            <Sidebar
+              title={sidebar.title}
+              description={sidebar.description}
+              archives={sidebar.archives}
+              social={sidebar.social}
+            />
+          </Grid> */}
+
           <Routes>
             <Route path="/" element={<Blog />} />
             <Route path="/home" element={<Blog />} />
@@ -88,6 +114,7 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/index" element={<Home />} />
+            <Route path="/userRegistration" element={<UserRegistration />} />
           </Routes>
         {/* </main> */}
       </Container>

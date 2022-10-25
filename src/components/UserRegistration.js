@@ -1,3 +1,4 @@
+
 import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -13,65 +14,65 @@ import MenuItem from "@material-ui/core/MenuItem";
 //import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import { register } from "../actions/auth";
+// import { makeStyles } from '@material-ui/core/styles';
 import registerService from "../services/register.service"
 
 
 // const useStyles = makeStyles((theme) => ({
-//   formControl: {
-//     margin: theme.spacing(1),
-//     minWidth: 120,
-//   },
-//   selectEmpty: {
-//     marginTop: theme.spacing(2),
-//   },
+//     root: {
+//         '& .MuiTextField-root': {
+//             margin: theme.spacing(1),
+//             width: 200,
+//         },
+//     },
 // }));
 
 const required = (value) => {
-  if (!value) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This field is required!
-      </div>
-    );
-  }
-};
+    if (!value) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          This field is required!
+        </div>
+      );
+    }
+  };
+  
+  const validEmail = (value) => {
+    if (!isEmail(value)) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          This is not a valid email.
+        </div>
+      );
+    }
+  };
+  
+  const vfullname = (value) => {
+    if (value.length < 3 || value.length > 20) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          The fullname must be between 3 and 20 characters.
+        </div>
+      );
+    }
+  };
+  
+  const vpassword = (value) => {
+    if (value.length < 6 || value.length > 40) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          The password must be between 6 and 40 characters.
+        </div>
+      );
+    }
+  };
 
-const validEmail = (value) => {
-  if (!isEmail(value)) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This is not a valid email.
-      </div>
-    );
-  }
-};
+const UserRegistration = () => {
 
-const vfullname = (value) => {
-  if (value.length < 3 || value.length > 20) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        The fullname must be between 3 and 20 characters.
-      </div>
-    );
-  }
-};
-
-const vpassword = (value) => {
-  if (value.length < 6 || value.length > 40) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        The password must be between 6 and 40 characters.
-      </div>
-    );
-  }
-};
-
-const Register = () => {
   const form = useRef();
   const checkBtn = useRef();
 
-  const [fullname, setFullname] = useState("");
+  const [fullName, setFullName] = useState("");
   const [gender, setGender] = React.useState("");
 
   const [cid, setCid] = useState("");
@@ -83,7 +84,7 @@ const Register = () => {
   const [mobileNo, setMobileNo] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmpassword, setConfirmpassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [successful, setSuccessful] = useState(false);
 
   const { message } = useSelector((state) => state.message);
@@ -92,9 +93,9 @@ const Register = () => {
   const handleChange = (event) => {
     setGender(event.target.value);
   };
-  const onChangeFullname = (e) => {
-    const fullname = e.target.value;
-    setFullname(fullname);
+  const onChangeFullName = (e) => {
+    const fullName = e.target.value;
+    setFullName(fullName);
   };
   const onChangeCid = (e) => {
     const cid = e.target.value;
@@ -137,8 +138,8 @@ const Register = () => {
     setPassword(password);
   };
   const onChangeConfirmPassword = (e) => {
-    const confirmpassword = e.target.value;
-    setConfirmpassword(confirmpassword);
+    const confirmPassword = e.target.value;
+    setConfirmPassword(confirmPassword);
   };
 
   const handleRegister = (e) => {
@@ -150,7 +151,7 @@ const Register = () => {
 
     if (checkBtn.current.context._errors.length === 0) {
       const data = {  
-                      fullname,
+                      fullName,
                       cid,
                       gender,
                       dzongkhag,
@@ -161,17 +162,23 @@ const Register = () => {
                       mobileNo,
                       email,
                       password,
-                      confirmpassword
+                      confirmPassword
        };
+
+       registerService.save(data).then(
+        response=>{
+            console.log(response.data);
+        }
+    );
        
-      dispatch(
-        register(data))
-        .then(() => {
-          setSuccessful(true);
-        })
-        .catch(() => {
-          setSuccessful(false);
-        });
+    //   dispatch(
+    //     UserRegistration(data))
+    //     .then(() => {
+    //       setSuccessful(true);
+    //     })
+    //     .catch(() => {
+    //       setSuccessful(false);
+    //     });
     }
   };
   // const classes = useStyles();
@@ -189,12 +196,12 @@ const Register = () => {
                       autoComplete="fname"
                       type="text"
                       name="fullName"
-                      value={fullname}
+                      value={fullName}
                       variant="outlined"
                       required
                       fullWidth
                       id="fName"
-                      onChange={onChangeFullname}
+                      onChange={onChangeFullName}
                       validations={[required, vfullname]}
                       label="Full Name"
                       autoFocus
@@ -359,7 +366,7 @@ const Register = () => {
                       label="Confirm Password"
                       type="password"
                       id="Cpassword"
-                      value={confirmpassword}
+                      value={confirmPassword}
                       autoComplete="Confirm-password"
                       onChange={onChangeConfirmPassword}
                       validations={[required, vpassword]}
@@ -412,4 +419,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default UserRegistration;
