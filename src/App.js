@@ -11,6 +11,7 @@ import Home from "./components/Home";
 import UserRegistration from "./components/UserRegistration";
 
 
+
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
@@ -24,6 +25,7 @@ import { clearMessage } from "./actions/message";
 import EventBus from "./common/EventBus";
 import Blog from "./mui/Blog";
 // import { Home } from "@material-ui/icons";
+
 
 const useStyles = makeStyles((theme) => ({
   mainGrid: {
@@ -112,6 +114,9 @@ const App = () => {
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
+            
+          
+            
             <Route path="/index" element={<Home />} />
             <Route path="/userRegistration" element={<UserRegistration />} />
           </Routes>

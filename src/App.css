@@ -104,7 +104,7 @@ a {
   color: rgb(0, 0, 0);
 }
 
-.btn {
+.regbtn {
   width: 720px;
   height: 40px;
   border-radius: 60px;
@@ -120,6 +120,10 @@ a {
   font-weight: 400;
   margin-left: 520px;
   margin-top: 10px;
+}
+/* profile */
+.gendersize{
+  width: 271px;
 }
 
 .buttonW {

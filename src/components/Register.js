@@ -16,7 +16,6 @@ import Select from "@material-ui/core/Select";
 import { register } from "../actions/auth";
 import registerService from "../services/register.service"
 
-
 // const useStyles = makeStyles((theme) => ({
 //   formControl: {
 //     margin: theme.spacing(1),
@@ -71,7 +70,8 @@ const Register = () => {
   const form = useRef();
   const checkBtn = useRef();
 
-  const [fullname, setFullname] = useState("");
+  // const [username, setFullname] = useState("");
+   const [fullname, setFullname] = useState("");
   const [gender, setGender] = React.useState("");
 
   const [cid, setCid] = useState("");
@@ -188,7 +188,8 @@ const Register = () => {
                     <TextField
                       autoComplete="fname"
                       type="text"
-                      name="fullName"
+                      name="fName"
+                     
                       value={fullname}
                       variant="outlined"
                       required
@@ -231,6 +232,8 @@ const Register = () => {
                         onChange={handleChange}
                         label="Gender"
                       >
+                        <MenuItem value={10}>Female</MenuItem>
+                        <MenuItem value={20}>Male</MenuItem>
                         <MenuItem value={1}>Female</MenuItem>
                         <MenuItem value={2}>Male</MenuItem>
                       </Select>
@@ -288,6 +291,7 @@ const Register = () => {
                       fullWidth
                       id="current address"
                       label="Current Address"
+                      name="current address"
                       name="address"
                       value={address}
                       onChange={onChangeAddress}
@@ -316,6 +320,7 @@ const Register = () => {
                       fullWidth
                       id="Mno"
                       label="Mobile No."
+                      name="Mno"
                       name="mobileNo"
                       value={mobileNo}
                       onChange={onChangeMobileNo}
@@ -359,6 +364,8 @@ const Register = () => {
                       label="Confirm Password"
                       type="password"
                       id="Cpassword"
+                      autoComplete="Confirm-password"
+                      onChange={onChangePassword}
                       value={confirmpassword}
                       autoComplete="Confirm-password"
                       onChange={onChangeConfirmPassword}
@@ -367,9 +374,14 @@ const Register = () => {
                   </Grid>
                   <Grid item xs={6}>
                     <InputLabel id="demo-simple-select-outlined-label">
-                      Passport Photo 
+                      Passport Photo *
                     </InputLabel>
                     <TextField
+                      variant="outlined"
+                      required
+                      Passport Photo 
+                
+                   
                       variant="outlined"
                       
                       fullWidth
@@ -382,7 +394,7 @@ const Register = () => {
               </div>
 
               <div className="form-group">
-                <button className="btn">Sign Up</button>
+                <button className="regbtn">Sign Up</button>
               </div>
               <p className="reglink">
                 <a href="#">Already have account</a>{" "}
