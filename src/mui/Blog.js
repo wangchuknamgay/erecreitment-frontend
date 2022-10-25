@@ -4,6 +4,9 @@ import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import MainFeaturedPost from "./MainFeature";
 import FeaturedPost from "./FeaturedPost";
+import { Card, Paper } from "@material-ui/core";
+import result from "../img/result.png";
+import vacancy from "../img/vacancy.png";
 
 const mainFeaturedPost = {
   title: "Title of a longer featured blog post",
@@ -34,33 +37,92 @@ const featuredPosts = [
 ];
 
 export default function Blog() {
-
   return (
-    <React.Fragment>
-      <CssBaseline />
-      <Container maxWidth="lg">
-        <main>
-          <MainFeaturedPost post={mainFeaturedPost} />
+    <Card>
+      <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-3">
+          <div class="card">
+            <div class="card-body text-center">
+              <h5 class="text-uppercase text-muted font-weight-bold mb-1">
+                <strong>Vacancy</strong>
+              </h5>
+              <div class="empty-img">
+                <img src={vacancy} height="150" alt="Vacancy Image" />
+              </div>
+              <ul class="list-unstyled lh-lg">
+                <li>
+                  <p class="text-muted">
+                    TTPL is pleased to announce new positions
+                  </p>
+                </li>
+              </ul>
+              <div class="text-center mt-4">
+                <a
+                  href="/erm/application"
+                  class="btn btn-outline-primary w-100"
+                >
+                  View Vacancy
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card card-md">
+            <div class="card-body text-center">
+              <h5 class="text-uppercase text-muted font-weight-bold mb-1">
+                <strong>Result</strong>
+              </h5>
+              <div class="empty-img">
+                <img src={result} height="150" alt="Result Image" />
+              </div>
+              <ul class="list-unstyled lh-lg">
+                <li>
+                  <p class="text-muted">
+                    See the result for all the vacancy announced
+                  </p>
+                </li>
+              </ul>
+              <div class="text-center mt-4">
+                <a
+                  href="/erm/resultDetail"
+                  class="btn btn-outline-primary w-100"
+                >
+                  View Result
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3"></div>
+      </div>
+      {/* <main className="col-md-4">
+          
           <Grid container spacing={2}>
             {featuredPosts.map((post) => (
               <FeaturedPost key={post.title} post={post} />
             ))}
           </Grid>
-          {/* <Grid container spacing={5} className={classes.mainGrid}>
-            <Main title="From the firehose" posts={posts} />
-            <Sidebar
-              title={sidebar.title}
-              description={sidebar.description}
-              archives={sidebar.archives}
-              social={sidebar.social}
-            />
-          </Grid> */}
+        
+      </main> */}
+
+      {/* <React.Fragment> */}
+
+      {/* <Container maxWidth="lg">
+ 
+        <main>
+          
+            <Grid container spacing={2}>
+              {featuredPosts.map((post) => (
+                <FeaturedPost key={post.title} post={post} />
+              ))}
+            </Grid>
+          
         </main>
-      </Container>
-      {/* <Footer
-        title="Footer"
-        description="Something here to give the footer a purpose!"
-      /> */}
-    </React.Fragment>
+      </Container> */}
+
+      {/* </React.Fragment> */}
+    </Card>
   );
 }

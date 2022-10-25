@@ -7,6 +7,7 @@ import "./App.css";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Profile from "./components/Profile";
+import Home from "./components/Home";
 
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -20,6 +21,7 @@ import { clearMessage } from "./actions/message";
 // import AuthVerify from "./common/AuthVerify";
 import EventBus from "./common/EventBus";
 import Blog from "./mui/Blog";
+// import { Home } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   mainGrid: {
@@ -28,12 +30,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const sections = [
-  { title: "Home", url: "/home" },
+  { title: "Home", url: "/index" },
   { title: "Profile", url: "/profile" },
   { title: "Apply Vacancy", url: "#" },
   { title: "Add Vacancy", url: "#" },
   { title: "Result", url: "#" }
 ];
+
+
 
 const App = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
@@ -77,53 +81,19 @@ const App = () => {
       <CssBaseline />
       <Container maxWidth="lg">
       <Header sections={sections} />
-      {/* {!currentUser && (
-        <Header sections={sections} />
-      )}
-
-    {!currentUser && (
-        <Header sections={sections} />
-      )} */}
-        
-        {/* <main> */}
-          {/* <MainFeaturedPost post={mainFeaturedPost} />
-          <Grid container spacing={4}>
-            {featuredPosts.map((post) => (
-              <FeaturedPost key={post.title} post={post} />
-            ))}
-          </Grid>
-          <Grid container spacing={5} className={classes.mainGrid}>
-            <Main title="From the firehose" posts={posts} />
-            <Sidebar
-              title={sidebar.title}
-              description={sidebar.description}
-              archives={sidebar.archives}
-              social={sidebar.social}
-            />
-          </Grid> */}
-
           <Routes>
             <Route path="/" element={<Blog />} />
             <Route path="/home" element={<Blog />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/index" element={<Home />} />
           </Routes>
         {/* </main> */}
       </Container>
       <Footer/>
     </React.Fragment>
-    // <div>
-    //   <div>
-    //     <Routes>
-    //       <Route path="/" element={<Blog />} />
-    //       <Route path="/home" element={<Blog />} />
-    //       <Route path="/register" element={<Register />} />
-    //       <Route path="/login" element={<Login />} />
-    //       <Route path="/profile" element={<Profile />} />
-    //     </Routes>
-    //   </div>
-    // </div>
+   
   );
 };
 
