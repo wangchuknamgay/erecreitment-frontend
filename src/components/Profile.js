@@ -116,9 +116,12 @@ const Profile = () => {
   const navigate = useNavigate();
 
   const [open, setOpen] = React.useState(false);
+  const [educationopen, setEducationopen] = React.useState(false);
+  const [experienceopen, setExperienceopen] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
+   
     setShow(false);
   };
   const handleClick = () => {
@@ -175,7 +178,7 @@ const Profile = () => {
                 className="rounded-corner"
                 alt="spy profile"
                 width="300"
-                height="250"
+                height="220"
               ></img>
             </div>
             <div className="mb-4">
@@ -451,7 +454,7 @@ const Profile = () => {
                 <Link onClick={handleClickOpen}>Education </Link>
               </div>
               <Dialog
-                open={open}
+                open={educationopen}
                 TransitionComponent={Transition}
                 keepMounted
                 onClose={handleClose}
@@ -701,7 +704,7 @@ const Profile = () => {
 
 
               <Dialog
-                open={open}
+                open={experienceopen}
                 TransitionComponent={Transition}
                 keepMounted
                 onClose={handleClose}
@@ -709,7 +712,7 @@ const Profile = () => {
                 aria-describedby="alert-dialog-description"
               >
                 <DialogTitle id="alert-dialog-title">
-                  {"Basic info"}
+                  {"Basic"}
                 </DialogTitle>
                 <DialogContent>
                   <DialogContentText id="alert-dialog-description">
