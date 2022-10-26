@@ -29,8 +29,6 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import AddIcon from "@material-ui/icons/Add";
 
-
-
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -39,8 +37,6 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-
-
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -115,15 +111,14 @@ const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [open, setOpen] = React.useState(false);
+  const [basicInfoModel, setBasicInfoModel] = React.useState(false);
+  const [educationModel, setEducationModel] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-    setShow(false);
+  const toggleBasicInfoModel = () => {
+    setBasicInfoModel(!basicInfoModel);
   };
-  const handleClick = () => {
-    setOpen(true);
-    setShow(false);
+  const toggleEducationModel = () => {
+    setEducationModel(!educationModel);
   };
 
   const handleChange = (event) => {
@@ -135,9 +130,6 @@ const Profile = () => {
     setEmploye(event.target.value);
   };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
   const logOut = useCallback(() => {
     dispatch(logout());
   }, [dispatch]);
@@ -234,25 +226,25 @@ const Profile = () => {
                 <Button
                   variant="outlined"
                   color="primary"
-                  onClick={handleClickOpen}
+                  onClick={toggleBasicInfoModel}
                 >
                   {" "}
                   <EditIcon />
                   Edit basic information
                 </Button>
                 <Dialog
-                  open={open}
+                  open={basicInfoModel}
                   TransitionComponent={Transition}
                   keepMounted
-                  onClose={handleClose}
-                  aria-labelledby="alert-dialog-slide-title"
-                  aria-describedby="alert-dialog-slide-description"
+                  onClose={toggleBasicInfoModel}
+                  aria-labelledby="gg"
+                  aria-describedby="dssd-fff"
                 >
-                  <DialogTitle id="alert-dialog-slide-title">
+                  <DialogTitle id="basicInfo">
                     {"Basic Information"}
                   </DialogTitle>
                   <DialogContent>
-                    <DialogContentText id="alert-dialog-slide-description">
+                    <DialogContentText id="basicInfo-description">
                       <div>
                         <div className="form-group">
                           <Grid container spacing={2}>
@@ -429,7 +421,14 @@ const Profile = () => {
                   <DialogActions>
                     <Button
                       variant="contained"
-                      onClick={handleClose}
+                      onClick={toggleBasicInfoModel}
+                      color="secondary"
+                    >
+                      Cancel
+                    </Button>
+                    <Button
+                      variant="contained"
+                      onClick={toggleBasicInfoModel}
                       color="primary"
                     >
                       Save Changes
@@ -445,24 +444,22 @@ const Profile = () => {
         <div className="card">
           <div className="card-body">
             <div className="education">
-              <div className="h7  text-left" >
+              <div className="h7  text-left">
                 {" "}
                 <AddIcon />
-                <Link onClick={handleClickOpen}>Education </Link>
+                <Link onClick={toggleEducationModel}>Education </Link>
               </div>
               <Dialog
-                open={open}
+                open={educationModel}
                 TransitionComponent={Transition}
                 keepMounted
-                onClose={handleClose}
-                aria-labelledby="alert-dialog-slide-title"
-                aria-describedby="alert-dialog-slide-description"
+                onClose={toggleEducationModel}
+                aria-labelledby="education"
+                aria-describedby="education-description"
               >
-                <DialogTitle id="alert-dialog-slide-title">
-                  {"Education"}
-                </DialogTitle>
+                <DialogTitle id="education">{"Education"}</DialogTitle>
                 <DialogContent>
-                  <DialogContentText id="alert-dialog-slide-description">
+                  <DialogContentText id="education-description">
                     <div>
                       <div className="form-group">
                         <Grid container spacing={2}>
@@ -639,7 +636,14 @@ const Profile = () => {
                 <DialogActions>
                   <Button
                     variant="contained"
-                    onClick={handleClose}
+                    onClick={toggleEducationModel}
+                    color="secondary"
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    variant="contained"
+                    onClick={toggleEducationModel}
                     color="primary"
                   >
                     Save Changes
@@ -691,20 +695,20 @@ const Profile = () => {
             </TableContainer>
 
             <br />
-            
+
+            {/**Experience Section */}
             <div className="experiences">
-              <div className="h7 text-left" >
+              <div className="h7 text-left">
                 {" "}
                 <AddIcon />
-                <Link onClick={handleClick}>Experience </Link>
+                <Link>Experience </Link>
               </div>
 
-
               <Dialog
-                open={open}
+                open={false}
                 TransitionComponent={Transition}
                 keepMounted
-                onClose={handleClose}
+                // onClose={handleClose}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
               >
@@ -889,13 +893,13 @@ const Profile = () => {
                 <DialogActions>
                   <Button
                     variant="contained"
-                    onClick={handleClose}
+                    // onClick={handleClose}
                     color="primary"
                   >
                     Save Changes
                   </Button>
                 </DialogActions>
-              </Dialog> 
+              </Dialog>
             </div>
             <TableContainer component={Paper}>
               <Table className={classes.table} aria-label="customized table">
