@@ -78,12 +78,27 @@ function createData2(company, designation, from, to, country, certificate) {
 
 const row2 = [
   createData2(
-    "Dhi",
+    "Ditt",
     "developer",
-    13 / 2 / 2018,
+    "13/ 2 / 2022",
     14 / 56 / 2022,
     "Bhutan",
     "attached"
+  ),
+];
+function createData3(name, title, position, relation, address, mobile, email) {
+  return { name, title, position, relation, address, mobile, email };
+}
+
+const row3 = [
+  createData3(
+    "Thinley",
+    "association",
+    "developer",
+    "employee",
+    "Town",
+    17839405,
+    "thinleydema@gmail.com"
   ),
 ];
 
@@ -113,12 +128,21 @@ const Profile = () => {
 
   const [basicInfoModel, setBasicInfoModel] = React.useState(false);
   const [educationModel, setEducationModel] = React.useState(false);
+  const [experienceModel, setExperienceModel] = React.useState(false);
+  const [refereeModel, setRefereeModel] = React.useState(false);
+  
 
   const toggleBasicInfoModel = () => {
     setBasicInfoModel(!basicInfoModel);
   };
   const toggleEducationModel = () => {
     setEducationModel(!educationModel);
+  };
+  const toggleExperienceModel = () => {
+    setExperienceModel(!experienceModel);
+  };
+  const toggleRefereeModel = () => {
+    setRefereeModel(!refereeModel);
   };
 
   const handleChange = (event) => {
@@ -448,7 +472,7 @@ const Profile = () => {
               <div className="h7  text-left">
                 {" "}
                 <AddIcon />
-                <Link onClick={toggleEducationModel}>Education </Link>
+                <Link to= "/classten" onClick={toggleEducationModel}>Education </Link>
               </div>
               <Dialog
                 open={educationModel}
@@ -657,12 +681,12 @@ const Profile = () => {
                 <TableHead>
                   <TableRow>
                     <StyledTableCell>NAME OF INSTITUTE</StyledTableCell>
-                    <StyledTableCell align="right">QUALI.</StyledTableCell>
-                    <StyledTableCell align="right">COURSE</StyledTableCell>
-                    <StyledTableCell align="right">AGG.</StyledTableCell>
-                    <StyledTableCell align="right">START DATE</StyledTableCell>
-                    <StyledTableCell align="right">END DATE</StyledTableCell>
-                    <StyledTableCell align="right">CERTIFICATE</StyledTableCell>
+                    <StyledTableCell align="left">QUALI.</StyledTableCell>
+                    <StyledTableCell align="left">COURSE</StyledTableCell>
+                    <StyledTableCell align="left">AGG.</StyledTableCell>
+                    <StyledTableCell align="left">START DATE</StyledTableCell>
+                    <StyledTableCell align="left">END DATE</StyledTableCell>
+                    <StyledTableCell align="left">CERTIFICATE</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -671,22 +695,22 @@ const Profile = () => {
                       <StyledTableCell component="th" scope="row">
                         {row1.institute}
                       </StyledTableCell>
-                      <StyledTableCell align="right">
+                      <StyledTableCell align="left">
                         {row1.quali}
                       </StyledTableCell>
-                      <StyledTableCell align="right">
+                      <StyledTableCell align="left">
                         {row1.course}
                       </StyledTableCell>
-                      <StyledTableCell align="right">
+                      <StyledTableCell align="left">
                         {row1.agg}
                       </StyledTableCell>
-                      <StyledTableCell align="right">
+                      <StyledTableCell align="left">
                         {row1.sdate}
                       </StyledTableCell>
-                      <StyledTableCell align="right">
+                      <StyledTableCell align="left">
                         {row1.edate}
                       </StyledTableCell>
-                      <StyledTableCell align="right">
+                      <StyledTableCell align="left">
                         {row1.certificate}
                       </StyledTableCell>
                     </StyledTableRow>
@@ -698,184 +722,93 @@ const Profile = () => {
             <br />
 
             {/**Experience Section */}
-            <div className="experiences">
-              <div className="h7 text-left">
+            <div className="experience">
+              <div className="h7  text-left">
                 {" "}
                 <AddIcon />
-                <Link>Experience </Link>
+                <Link onClick={toggleExperienceModel}>Experience </Link>
               </div>
-
               <Dialog
-                open={false}
+                open={experienceModel}
                 TransitionComponent={Transition}
                 keepMounted
-                // onClose={handleClose}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
+                onClose={toggleExperienceModel}
+                aria-labelledby="experience"
+                aria-describedby="experience-description"
               >
-                <DialogTitle id="alert-dialog-title">
-                  {"Basic info"}
-                </DialogTitle>
+                <DialogTitle id="experience">{"Experience"}</DialogTitle>
                 <DialogContent>
-                  <DialogContentText id="alert-dialog-description">
+                  <DialogContentText id="experience-description">
                     <div>
-                      <div className="form3">
+                      <div className="form-group">
                         <Grid container spacing={2}>
                           <Grid item xs={12} sm={12}>
                             <TextField
-                              autoComplete="fname"
+                              autoComplete="Cname"
                               type="text"
-                              name="fName"
+                              name="Cname"
                               variant="outlined"
                               required
                               fullWidth
-                              id="fName"
-                              label="Full Name"
+                              id="Cname"
+                              label="Company Name"
                               autoFocus
                             />
                           </Grid>
-                          <Grid item xs={12} sm={6}>
+                          <Grid item xs={12} sm={12}>
                             <TextField
-                              autoComplete="cid"
-                              type="number"
+                              autoComplete="designation"
+                              type="text"
+                              name="designation"
                               variant="outlined"
                               required
                               fullWidth
-                              id="cid"
-                              label="CID"
+                              id="designation"
+                              label="Designation"
                               autoFocus
                             />
                           </Grid>
-                          <Grid item xs={12} sm={6}>
-                            <FormControl
-                              variant="outlined"
-                              className="gendersize"
-                              required
-                            >
-                              <InputLabel id="demo-simple-select-outlined-label">
-                                Gender
-                              </InputLabel>
-                              <Select
-                                labelId="demo-simple-select-outlined-label"
-                                id="demo-simple-select-outlined"
-                                value={gender}
-                                onChange={handleChange}
-                                label="Gender"
-                              >
-                                <MenuItem value={10}>Female</MenuItem>
-                                <MenuItem value={20}>Male</MenuItem>
-                              </Select>
-                            </FormControl>
-                          </Grid>
-                          <Grid item xs={12} sm={6}>
+                          <Grid item xs={12} sm={12}>
+                            From Date *
                             <TextField
-                              autoComplete="dzongkhag"
-                              type="text"
-                              name="dzongkhag"
-                              variant="outlined"
-                              required
-                              fullWidth
-                              id="dzongkhag"
-                              label="Dzongkhag"
-                              autoFocus
-                            />
-                          </Grid>
-                          <Grid item xs={12} sm={6}>
-                            <TextField
-                              variant="outlined"
-                              type="text"
-                              required
-                              fullWidth
-                              id="gewog"
-                              label="Gewog"
-                              name="gewog"
-                              autoComplete="gewog"
-                            />
-                          </Grid>
-                          <Grid item xs={12} sm={6}>
-                            <TextField
-                              autoComplete="village"
-                              type="text"
-                              name="village"
-                              variant="outlined"
-                              required
-                              fullWidth
-                              id="village"
-                              label="Village"
-                              autoFocus
-                            />
-                          </Grid>
-                          <Grid item xs={12} sm={6}>
-                            <TextField
-                              variant="outlined"
-                              type="text"
-                              required
-                              fullWidth
-                              id="current address"
-                              label="Current Address"
-                              name="current address"
-                              autoComplete="current address"
-                            />
-                          </Grid>
-                          <Grid item xs={12} sm={6}>
-                            <TextField
-                              autoComplete="dob"
+                              autoComplete="From date"
                               type="date"
-                              name="dob"
                               variant="outlined"
                               required
                               fullWidth
-                              id="date"
+                              id="From date"
                               autoFocus
                             />
                           </Grid>
-                          <Grid item xs={12} sm={6}>
+                          <Grid item xs={12} sm={12}>
+                          End Date *
                             <TextField
-                              variant="outlined"
-                              type="number"
-                              required
-                              fullWidth
-                              id="Mno"
-                              label="Mobile No."
-                              name="Mno"
-                              autoComplete="Mno"
-                            />
-                          </Grid>
-                          <Grid item xs={6}>
-                            <TextField
+                              autoComplete="End date"
+                              type="date"
+                              name="End date"
                               variant="outlined"
                               required
                               fullWidth
-                              id="email"
-                              label="Email Address"
-                              className="width"
-                              autoComplete="email"
+                              id="End date"
+                              autoFocus
                             />
                           </Grid>
-                          <Grid item xs={12} sm={6}>
-                            <FormControl
+                          <Grid item xs={12} sm={12}>
+                            <TextField
+                              autoComplete="country"
+                              type="text"
+                              name="country"
                               variant="outlined"
-                              className="gendersize"
                               required
-                            >
-                              <InputLabel id="demo-simple-select-outlined-label">
-                                Currently Employed
-                              </InputLabel>
-                              <Select
-                                labelId="demo-simple-select-outlined-label"
-                                id="demo-simple-select-outlined"
-                                value={employe}
-                                onChange={handleIschange}
-                                label="Currently Employed"
-                              >
-                                <MenuItem value={10}>Yes</MenuItem>
-                                <MenuItem value={20}>No</MenuItem>
-                              </Select>
-                            </FormControl>
+                              fullWidth
+                              id="conutry"
+                              label="Country"
+                              autoFocus
+                            />
                           </Grid>
                           <Grid item xs={6}>
                             <InputLabel id="demo-simple-select-outlined-label">
-                              Passport Photo *
+                              Work experience certificate*
                             </InputLabel>
                             <TextField
                               variant="outlined"
@@ -894,7 +827,14 @@ const Profile = () => {
                 <DialogActions>
                   <Button
                     variant="contained"
-                    // onClick={handleClose}
+                    onClick={toggleExperienceModel}
+                    color="secondary"
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    variant="contained"
+                    onClick={toggleExperienceModel}
                     color="primary"
                   >
                     Save Changes
@@ -907,13 +847,11 @@ const Profile = () => {
                 <TableHead>
                   <TableRow>
                     <StyledTableCell>COMPANY</StyledTableCell>
-                    <StyledTableCell align="right">
-                      DESIGNATION.
-                    </StyledTableCell>
-                    <StyledTableCell align="right">FROM DATE</StyledTableCell>
-                    <StyledTableCell align="right">TO DATE</StyledTableCell>
-                    <StyledTableCell align="right">COUNTRY</StyledTableCell>
-                    <StyledTableCell align="right">CERTIFICATE</StyledTableCell>
+                    <StyledTableCell align="left"> DESIGNATION. </StyledTableCell>
+                    <StyledTableCell align="left">FROM DATE</StyledTableCell>
+                    <StyledTableCell align="left">TO DATE</StyledTableCell>
+                    <StyledTableCell align="left">COUNTRY</StyledTableCell>
+                    <StyledTableCell align="left">CERTIFICATE</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -922,18 +860,196 @@ const Profile = () => {
                       <StyledTableCell component="th" scope="row">
                         {row2.company}
                       </StyledTableCell>
-                      <StyledTableCell align="right">
+                      <StyledTableCell align="left">
                         {row2.designation}
                       </StyledTableCell>
-                      <StyledTableCell align="right">
+                      <StyledTableCell align="left">
                         {row2.from}
                       </StyledTableCell>
-                      <StyledTableCell align="right">{row2.to}</StyledTableCell>
-                      <StyledTableCell align="right">
+                      <StyledTableCell align="left">{row2.to}</StyledTableCell>
+                      <StyledTableCell align="left">
                         {row2.country}
                       </StyledTableCell>
-                      <StyledTableCell align="right">
+                      <StyledTableCell align="left">
                         {row2.certificate}
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+            <br/>
+
+
+            <div className="Referee">
+              <div className="h7  text-left">
+                {" "}
+                <AddIcon />
+                <Link onClick={toggleRefereeModel}>Referee </Link>
+              </div>
+              <Dialog
+                open={refereeModel}
+                TransitionComponent={Transition}
+                keepMounted
+                onClose={toggleRefereeModel}
+                aria-labelledby="referee"
+                aria-describedby="referee-description"
+              >
+                <DialogTitle id="referee">{"Referee information"}</DialogTitle>
+                <DialogContent>
+                  <DialogContentText id="referee-description">
+                    <div>
+                      <div className="form-group">
+                        <Grid container spacing={2}>
+                          <Grid item xs={12} sm={12}>
+                            <TextField
+                              autoComplete="name"
+                              type="text"
+                              name="name"
+                              variant="outlined"
+                              required
+                              fullWidth
+                              id="name"
+                              label="Name"
+                              autoFocus
+                            />
+                          </Grid>
+                          <Grid item xs={12} sm={12}>
+                            <TextField
+                              autoComplete="title"
+                              type="text"
+                              name="title"
+                              variant="outlined"
+                              required
+                              fullWidth
+                              id="title"
+                              label="Title"
+                              autoFocus
+                            />
+                          </Grid>
+                          <Grid item xs={12} sm={12}>
+                            <TextField
+                              autoComplete="position"
+                              type="text"
+                              name="position"
+                              variant="outlined"
+                              required
+                              fullWidth
+                              id="position"
+                              label="Position"
+                              autoFocus
+                            />
+                          </Grid>
+                          <Grid item xs={12} sm={12}>
+                            <TextField
+                              autoComplete="relation"
+                              type="text"
+                              name="relation"
+                              variant="outlined"
+                              required
+                              fullWidth
+                              id="relation"
+                              label="Relation to Applicant"
+                              autoFocus
+                            />
+                          </Grid>
+                          <Grid item xs={12} sm={12}>
+                            <TextField
+                              autoComplete="address"
+                              type="text"
+                              name="address"
+                              variant="outlined"
+                              required
+                              fullWidth
+                              id="address"
+                              label="Address"
+                              autoFocus
+                            />
+                          </Grid>
+                          <Grid item xs={12} sm={12}>
+                            <TextField
+                              autoComplete="mobile"
+                              type="number"
+                              name="mobile"
+                              variant="outlined"
+                              required
+                              fullWidth
+                              id="mobile"
+                              label="Mobile No."
+                              autoFocus
+                            />
+                          </Grid>
+                          <Grid item xs={12} sm={12}>
+                            <TextField
+                              autoComplete="email"
+                              type="email"
+                              name="email"
+                              variant="outlined"
+                              required
+                              fullWidth
+                              id="email"
+                              label="Email"
+                              autoFocus
+                            />
+                          </Grid>
+                          
+                        </Grid>
+                      </div>
+                    </div>
+                  </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                  <Button
+                    variant="contained"
+                    onClick={toggleRefereeModel}
+                    color="secondary"
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    variant="contained"
+                    onClick={toggleRefereeModel}
+                    color="primary"
+                  >
+                    Save Changes
+                  </Button>
+                </DialogActions>
+              </Dialog>
+            </div>
+            <TableContainer component={Paper}>
+              <Table className={classes.table} aria-label="customized table">
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell>NAME</StyledTableCell>
+                    <StyledTableCell align="left">TITLE.</StyledTableCell>
+                    <StyledTableCell align="left">POSITION</StyledTableCell>
+                    <StyledTableCell align="left">REL.TO APPLICANT</StyledTableCell>
+                    <StyledTableCell align="left">ADDRESS</StyledTableCell>
+                    <StyledTableCell align="left">MOBILE NO</StyledTableCell>
+                    <StyledTableCell align="left">EMAIL</StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {row3.map((row3) => (
+                    <StyledTableRow key={row3.name}>
+                      <StyledTableCell component="th" scope="row">
+                        {row3.name}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {row3.title}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {row3.position}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">{row3.relation}</StyledTableCell>
+                      <StyledTableCell align="left">
+                        {row3.address}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {row3.mobile}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {row3.email}
                       </StyledTableCell>
                     </StyledTableRow>
                   ))}

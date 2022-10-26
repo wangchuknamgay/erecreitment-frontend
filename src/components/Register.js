@@ -292,7 +292,7 @@ const Register = () => {
                       id="current address"
                       label="Current Address"
                       name="current address"
-                      name="address"
+                      
                       value={address}
                       onChange={onChangeAddress}
                       autoComplete="current address"
@@ -321,7 +321,7 @@ const Register = () => {
                       id="Mno"
                       label="Mobile No."
                       name="Mno"
-                      name="mobileNo"
+                 
                       value={mobileNo}
                       onChange={onChangeMobileNo}
                       autoComplete="Mno"
@@ -367,8 +367,6 @@ const Register = () => {
                       autoComplete="Confirm-password"
                       onChange={onChangePassword}
                       value={confirmpassword}
-                      autoComplete="Confirm-password"
-                      onChange={onChangeConfirmPassword}
                       validations={[required, vpassword]}
                     />
                   </Grid>
@@ -380,10 +378,6 @@ const Register = () => {
                       variant="outlined"
                       required
                       Passport Photo 
-                
-                   
-                      variant="outlined"
-                      
                       fullWidth
                       type="file"
                       id="file"
