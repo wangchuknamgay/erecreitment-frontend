@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react"; 
+import React, { useState, useEffect, useCallback } from "react";
 import { Navigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import EventBus from "../common/EventBus";
@@ -443,6 +443,7 @@ const Profile = () => {
       <div className="col-md-8">
         <div className="card">
           <div className="card-body">
+
             <div className="education">
               <div className="h7  text-left">
                 {" "}
