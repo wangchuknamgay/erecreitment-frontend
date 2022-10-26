@@ -79,7 +79,6 @@ const App = () => {
       EventBus.remove("logout");
     };
   }, [currentUser, logOut]);
-
   return (
     <React.Fragment>
       <CssBaseline />
