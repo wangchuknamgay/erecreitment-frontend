@@ -25,6 +25,7 @@ import { clearMessage } from "./actions/message";
 // import AuthVerify from "./common/AuthVerify";
 import EventBus from "./common/EventBus";
 import Blog from "./mui/Blog";
+import AddVacancy from "./components/AddVacancy";
 // import { Home } from "@material-ui/icons";
 
 
@@ -38,7 +39,7 @@ const sections = [
   { title: "Home", url: "/index" },
   { title: "Profile", url: "/profile" },
   { title: "Apply Vacancy", url: "#" },
-  { title: "Add Vacancy", url: "#" },
+  { title: "Add Vacancy", url: "/addVacancy" },
   { title: "Result", url: "#" }
 ];
 
@@ -121,6 +122,7 @@ const App = () => {
             
             <Route path="/index" element={<Home />} />
             <Route path="/userRegistration" element={<UserRegistration />} />
+            <Route path="/addVacancy" element={<AddVacancy />} />
           </Routes>
         {/* </main> */}
       </Container>
