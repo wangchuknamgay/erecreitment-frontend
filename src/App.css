@@ -90,7 +90,7 @@ button {
   color: white;
   font-size: 20px;
   border: none;
-  margin-bottom: 10px;
+  margin-top: 10px;
 
 }
 
@@ -130,6 +130,18 @@ a {
   width: "10px" !important;
   height: "30px" !important;
 }
+
+/* education */
+.choosefile{
+  width: 400px;
+ 
+ 
+}
+.markrow{
+  width: 70px;
+
+}
+
 
 
 /* .MuiButton-containedPrimary {

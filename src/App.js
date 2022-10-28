@@ -9,6 +9,10 @@ import Register from "./components/Register";
 import Profile from "./components/Profile";
 import Home from "./components/Home";
 import Classten from "./pages/ClassX"
+import Classtweleve from "./pages/ClassXll"
+import Diploma from "./pages/Diploma"
+import Degree from "./pages/Degree"
+import Master from "./pages/Master"
 import UserRegistration from "./components/UserRegistration";
 
 
@@ -116,6 +120,10 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/classten" element={<Classten />} />
+            <Route path="/classxll" element={<Classtweleve />} />
+            <Route path="/diploma" element={<Diploma />} />
+            <Route path="/degree" element={<Degree />} />
+            <Route path="/master" element={<Master />} />
             
           
             
