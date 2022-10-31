@@ -121,8 +121,9 @@ a {
   margin-left: 520px;
   margin-top: 10px;
 }
+
 /* profile */
-.gendersize{
+.gendersize {
   width: 271px;
 }
 
@@ -132,16 +133,27 @@ a {
 }
 
 /* education */
-.choosefile{
+.choosefile {
   width: 400px;
- 
- 
+
+
 }
-.markrow{
+
+.markrow {
   width: 70px;
 
 }
 
+.table td,
+.table th {
+  padding: 0.4rem !important;
+}
+
+.custum-thead {
+  background-color: #000000;
+  color: #f7f7f7;
+  font-size: 13px;
+}
 
 
 /* .MuiButton-containedPrimary {
