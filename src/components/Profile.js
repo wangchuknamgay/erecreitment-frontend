@@ -58,14 +58,14 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-function createData1(institute, quali, course, agg, sdate, edate, certificate) {
-  return { institute, quali, course, agg, sdate, edate, certificate };
+function createData1(school,year,academic,certificate) {
+  return { school,year,academic,certificate };
 }
 
 const row1 = [
   createData1(
     "CST",
-    "degree",
+    2022,
     "IT",
     77,
     13 / 2 / 2018,
@@ -73,12 +73,63 @@ const row1 = [
     "attached"
   ),
 ];
-function createData2(company, designation, from, to, country, certificate) {
-  return { company, designation, from, to, country, certificate };
+function createData2(school,year,academic,certificate) {
+  return { school,year,academic,certificate };
 }
 
 const row2 = [
   createData2(
+    "CST",
+    2017,
+    "IT",
+    "attached"
+  ),
+];
+function createData3(college,year,percentage,academic,certificate) {
+  return { college,year,percentage,academic,certificate};
+}
+
+const row3 = [
+  createData3(
+    "CST",
+    2022,
+    "IT",
+    "IT",
+    "attached"
+  ),
+];
+function createData4(college,year,percentage,academic,certificate) {
+  return { college,year,percentage,academic,certificate };
+}
+
+const row4 = [
+  createData4(
+    "CST",
+    2022,
+    "IT",
+    "IT",
+    "attached"
+  ),
+];
+function createData5(college,year,percentage,academic,certificate) {
+  return { college,year,percentage,academic,certificate};
+}
+
+const row5 = [
+  createData5(
+    "CST",
+    2022,
+    "IT",
+    "IT",
+    "attached"
+  ),
+];
+function createData6(company, designation, from, to, country, certificate) {
+  return { company, designation, from, to, country, certificate };
+}
+
+const row6 = [
+  createData6(
     "Ditt",
     "developer",
     "13/ 2 / 2022",
@@ -87,12 +138,12 @@ const row2 = [
     "attached"
   ),
 ];
-function createData3(name, title, position, relation, address, mobile, email) {
+function createData7(name, title, position, relation, address, mobile, email) {
   return { name, title, position, relation, address, mobile, email };
 }
 
-const row3 = [
-  createData3(
+const row7 = [
+  createData7(
     "Thinley",
     "association",
     "developer",
@@ -526,8 +577,9 @@ const getAll = () => {
                 <Link to="/classten" onClick={toggleEducationModel}>
                   Education{" "}
                 </Link>
+                <Link to= "/classten" onClick={toggleEducationModel}>Class X </Link>
               </div>
-              <Dialog
+              {/* <Dialog
                 open={educationModel}
                 TransitionComponent={Transition}
                 keepMounted
@@ -727,42 +779,197 @@ const getAll = () => {
                     Save Changes
                   </Button>
                 </DialogActions>
-              </Dialog>
+              </Dialog> */}
             </div>
             <TableContainer component={Paper}>
               <Table className={classes.table} aria-label="customized table">
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell>NAME OF INSTITUTE</StyledTableCell>
-                    <StyledTableCell align="left">QUALI.</StyledTableCell>
-                    <StyledTableCell align="left">COURSE</StyledTableCell>
-                    <StyledTableCell align="left">AGG.</StyledTableCell>
-                    <StyledTableCell align="left">START DATE</StyledTableCell>
-                    <StyledTableCell align="left">END DATE</StyledTableCell>
+                    <StyledTableCell>SCHOOL</StyledTableCell>
+                    <StyledTableCell align="left">YEAR</StyledTableCell>
+                    <StyledTableCell align="left">ACADEMIC</StyledTableCell>
                     <StyledTableCell align="left">CERTIFICATE</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {row1.map((row1) => (
-                    <StyledTableRow key={row1.institute}>
+                    <StyledTableRow key={row1.school}>
                       <StyledTableCell component="th" scope="row">
-                        {row1.institute}
+                        {row1.school}
                       </StyledTableCell>
                       <StyledTableCell align="left">
-                        {row1.quali}
+                        {row1.year}
                       </StyledTableCell>
                       <StyledTableCell align="left">
-                        {row1.course}
+                        {row1.academic}
                       </StyledTableCell>
                       <StyledTableCell align="left">{row1.agg}</StyledTableCell>
                       <StyledTableCell align="left">
-                        {row1.sdate}
-                      </StyledTableCell>
-                      <StyledTableCell align="left">
-                        {row1.edate}
-                      </StyledTableCell>
-                      <StyledTableCell align="left">
                         {row1.certificate}
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+             
+             <br/>
+            <div className="h7  text-left">
+                {" "}
+                <AddIcon />
+                <Link to= "/classxll" onClick={toggleEducationModel}>Class XII </Link>
+              </div>
+              <TableContainer component={Paper}>
+              <Table className={classes.table} aria-label="customized table">
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell>SCHOOL</StyledTableCell>
+                    <StyledTableCell align="left">Year</StyledTableCell>
+                    <StyledTableCell align="left">ACADEMIC</StyledTableCell>
+                    <StyledTableCell align="left">CERTIFICATE</StyledTableCell>
+                    
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {row2.map((row2) => (
+                    <StyledTableRow key={row2.school}>
+                      <StyledTableCell component="th" scope="row">
+                        {row2.school}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {row2.year}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {row2.academic}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {row2.certificate}
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+
+            <br/>
+            <div className="h7  text-left">
+                {" "}
+                <AddIcon />
+                <Link to= "/diploma" onClick={toggleEducationModel}>Diploma</Link>
+              </div>
+              <TableContainer component={Paper}>
+              <Table className={classes.table} aria-label="customized table">
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell>COLLEGE</StyledTableCell>
+                    <StyledTableCell align="left">Year</StyledTableCell>
+                    <StyledTableCell align="left">PERCENTAGE</StyledTableCell>
+                    <StyledTableCell align="left">ACADEMIC</StyledTableCell>
+                    <StyledTableCell align="left">CERTIFICATE</StyledTableCell>
+                    
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {row3.map((row3) => (
+                    <StyledTableRow key={row3.college}>
+                      <StyledTableCell component="th" scope="row">
+                        {row3.college}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {row3.year}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {row3.percentage}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {row3.academic}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {row3.certificate}
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+
+            <br/>
+            <div className="h7  text-left">
+                {" "}
+                <AddIcon />
+                <Link to= "/degree" onClick={toggleEducationModel}>Degree</Link>
+              </div>
+              <TableContainer component={Paper}>
+              <Table className={classes.table} aria-label="customized table">
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell>COLLEGE</StyledTableCell>
+                    <StyledTableCell align="left">Year</StyledTableCell>
+                    <StyledTableCell align="left">PERCENTAGE</StyledTableCell>
+                    <StyledTableCell align="left">ACADEMIC</StyledTableCell>
+                    <StyledTableCell align="left">CERTIFICATE</StyledTableCell>
+                    
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {row4.map((row4) => (
+                    <StyledTableRow key={row4.college}>
+                      <StyledTableCell component="th" scope="row">
+                        {row4.college}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {row4.year}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {row4.percentage}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {row4.academic}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {row4.certificate}
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+
+            <br/>
+            <div className="h7  text-left">
+                {" "}
+                <AddIcon />
+                <Link to= "/master" onClick={toggleEducationModel}>Master</Link>
+              </div>
+              <TableContainer component={Paper}>
+              <Table className={classes.table} aria-label="customized table">
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell>COLLEGE</StyledTableCell>
+                    <StyledTableCell align="left">Year</StyledTableCell>
+                    <StyledTableCell align="left">PERCENTAGE</StyledTableCell>
+                    <StyledTableCell align="left">ACADEMIC</StyledTableCell>
+                    <StyledTableCell align="left">CERTIFICATE</StyledTableCell>
+                    
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {row5.map((row5) => (
+                    <StyledTableRow key={row5.college}>
+                      <StyledTableCell component="th" scope="row">
+                        {row5.college}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {row5.year}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {row5.percentage}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {row5.academic}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {row5.certificate}
                       </StyledTableCell>
                     </StyledTableRow>
                   ))}
@@ -924,7 +1131,26 @@ const getAll = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  
+                  {row6.map((row6) => (
+                    <StyledTableRow key={row6.company}>
+                      <StyledTableCell component="th" scope="row">
+                        {row6.company}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {row6.designation}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {row6.from}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">{row6.to}</StyledTableCell>
+                      <StyledTableCell align="left">
+                        {row6.country}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {row6.certificate}
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
                 </TableBody>
               </Table>
             </TableContainer>
@@ -1080,28 +1306,29 @@ const getAll = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {row3.map((row3) => (
-                    <StyledTableRow key={row3.name}>
+                  {row7.map((row7) => (
+                    <StyledTableRow key={row7.name}>
                       <StyledTableCell component="th" scope="row">
-                        {row3.name}
+                        {row7.name}
                       </StyledTableCell>
                       <StyledTableCell align="left">
-                        {row3.title}
+                        {row7.title}
                       </StyledTableCell>
                       <StyledTableCell align="left">
-                        {row3.position}
+                        {row7.position}
                       </StyledTableCell>
                       <StyledTableCell align="left">
                         {row3.relation}
                       </StyledTableCell>
+                      <StyledTableCell align="left">{row7.relation}</StyledTableCell>
                       <StyledTableCell align="left">
-                        {row3.address}
+                        {row7.address}
                       </StyledTableCell>
                       <StyledTableCell align="left">
-                        {row3.mobile}
+                        {row7.mobile}
                       </StyledTableCell>
                       <StyledTableCell align="left">
-                        {row3.email}
+                        {row7.email}
                       </StyledTableCell>
                     </StyledTableRow>
                   ))}

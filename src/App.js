@@ -9,6 +9,10 @@ import Register from "./components/Register";
 import Profile from "./components/Profile";
 import Home from "./components/Home";
 import Classten from "./pages/ClassX"
+import Classtweleve from "./pages/ClassXll"
+import Diploma from "./pages/Diploma"
+import Degree from "./pages/Degree"
+import Master from "./pages/Master"
 import UserRegistration from "./components/UserRegistration";
 
 
@@ -25,6 +29,7 @@ import { clearMessage } from "./actions/message";
 // import AuthVerify from "./common/AuthVerify";
 import EventBus from "./common/EventBus";
 import Blog from "./mui/Blog";
+import AddVacancy from "./components/AddVacancy";
 // import { Home } from "@material-ui/icons";
 
 
@@ -38,7 +43,7 @@ const sections = [
   { title: "Home", url: "/index" },
   { title: "Profile", url: "/profile" },
   { title: "Apply Vacancy", url: "#" },
-  { title: "Add Vacancy", url: "#" },
+  { title: "Add Vacancy", url: "/addVacancy" },
   { title: "Result", url: "#" }
 ];
 
@@ -116,11 +121,16 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/classten" element={<Classten />} />
+            <Route path="/classxll" element={<Classtweleve />} />
+            <Route path="/diploma" element={<Diploma />} />
+            <Route path="/degree" element={<Degree />} />
+            <Route path="/master" element={<Master />} />
             
           
             
             <Route path="/index" element={<Home />} />
             <Route path="/userRegistration" element={<UserRegistration />} />
+            <Route path="/addVacancy" element={<AddVacancy />} />
           </Routes>
         {/* </main> */}
       </Container>

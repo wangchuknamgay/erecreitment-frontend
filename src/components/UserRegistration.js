@@ -1,4 +1,3 @@
-
 import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -15,8 +14,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 // import { makeStyles } from '@material-ui/core/styles';
-import registerService from "../services/register.service"
-
+import registerService from "../services/register.service";
 
 // const useStyles = makeStyles((theme) => ({
 //     root: {
@@ -28,47 +26,46 @@ import registerService from "../services/register.service"
 // }));
 
 const required = (value) => {
-    if (!value) {
-      return (
-        <div className="alert alert-danger" role="alert">
-          This field is required!
-        </div>
-      );
-    }
-  };
-  
-  const validEmail = (value) => {
-    if (!isEmail(value)) {
-      return (
-        <div className="alert alert-danger" role="alert">
-          This is not a valid email.
-        </div>
-      );
-    }
-  };
-  
-  const vfullname = (value) => {
-    if (value.length < 3 || value.length > 20) {
-      return (
-        <div className="alert alert-danger" role="alert">
-          The fullname must be between 3 and 20 characters.
-        </div>
-      );
-    }
-  };
-  
-  const vpassword = (value) => {
-    if (value.length < 6 || value.length > 40) {
-      return (
-        <div className="alert alert-danger" role="alert">
-          The password must be between 6 and 40 characters.
-        </div>
-      );
-    }
-  };
+  if (!value) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        This field is required!
+      </div>
+    );
+  }
+};
+
+const validEmail = (value) => {
+  if (!isEmail(value)) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        This is not a valid email.
+      </div>
+    );
+  }
+};
+
+const vfullname = (value) => {
+  if (value.length < 3 || value.length > 20) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        The fullname must be between 3 and 20 characters.
+      </div>
+    );
+  }
+};
+
+const vpassword = (value) => {
+  if (value.length < 6 || value.length > 40) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        The password must be between 6 and 40 characters.
+      </div>
+    );
+  }
+};
 
 const UserRegistration = () => {
-
   const form = useRef();
   const checkBtn = useRef();
 
@@ -101,32 +98,31 @@ const UserRegistration = () => {
     const cid = e.target.value;
     setCid(cid);
   };
-  const onChangeDzongkhag= (e) => {
+  const onChangeDzongkhag = (e) => {
     const dzongkhag = e.target.value;
     setDzongkhag(dzongkhag);
   };
-  const onChangeGewog= (e) => {
+  const onChangeGewog = (e) => {
     const gewog = e.target.value;
     setGewog(gewog);
   };
-  const onChangeVillage= (e) => {
+  const onChangeVillage = (e) => {
     const village = e.target.value;
     setVillage(village);
   };
-  const onChangeAddress= (e) => {
+  const onChangeAddress = (e) => {
     const address = e.target.value;
     setAddress(address);
   };
 
-  const onChangeDob= (e) => {
+  const onChangeDob = (e) => {
     const dob = e.target.value;
     setDob(dob);
   };
-  const onChangeMobileNo= (e) => {
+  const onChangeMobileNo = (e) => {
     const mobileNo = e.target.value;
     setMobileNo(mobileNo);
   };
-  
 
   const onChangeEmail = (e) => {
     const email = e.target.value;
@@ -137,10 +133,6 @@ const UserRegistration = () => {
     const password = e.target.value;
     setPassword(password);
   };
-  const onChangeConfirmPassword = (e) => {
-    const confirmPassword = e.target.value;
-    setConfirmPassword(confirmPassword);
-  };
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -150,35 +142,33 @@ const UserRegistration = () => {
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
-      const data = {  
-                      fullName,
-                      cid,
-                      gender,
-                      dzongkhag,
-                      gewog,
-                      village,
-                      address,
-                      dob,
-                      mobileNo,
-                      email,
-                      password,
-                      confirmPassword
-       };
+      const data = {
+        fullName,
+        cid,
+        gender,
+        dzongkhag,
+        gewog,
+        village,
+        address,
+        dob,
+        mobileNo,
+        email,
+        password,
+        confirmPassword,
+      };
 
-       registerService.save(data).then(
-        response=>{
-            console.log(response.data);
-        }
-    );
-       
-    //   dispatch(
-    //     UserRegistration(data))
-    //     .then(() => {
-    //       setSuccessful(true);
-    //     })
-    //     .catch(() => {
-    //       setSuccessful(false);
-    //     });
+      registerService.save(data).then((response) => {
+        console.log(response.data);
+      });
+
+      //   dispatch(
+      //     UserRegistration(data))
+      //     .then(() => {
+      //       setSuccessful(true);
+      //     })
+      //     .catch(() => {
+      //       setSuccessful(false);
+      //     });
     }
   };
   // const classes = useStyles();
@@ -230,8 +220,6 @@ const UserRegistration = () => {
                       </InputLabel>
                       <Select
                         labelId="demo-simple-select-outlined-label"
-                        id="demo-simple-select-outlined"
-                        name="gender"
                         value={gender}
                         onChange={handleChange}
                         label="Gender"
@@ -281,7 +269,6 @@ const UserRegistration = () => {
                       fullWidth
                       id="village"
                       label="Village"
-                      
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
@@ -308,7 +295,7 @@ const UserRegistration = () => {
                       variant="outlined"
                       required
                       fullWidth
-                      id="date"                      
+                      id="date"
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
@@ -364,17 +351,18 @@ const UserRegistration = () => {
                       id="Cpassword"
                       value={confirmPassword}
                       autoComplete="Confirm-password"
-                      onChange={onChangeConfirmPassword}
+                      onChange={(e) => {
+                        setConfirmPassword(e.target.value);
+                      }}
                       validations={[required, vpassword]}
                     />
                   </Grid>
                   <Grid item xs={6}>
                     <InputLabel id="demo-simple-select-outlined-label">
-                      Passport Photo 
+                      Passport Photo
                     </InputLabel>
                     <TextField
                       variant="outlined"
-                      
                       fullWidth
                       type="file"
                       id="file"
