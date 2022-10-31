@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback,useRef } from "react";
 import { Navigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import EventBus from "../common/EventBus";
@@ -13,7 +13,6 @@ import EmailIcon from "@material-ui/icons/Email";
 import AssessmentIcon from "@material-ui/icons/Assessment";
 import EditIcon from "@material-ui/icons/Edit";
 import BrandingWatermarkIcon from "@material-ui/icons/BrandingWatermark";
-import { useNavigate } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -37,7 +36,9 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-
+import experienceService from "../services/experience.service";
+import {Alert, Snackbar} from "@mui/material";
+import moment from "moment"
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: theme.palette.common.black,
@@ -68,7 +69,7 @@ const row1 = [
     "IT",
     77,
     13 / 2 / 2018,
-    14 / 56 / 2022,
+    "14 / 56 / 2022",
     "attached"
   ),
 ];
@@ -81,7 +82,7 @@ const row2 = [
     "Ditt",
     "developer",
     "13/ 2 / 2022",
-    14 / 56 / 2022,
+    "14 / 56 / 2022",
     "Bhutan",
     "attached"
   ),
@@ -102,35 +103,54 @@ const row3 = [
   ),
 ];
 
-const useStyles = makeStyles({
-  table: {
-    maxWidth: 700,
-  },
-});
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
+const useStyles = makeStyles((theme) => ({
+  table: {
+    maxWidth: 700,
+  },
+  root: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: theme.spacing(2),
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: "100%",
+  },
+}));
 const Profile = () => {
   const classes = useStyles();
 
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
-  const [show, setShow] = useState(false);
-  const handleShow = () => setShow(true);
   const [gender, setGender] = React.useState("");
   const [employe, setEmploye] = React.useState("");
   const [showAdminBoard, setShowAdminBoard] = useState(false);
   const { user: currentUser } = useSelector((state) => state.auth);
-  const [value, setValue] = React.useState("female");
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const [responseMessage, setResponseMessage] = React.useState("");
+  const [openSuccess, setOpenSuccess] = useState(false);
 
   const [basicInfoModel, setBasicInfoModel] = React.useState(false);
   const [educationModel, setEducationModel] = React.useState(false);
   const [experienceModel, setExperienceModel] = React.useState(false);
   const [refereeModel, setRefereeModel] = React.useState(false);
-  
+  const [inputs, setInputs] = useState({});
+
+  const handleCloseSuccess = () => {
+    setOpenSuccess(false);
+};
+
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs(values => ({...values, [name]: value}))
+  }
 
   const toggleBasicInfoModel = () => {
     setBasicInfoModel(!basicInfoModel);
@@ -145,10 +165,6 @@ const Profile = () => {
     setRefereeModel(!refereeModel);
   };
 
-  const handleChange = (event) => {
-    setValue(event.target.value);
-    setGender(event.target.value);
-  };
 
   const handleIschange = (event) => {
     setEmploye(event.target.value);
@@ -175,6 +191,42 @@ const Profile = () => {
       EventBus.remove("logout");
     };
   }, [currentUser, logOut]);
+
+
+const submitForm = (event) => {
+  event.preventDefault();
+  experienceService.save(inputs).then(
+    response=>{
+      setResponseMessage(response.data);
+      setOpenSuccess(true);
+      setExperienceModel(!experienceModel);
+    }
+);
+}
+useEffect(() => {
+  getAll();
+
+}, [])
+
+const getAll = () => {
+  experienceService.getAll().then(
+      response => {
+        console.log(response.data);
+          // setNoticeConfigServiceList(response.data)
+      },
+      // error => {
+      //     setContent(
+      //         (error.response &&
+      //             error.response.data &&
+      //             error.response.data.message) ||
+      //         error.message ||
+      //         error.toString()
+      //     );
+      // }
+  );
+
+}
+
 
   if (!currentUser) {
     return <Navigate to="/home" />;
@@ -467,12 +519,13 @@ const Profile = () => {
       <div className="col-md-8">
         <div className="card">
           <div className="card-body">
-
             <div className="education">
               <div className="h7  text-left">
                 {" "}
                 <AddIcon />
-                <Link to= "/classten" onClick={toggleEducationModel}>Education </Link>
+                <Link to="/classten" onClick={toggleEducationModel}>
+                  Education{" "}
+                </Link>
               </div>
               <Dialog
                 open={educationModel}
@@ -701,9 +754,7 @@ const Profile = () => {
                       <StyledTableCell align="left">
                         {row1.course}
                       </StyledTableCell>
-                      <StyledTableCell align="left">
-                        {row1.agg}
-                      </StyledTableCell>
+                      <StyledTableCell align="left">{row1.agg}</StyledTableCell>
                       <StyledTableCell align="left">
                         {row1.sdate}
                       </StyledTableCell>
@@ -723,12 +774,14 @@ const Profile = () => {
 
             {/**Experience Section */}
             <div className="experience">
+            {/* {moment("02/02/2022").format("MMM DD, YYYY")} */}
               <div className="h7  text-left">
                 {" "}
                 <AddIcon />
                 <Link onClick={toggleExperienceModel}>Experience </Link>
               </div>
               <Dialog
+              onBackdropClick="false"
                 open={experienceModel}
                 TransitionComponent={Transition}
                 keepMounted
@@ -736,77 +789,89 @@ const Profile = () => {
                 aria-labelledby="experience"
                 aria-describedby="experience-description"
               >
-                <DialogTitle id="experience">{"Experience"}</DialogTitle>
-                <DialogContent>
-                  <DialogContentText id="experience-description">
-                    <div>
-                      <div className="form-group">
-                        <Grid container spacing={2}>
-                          <Grid item xs={12} sm={12}>
+                <form>
+                  <DialogTitle id="experience">{"Experience"}</DialogTitle>
+                  <DialogContent>
+                    <DialogContentText id="experience-description">
+                      <div>
+                        <div className="form-group">
+                          <Grid item xs={12} sm={12} className="pb-2">
                             <TextField
                               autoComplete="Cname"
                               type="text"
-                              name="Cname"
+                              name="companyName" 
+                              value={inputs.companyName || ""}
                               variant="outlined"
                               required
                               fullWidth
-                              id="Cname"
+                              onChange={handleChange}
                               label="Company Name"
-                              autoFocus
+                              
                             />
                           </Grid>
-                          <Grid item xs={12} sm={12}>
-                            <TextField
-                              autoComplete="designation"
-                              type="text"
-                              name="designation"
-                              variant="outlined"
-                              required
-                              fullWidth
-                              id="designation"
-                              label="Designation"
-                              autoFocus
-                            />
-                          </Grid>
-                          <Grid item xs={12} sm={12}>
-                            From Date *
-                            <TextField
-                              autoComplete="From date"
-                              type="date"
-                              variant="outlined"
-                              required
-                              fullWidth
-                              id="From date"
-                              autoFocus
-                            />
-                          </Grid>
-                          <Grid item xs={12} sm={12}>
-                          End Date *
-                            <TextField
-                              autoComplete="End date"
-                              type="date"
-                              name="End date"
-                              variant="outlined"
-                              required
-                              fullWidth
-                              id="End date"
-                              autoFocus
-                            />
-                          </Grid>
-                          <Grid item xs={12} sm={12}>
-                            <TextField
-                              autoComplete="country"
-                              type="text"
-                              name="country"
-                              variant="outlined"
-                              required
-                              fullWidth
-                              id="conutry"
-                              label="Country"
-                              autoFocus
-                            />
-                          </Grid>
-                          <Grid item xs={6}>
+                          <div className="row pb-2">
+                            <div className="col-md-6">
+                              <TextField
+                                autoComplete="designation"
+                                type="text"
+                                name="designation" 
+                                value={inputs.designation || ""}
+                                variant="outlined"
+                                required
+                                fullWidth
+                                onChange={handleChange}
+                                label="Designation"
+                                
+                              />
+                            </div>
+                            <div className="col-md-6">
+                              <TextField
+                                autoComplete="country"
+                                type="text"
+                                name="country" 
+                                value={inputs.country || ""}
+                                variant="outlined"
+                                required
+                                fullWidth
+                                onChange={handleChange}
+                                label="Country"
+                                
+                              />
+                            </div>
+                          </div>
+
+                          <div className="row pb-2">
+                            <div className="col-md-6">
+                              From Date <span color="danger">*</span>
+                              <TextField
+                                autoComplete="From date"
+                                type="date"
+                                variant="outlined"
+                                required
+                                name="fromDate" 
+                                value={inputs.fromDate || ""}
+                                fullWidth
+                                onChange={handleChange}
+                                
+                              />
+                            </div>
+                            <div className="col-md-6">
+                              End Date *
+                              <TextField
+                                autoComplete="From date"
+                                type="date"
+                                variant="outlined"
+                                required
+                                name="toDate" 
+                                value={inputs.toDate || ""}
+                                fullWidth
+                                onChange={handleChange}
+                                
+                              />
+                            </div>
+                          </div>
+
+                          <Grid item xs={12} sm={12} className="pb-2">
                             <InputLabel id="demo-simple-select-outlined-label">
                               Work experience certificate*
                             </InputLabel>
@@ -819,27 +884,28 @@ const Profile = () => {
                               autoComplete="file"
                             />
                           </Grid>
-                        </Grid>
+                        </div>
                       </div>
-                    </div>
-                  </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                  <Button
-                    variant="contained"
-                    onClick={toggleExperienceModel}
-                    color="secondary"
-                  >
-                    Cancel
-                  </Button>
-                  <Button
-                    variant="contained"
-                    onClick={toggleExperienceModel}
-                    color="primary"
-                  >
-                    Save Changes
-                  </Button>
-                </DialogActions>
+                    </DialogContentText>
+                  </DialogContent>
+                  <DialogActions>
+                    <Button
+                      variant="contained"
+                      onClick={toggleExperienceModel}
+                      color="secondary"
+                    >
+                      Cancel
+                    </Button>
+                    <Button
+                      variant="contained"
+                      type="submit"
+                      onClick={submitForm}
+                      color="primary"
+                    >
+                      Save
+                    </Button>
+                  </DialogActions>
+                </form>
               </Dialog>
             </div>
             <TableContainer component={Paper}>
@@ -847,7 +913,10 @@ const Profile = () => {
                 <TableHead>
                   <TableRow>
                     <StyledTableCell>COMPANY</StyledTableCell>
-                    <StyledTableCell align="left"> DESIGNATION. </StyledTableCell>
+                    <StyledTableCell align="left">
+                      {" "}
+                      DESIGNATION.{" "}
+                    </StyledTableCell>
                     <StyledTableCell align="left">FROM DATE</StyledTableCell>
                     <StyledTableCell align="left">TO DATE</StyledTableCell>
                     <StyledTableCell align="left">COUNTRY</StyledTableCell>
@@ -855,31 +924,11 @@ const Profile = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {row2.map((row2) => (
-                    <StyledTableRow key={row2.company}>
-                      <StyledTableCell component="th" scope="row">
-                        {row2.company}
-                      </StyledTableCell>
-                      <StyledTableCell align="left">
-                        {row2.designation}
-                      </StyledTableCell>
-                      <StyledTableCell align="left">
-                        {row2.from}
-                      </StyledTableCell>
-                      <StyledTableCell align="left">{row2.to}</StyledTableCell>
-                      <StyledTableCell align="left">
-                        {row2.country}
-                      </StyledTableCell>
-                      <StyledTableCell align="left">
-                        {row2.certificate}
-                      </StyledTableCell>
-                    </StyledTableRow>
-                  ))}
+                  
                 </TableBody>
               </Table>
             </TableContainer>
-            <br/>
-
+            <br />
 
             <div className="Referee">
               <div className="h7  text-left">
@@ -992,7 +1041,6 @@ const Profile = () => {
                               autoFocus
                             />
                           </Grid>
-                          
                         </Grid>
                       </div>
                     </div>
@@ -1023,7 +1071,9 @@ const Profile = () => {
                     <StyledTableCell>NAME</StyledTableCell>
                     <StyledTableCell align="left">TITLE.</StyledTableCell>
                     <StyledTableCell align="left">POSITION</StyledTableCell>
-                    <StyledTableCell align="left">REL.TO APPLICANT</StyledTableCell>
+                    <StyledTableCell align="left">
+                      REL.TO APPLICANT
+                    </StyledTableCell>
                     <StyledTableCell align="left">ADDRESS</StyledTableCell>
                     <StyledTableCell align="left">MOBILE NO</StyledTableCell>
                     <StyledTableCell align="left">EMAIL</StyledTableCell>
@@ -1041,7 +1091,9 @@ const Profile = () => {
                       <StyledTableCell align="left">
                         {row3.position}
                       </StyledTableCell>
-                      <StyledTableCell align="left">{row3.relation}</StyledTableCell>
+                      <StyledTableCell align="left">
+                        {row3.relation}
+                      </StyledTableCell>
                       <StyledTableCell align="left">
                         {row3.address}
                       </StyledTableCell>
@@ -1057,6 +1109,14 @@ const Profile = () => {
               </Table>
             </TableContainer>
           </div>
+
+          <Snackbar open={openSuccess} autoHideDuration={2000} onClose={handleCloseSuccess}
+                                      anchorOrigin={{
+                                          vertical:'bottom',
+                                          horizontal:'right'
+                                      }}>
+                                <Alert severity="success">{responseMessage}</Alert>
+                            </Snackbar>
         </div>
       </div>
     </div>
