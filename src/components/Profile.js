@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Navigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import EventBus from "../common/EventBus";
@@ -29,124 +29,41 @@ import Select from "@material-ui/core/Select";
 import AddIcon from "@material-ui/icons/Add";
 
 import { withStyles, makeStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
+
 import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
+
 import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
 import experienceService from "../services/experience.service";
 import { Alert, Snackbar } from "@mui/material";
 import moment from "moment";
-import { colors } from "@material-ui/core";
-const StyledTableCell = withStyles((theme) => ({
-  head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-    fontSize: 8,
-  },
-  body: {
-    fontSize: 9,
-  },
-}))(TableCell);
-
-const StyledTableRow = withStyles((theme) => ({
-  root: {
-    "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.action.hover,
-    },
-  },
-}))(TableRow);
-
-function createData1(school, year, academic, certificate) {
-  return { school, year, academic, certificate };
-}
-
-const row1 = [
-  createData1(
-    "CST",
-    2022,
-    "IT",
-    77,
-    13 / 2 / 2018,
-    "14 / 56 / 2022",
-    "attached"
-  ),
-];
-function createData2(school, year, academic, certificate) {
-  return { school, year, academic, certificate };
-}
-
-const row2 = [createData2("CST", 2017, "IT", "attached")];
-function createData3(college, year, percentage, academic, certificate) {
-  return { college, year, percentage, academic, certificate };
-}
-
-const row3 = [createData3("CST", 2022, "IT", "IT", "attached")];
-function createData4(college, year, percentage, academic, certificate) {
-  return { college, year, percentage, academic, certificate };
-}
-
-const row4 = [createData4("CST", 2022, "IT", "IT", "attached")];
-function createData5(college, year, percentage, academic, certificate) {
-  return { college, year, percentage, academic, certificate };
-}
-
-const row5 = [createData5("CST", 2022, "IT", "IT", "attached")];
-function createData6(company, designation, from, to, country, certificate) {
-  return { company, designation, from, to, country, certificate };
-}
-
-const row6 = [
-  createData6(
-    "Ditt",
-    "developer",
-    "13/ 2 / 2022",
-    "14 / 56 / 2022",
-    "Bhutan",
-    "attached"
-  ),
-];
-function createData7(name, title, position, relation, address, mobile, email) {
-  return { name, title, position, relation, address, mobile, email };
-}
-
-const row7 = [
-  createData7(
-    "Thinley",
-    "association",
-    "developer",
-    "employee",
-    "Town",
-    17839405,
-    "thinleydema@gmail.com"
-  ),
-];
+import referenceService from "../services/reference.service";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faEnvelope,
+  faLocationDot,
+  faHome,
+  faPhone,
+  faEdit,
+  faAward,
+  faHandsHelping,
+  faClock,
+  faMale,
+  faFemale,
+  faBriefcase,
+  faBook,
+  faIdCard,
+  faBirthdayCake,
+  faLink,
+  faLocation,
+  faUnlock,
+  faDownload
+} from "@fortawesome/free-solid-svg-icons";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const useStyles = makeStyles((theme) => ({
-  table: {
-    maxWidth: 700,
-  },
-  root: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: theme.spacing(2),
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: "100%",
-  },
-}));
 const Profile = () => {
-  const classes = useStyles();
-
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
   const [gender, setGender] = React.useState("");
   const [employe, setEmploye] = React.useState("");
@@ -162,6 +79,7 @@ const Profile = () => {
   const [refereeModel, setRefereeModel] = React.useState(false);
   const [inputs, setInputs] = useState({});
   const [experienceList, setExperienceList] = useState([]);
+  const [referenceList, setReferenceList] = useState([]);
 
   const handleCloseSuccess = () => {
     setOpenSuccess(false);
@@ -212,6 +130,12 @@ const Profile = () => {
     };
   }, [currentUser, logOut]);
 
+  useEffect(() => {
+    getAllExperience();
+    getAllExperienceByUserId();
+  }, []);
+
+  //======for experience ====//
   const submitForm = (event) => {
     event.preventDefault();
     experienceService.save(inputs).then((response) => {
@@ -221,22 +145,43 @@ const Profile = () => {
       getAllExperience();
     });
   };
-  useEffect(() => {
-    getAllExperience();
-  }, []);
 
   const getAllExperience = () => {
     experienceService.getAll().then((response) => {
-      console.log(response.data);
       setExperienceList(response.data);
     });
   };
 
-  const customColumnStyle = {
-    height: "3px",
-    backgroundColor: "green",
-    text: "white",
+  const populateExperienceDate=(e,item)=>{
+    setInputs(item)
+    setExperienceModel(!refereeModel);
+  }
+
+  // =====================================//
+
+  //======for reference =====
+  const saveReference = (event) => {
+    event.preventDefault();
+    referenceService.save(inputs).then((response) => {
+      setResponseMessage(response.data);
+      setOpenSuccess(true);
+      setRefereeModel(!refereeModel);
+      getAllExperienceByUserId();
+    });
   };
+
+  const getAllExperienceByUserId = () => {
+    referenceService.getAllExperienceByUserId().then((response) => {
+      console.log(response.data);
+      setReferenceList(response.data);
+    });
+  };
+
+  const populateReferenceDate=(e,item)=>{
+    setInputs(item)
+    setRefereeModel(!refereeModel);
+  }
+  //=======================================//
 
   if (!currentUser) {
     return <Navigate to="/home" />;
@@ -527,220 +472,19 @@ const Profile = () => {
         </div>
       </div>
       <div className="col-md-8">
-        <div className="card">
-          <div className="card-body">
+        <div className="card p-2">
+          <div className="card-body p-3">
             <div className="education">
               <div className="h7  text-left">
                 {" "}
                 <AddIcon />
-                <Link to="/classten" onClick={toggleEducationModel}>
+                {/* <Link to="/classten" onClick={toggleEducationModel}>
                   Education{" "}
-                </Link>
+                </Link> */}
                 <Link to="/classten" onClick={toggleEducationModel}>
                   Class X{" "}
                 </Link>
               </div>
-              {/* <Dialog
-                open={educationModel}
-                TransitionComponent={Transition}
-                keepMounted
-                onClose={toggleEducationModel}
-                aria-labelledby="education"
-                aria-describedby="education-description"
-              >
-                <DialogTitle id="education">{"Education"}</DialogTitle>
-                <DialogContent>
-                  <DialogContentText id="education-description">
-                    <div>
-                      <div className="form-group">
-                        <Grid container spacing={2}>
-                          <Grid item xs={12} sm={12}>
-                            <TextField
-                              autoComplete="fname"
-                              type="text"
-                              name="fName"
-                              variant="outlined"
-                              required
-                              fullWidth
-                              id="fName"
-                              label="Full Name"
-                              autoFocus
-                            />
-                          </Grid>
-                          <Grid item xs={12} sm={6}>
-                            <TextField
-                              autoComplete="cid"
-                              type="number"
-                              variant="outlined"
-                              required
-                              fullWidth
-                              id="cid"
-                              label="CID"
-                              autoFocus
-                            />
-                          </Grid>
-                          <Grid item xs={12} sm={6}>
-                            <FormControl
-                              variant="outlined"
-                              className="gendersize"
-                              required
-                            >
-                              <InputLabel id="demo-simple-select-outlined-label">
-                                Gender
-                              </InputLabel>
-                              <Select
-                                labelId="demo-simple-select-outlined-label"
-                                id="demo-simple-select-outlined"
-                                value={gender}
-                                onChange={handleChange}
-                                label="Gender"
-                              >
-                                <MenuItem value={10}>Female</MenuItem>
-                                <MenuItem value={20}>Male</MenuItem>
-                              </Select>
-                            </FormControl>
-                          </Grid>
-                          <Grid item xs={12} sm={6}>
-                            <TextField
-                              autoComplete="dzongkhag"
-                              type="text"
-                              name="dzongkhag"
-                              variant="outlined"
-                              required
-                              fullWidth
-                              id="dzongkhag"
-                              label="Dzongkhag"
-                              autoFocus
-                            />
-                          </Grid>
-                          <Grid item xs={12} sm={6}>
-                            <TextField
-                              variant="outlined"
-                              type="text"
-                              required
-                              fullWidth
-                              id="gewog"
-                              label="Gewog"
-                              name="gewog"
-                              autoComplete="gewog"
-                            />
-                          </Grid>
-                          <Grid item xs={12} sm={6}>
-                            <TextField
-                              autoComplete="village"
-                              type="text"
-                              name="village"
-                              variant="outlined"
-                              required
-                              fullWidth
-                              id="village"
-                              label="Village"
-                              autoFocus
-                            />
-                          </Grid>
-                          <Grid item xs={12} sm={6}>
-                            <TextField
-                              variant="outlined"
-                              type="text"
-                              required
-                              fullWidth
-                              id="current address"
-                              label="Current Address"
-                              name="current address"
-                              autoComplete="current address"
-                            />
-                          </Grid>
-                          <Grid item xs={12} sm={6}>
-                            <TextField
-                              autoComplete="dob"
-                              type="date"
-                              name="dob"
-                              variant="outlined"
-                              required
-                              fullWidth
-                              id="date"
-                              autoFocus
-                            />
-                          </Grid>
-                          <Grid item xs={12} sm={6}>
-                            <TextField
-                              variant="outlined"
-                              type="number"
-                              required
-                              fullWidth
-                              id="Mno"
-                              label="Mobile No."
-                              name="Mno"
-                              autoComplete="Mno"
-                            />
-                          </Grid>
-                          <Grid item xs={6}>
-                            <TextField
-                              variant="outlined"
-                              required
-                              fullWidth
-                              id="email"
-                              label="Email Address"
-                              className="width"
-                              autoComplete="email"
-                            />
-                          </Grid>
-                          <Grid item xs={12} sm={6}>
-                            <FormControl
-                              variant="outlined"
-                              className="gendersize"
-                              required
-                            >
-                              <InputLabel id="demo-simple-select-outlined-label">
-                                Currently Employed
-                              </InputLabel>
-                              <Select
-                                labelId="demo-simple-select-outlined-label"
-                                id="demo-simple-select-outlined"
-                                value={employe}
-                                onChange={handleIschange}
-                                label="Currently Employed"
-                              >
-                                <MenuItem value={10}>Yes</MenuItem>
-                                <MenuItem value={20}>No</MenuItem>
-                              </Select>
-                            </FormControl>
-                          </Grid>
-                          <Grid item xs={6}>
-                            <InputLabel id="demo-simple-select-outlined-label">
-                              Passport Photo *
-                            </InputLabel>
-                            <TextField
-                              variant="outlined"
-                              required
-                              fullWidth
-                              type="file"
-                              id="file"
-                              autoComplete="file"
-                            />
-                          </Grid>
-                        </Grid>
-                      </div>
-                    </div>
-                  </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                  <Button
-                    variant="contained"
-                    onClick={toggleEducationModel}
-                    color="secondary"
-                  >
-                    Cancel
-                  </Button>
-                  <Button
-                    variant="contained"
-                    onClick={toggleEducationModel}
-                    color="primary"
-                  >
-                    Save Changes
-                  </Button>
-                </DialogActions>
-              </Dialog> */}
             </div>
             <div className="table-responsive ">
               <table className="table table-bordered">
@@ -751,16 +495,14 @@ const Profile = () => {
                   <th align="left">Certificate</th>
                 </thead>
                 <tbody>
-                  {row1.map((row1) => (
+                  {/* {row1.map((row1) => (
                     <tr key={row1.school}>
-                      <td>
-                        {row1.school}
-                      </td>
+                      <td>{row1.school}</td>
                       <td align="left">{row1.year}</td>
                       <td align="left">{row1.academic}</td>
                       <td align="left">{row1.certificate}</td>
                     </tr>
-                  ))}
+                  ))} */}
                 </tbody>
               </table>
             </div>
@@ -783,7 +525,7 @@ const Profile = () => {
                   <th align="left">CERTIFICATE</th>
                 </thead>
                 <tbody>
-                  {row2.map((row2) => (
+                  {/* {row2.map((row2) => (
                     <tr key={row2.school}>
                       <td component="th" scope="row">
                         {row2.school}
@@ -792,7 +534,7 @@ const Profile = () => {
                       <td align="left">{row2.academic}</td>
                       <td align="left">{row2.certificate}</td>
                     </tr>
-                  ))}
+                  ))} */}
                 </tbody>
               </table>
             </div>
@@ -814,7 +556,7 @@ const Profile = () => {
                   <th align="left">Certificate</th>
                 </thead>
                 <tbody>
-                  {row3.map((row3) => (
+                  {/* {row3.map((row3) => (
                     <tr key={row3.college}>
                       <td component="th" scope="row">
                         {row3.college}
@@ -824,7 +566,7 @@ const Profile = () => {
                       <td align="left">{row3.academic}</td>
                       <td align="left">{row3.certificate}</td>
                     </tr>
-                  ))}
+                  ))} */}
                 </tbody>
               </table>
             </div>
@@ -846,7 +588,7 @@ const Profile = () => {
                   <th align="left">Certificate</th>
                 </thead>
                 <tbody>
-                  {row4.map((row4) => (
+                  {/* {row4.map((row4) => (
                     <tr key={row4.college}>
                       <td component="th" scope="row">
                         {row4.college}
@@ -856,7 +598,7 @@ const Profile = () => {
                       <td align="left">{row4.academic}</td>
                       <td align="left">{row4.certificate}</td>
                     </tr>
-                  ))}
+                  ))} */}
                 </tbody>
               </table>
             </div>
@@ -879,7 +621,7 @@ const Profile = () => {
                   <th align="left">Certificate</th>
                 </thead>
                 <tbody>
-                  {row5.map((row5) => (
+                  {/* {row5.map((row5) => (
                     <tr key={row5.college}>
                       <td component="th" scope="row">
                         {row5.college}
@@ -889,7 +631,7 @@ const Profile = () => {
                       <td align="left">{row5.academic}</td>
                       <td align="left">{row5.certificate}</td>
                     </tr>
-                  ))}
+                  ))} */}
                 </tbody>
               </table>
             </div>
@@ -1036,19 +778,26 @@ const Profile = () => {
                     <th>To</th>
                     <th>Country</th>
                     <th>Certificate</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {experienceList.map((row) => (
-                    <tr key={row.experienceId}>
+                  {experienceList.map((item) => (
+                    <tr key={item.experienceId}>
                       <td component="th" scope="row">
-                        {row.companyName}
+                        {item.companyName}
                       </td>
-                      <td>{row.designation}</td>
-                      <td>{moment(row.fromDate).format("MMM DD, YYYY")}</td>
-                      <td>{moment(row.toDate).format("MMM DD, YYYY")}</td>
-                      <td>{row.country}</td>
-                      <td>{row.certificate}</td>
+                      <td>{item.designation}</td>
+                      <td>{moment(item.fromDate).format("MMM DD, YYYY")}</td>
+                      <td>{moment(item.toDate).format("MMM DD, YYYY")}</td>
+                      <td>{item.country}</td>
+                      <td><span  className="custom-link"><FontAwesomeIcon icon={faDownload} />Exp letter</span></td>
+                      <td align="left">
+                        <span onClick={e =>populateExperienceDate(e,item)} className="custom-link">
+                          <FontAwesomeIcon icon={faEdit} />
+                          Edit
+                        </span>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -1070,124 +819,128 @@ const Profile = () => {
                 aria-labelledby="referee"
                 aria-describedby="referee-description"
               >
-                <DialogTitle id="referee">{"Referee information"}</DialogTitle>
-                <DialogContent>
-                  <DialogContentText id="referee-description">
-                    <div>
+                <form>
+                  <DialogTitle id="referee">
+                    {"Referee information"}
+                  </DialogTitle>
+                  <DialogContent>
+                    <DialogContentText id="referee-description">
                       <div className="form-group">
-                        <Grid container spacing={2}>
-                          <Grid item xs={12} sm={12}>
-                            <TextField
-                              autoComplete="name"
-                              type="text"
-                              name="name"
-                              variant="outlined"
-                              required
-                              fullWidth
-                              id="name"
-                              label="Name"
-                              autoFocus
-                            />
-                          </Grid>
-                          <Grid item xs={12} sm={12}>
-                            <TextField
-                              autoComplete="title"
-                              type="text"
-                              name="title"
-                              variant="outlined"
-                              required
-                              fullWidth
-                              id="title"
-                              label="Title"
-                              autoFocus
-                            />
-                          </Grid>
-                          <Grid item xs={12} sm={12}>
-                            <TextField
-                              autoComplete="position"
-                              type="text"
-                              name="position"
-                              variant="outlined"
-                              required
-                              fullWidth
-                              id="position"
-                              label="Position"
-                              autoFocus
-                            />
-                          </Grid>
-                          <Grid item xs={12} sm={12}>
-                            <TextField
-                              autoComplete="relation"
-                              type="text"
-                              name="relation"
-                              variant="outlined"
-                              required
-                              fullWidth
-                              id="relation"
-                              label="Relation to Applicant"
-                              autoFocus
-                            />
-                          </Grid>
-                          <Grid item xs={12} sm={12}>
-                            <TextField
-                              autoComplete="address"
-                              type="text"
-                              name="address"
-                              variant="outlined"
-                              required
-                              fullWidth
-                              id="address"
-                              label="Address"
-                              autoFocus
-                            />
-                          </Grid>
-                          <Grid item xs={12} sm={12}>
-                            <TextField
-                              autoComplete="mobile"
-                              type="number"
-                              name="mobile"
-                              variant="outlined"
-                              required
-                              fullWidth
-                              id="mobile"
-                              label="Mobile No."
-                              autoFocus
-                            />
-                          </Grid>
-                          <Grid item xs={12} sm={12}>
-                            <TextField
-                              autoComplete="email"
-                              type="email"
-                              name="email"
-                              variant="outlined"
-                              required
-                              fullWidth
-                              id="email"
-                              label="Email"
-                              autoFocus
-                            />
-                          </Grid>
-                        </Grid>
+                        <div className="row">
+                          <div className="col-md-6 pb-2">
+                            <Grid item xs={12} sm={12}>
+                              <TextField
+                                autoComplete="name"
+                                type="text"
+                                name="name"
+                                value={inputs.name || ""}
+                                variant="outlined"
+                                required
+                                fullWidth
+                                label="Name"
+                                onChange={handleChange}
+                              />
+                            </Grid>
+                          </div>
+                          <div className="col-md-6  pb-2">
+                            <Grid item xs={12} sm={12}>
+                              <TextField
+                                autoComplete="position"
+                                type="text"
+                                name="position"
+                                variant="outlined"
+                                required
+                                fullWidth
+                                value={inputs.position || ""}
+                                label="Position"
+                                onChange={handleChange}
+                              />
+                            </Grid>
+                          </div>
+                          <div className="col-md-6  pb-2">
+                            <Grid item xs={12} sm={12}>
+                              <TextField
+                                autoComplete="mobileNo"
+                                type="number"
+                                name="mobileNo"
+                                variant="outlined"
+                                required
+                                fullWidth
+                                value={inputs.mobileNo || ""}
+                                label="Mobile No."
+                                onChange={handleChange}
+                              />
+                            </Grid>
+                          </div>
+                          <div className="col-md-6  pb-2">
+                            <Grid item xs={12} sm={12}>
+                              <TextField
+                                autoComplete="email"
+                                type="email"
+                                name="email"
+                                variant="outlined"
+                                required
+                                fullWidth
+                                value={inputs.email || ""}
+                                label="Email"
+                                onChange={handleChange}
+                              />
+                            </Grid>
+                          </div>
+                          <div className="col-md-6  pb-2">
+                            <Grid item xs={12} sm={12}>
+                              <TextField
+                                autoComplete="relation"
+                                type="text"
+                                name="relationShip"
+                                variant="outlined"
+                                required
+                                fullWidth
+                                value={inputs.relationShip || ""}
+                                label="Relation to Applicant"
+                                onChange={handleChange}
+                              />
+                            </Grid>
+                          </div>
+                          <div className="col-md-6 pb-2">
+                            <Grid item xs={12} sm={12}>
+                              <TextField
+                                autoComplete="address"
+                                type="text"
+                                name="address"
+                                variant="outlined"
+                                required
+                                fullWidth
+                                value={inputs.address || ""}
+                                label="Address"
+                                onChange={handleChange}
+                              />
+                            </Grid>
+                          </div>
+
+                          <div className="col-md-6">
+                            <Button
+                              variant="contained"
+                              onClick={toggleRefereeModel}
+                              color="secondary"
+                            >
+                              Cancel
+                            </Button>
+                          </div>
+                          <div className="col-md-6">
+                            <Button
+                              variant="contained"
+                              onClick={saveReference}
+                              color="primary"
+                            >
+                              Save
+                            </Button>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                  <Button
-                    variant="contained"
-                    onClick={toggleRefereeModel}
-                    color="secondary"
-                  >
-                    Cancel
-                  </Button>
-                  <Button
-                    variant="contained"
-                    onClick={toggleRefereeModel}
-                    color="primary"
-                  >
-                    Save Changes
-                  </Button>
-                </DialogActions>
+                    </DialogContentText>
+                  </DialogContent>
+                </form>
               </Dialog>
             </div>
             <div className="table-responsive ">
@@ -1195,26 +948,31 @@ const Profile = () => {
                 <thead className="custum-thead">
                   <tr>
                     <th>Name</th>
-                    <th>Title</th>
-                    <th>Positionship</th>
-                    <th>Relation</th>
-                    <th>Address</th>
+                    <th>Position</th>
+                    <th>Relationship</th>
                     <th>Mobile</th>
                     <th>Email</th>
+                    <th>Address</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {row7.map((row7) => (
-                    <tr key={row7.name}>
+                  {referenceList.map((item) => (
+                    <tr key={item.referenceId}>
                       <td component="th" scope="row">
-                        {row7.name}
+                        {item.name}
                       </td>
-                      <td align="left">{row7.title}</td>
-                      <td align="left">{row7.position}</td>
-                      <td align="left">{row7.relation}</td>
-                      <td align="left">{row7.address}</td>
-                      <td align="left">{row7.mobile}</td>
-                      <td align="left">{row7.email}</td>
+                      <td align="left">{item.position}</td>
+                      <td align="left">{item.relationShip}</td>
+                      <td align="left">{item.mobileNo}</td>
+                      <td align="left">{item.email}</td>
+                      <td align="left">{item.address}</td>
+                      <td align="left">
+                        <span onClick={e =>populateReferenceDate(e,item)} className="custom-link">
+                          <FontAwesomeIcon icon={faEdit} />
+                          Edit
+                        </span>
+                      </td>
                     </tr>
                   ))}
                 </tbody>

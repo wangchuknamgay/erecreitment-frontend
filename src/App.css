@@ -155,6 +155,12 @@ a {
   font-size: 13px;
 }
 
+.custom-link{
+  text-decoration: underline;
+  color: rgba(1, 81, 252, 0.507);
+  cursor: pointer;
+}
+
 
 /* .MuiButton-containedPrimary {
   color: #fff;
