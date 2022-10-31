@@ -14,6 +14,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
+import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -180,7 +181,181 @@ const ClassX = () => {
         </Grid>
       </div>
 
-      <TableContainer>
+      <div className="table-responsive pl-2">
+        <table className={classes.table}>
+          <thead>
+            <tr>
+              <th className="pr-5">Subjects</th>
+              <th className="pr-5"></th>
+              <th className="pr-5"></th>
+              <th className="pr-5"></th>
+              <th className="pl-5">Marks</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="dropdown-divider">
+              <td className="pr-5">English</td>
+              <td className="pr-5"></td>
+              <td className="pr-5"></td>
+              <td className="pr-5"></td>
+              <td className="pl-5"><div className="markrow">
+                  <input 
+                    className="form-control"
+                    required
+                    variant="outlined"
+                    type="number"
+                    id="mark"
+                    autoComplete="false"
+                  />
+                </div></td>
+            </tr>
+            <tr className="dropdown-divider">
+              <td className="pr-5">Dzongkhag</td>
+              <td className="pr-5"></td>
+              <td className="pr-5"></td>
+              <td className="pr-5"></td>
+              <td className="pl-5"><div className="markrow">
+                  <input 
+                    className="form-control"
+                    required
+                    variant="outlined"
+                    type="number"
+                    id="mark"
+                    autoComplete="false"
+                  />
+                </div></td>
+            </tr>
+            <tr className="dropdown-divider">
+              <td className="pr-5">Maths</td>
+              <td className="pr-5"></td>
+              <td className="pr-5"></td>
+              <td className="pr-5"></td>
+              <td className="pl-5"><div className="markrow">
+                  <input 
+                    className="form-control"
+                    required
+                    variant="outlined"
+                    type="number"
+                    id="mark"
+                    autoComplete="false"
+                  />
+                </div></td>
+                {/* <td className="pr-5"></td> */}
+            </tr>
+            <tr className="dropdown-divider">
+              <td className="pr-5">Physics</td>
+              <td className="pr-5"></td>
+              <td className="pr-5"></td>
+              <td className="pr-5"></td>
+              <td className="pl-5"><div className="markrow">
+                  <input 
+                    className="form-control"
+                    required
+                    variant="outlined"
+                    type="number"
+                    id="mark"
+                    autoComplete="false"
+                  />
+                </div></td>
+            </tr>
+            <tr className="dropdown-divider">
+              <td className="pr-5">Chemistry</td>
+              <td className="pr-5"></td>
+              <td className="pr-5"></td>
+              <td className="pr-5"></td>
+              <td className="pl-5"><div className="markrow">
+                  <input 
+                    className="form-control"
+                    required
+                    variant="outlined"
+                    type="number"
+                    id="mark"
+                    autoComplete="false"
+                  />
+                </div></td>
+            </tr>
+            <tr className="dropdown-divider">
+              <td className="pr-5">Economics</td>
+              <td className="pr-5"></td>
+              <td className="pr-5"></td>
+              <td className="pr-5"></td>
+              <td className="pl-5"><div className="markrow">
+                  <input 
+                    className="form-control"
+                    required
+                    variant="outlined"
+                    type="number"
+                    id="mark"
+                    autoComplete="false"
+                  />
+                </div></td>
+            </tr>
+            <tr className="dropdown-divider">
+              <td className="pr-5">History</td>
+              <td className="pr-5"></td>
+              <td className="pr-5"></td>
+              <td className="pr-5"></td>
+              <td className="pl-5"><div className="markrow">
+                  <input 
+                    className="form-control"
+                    required
+                    variant="outlined"
+                    type="number"
+                    id="mark"
+                    autoComplete="false"
+                  />
+                </div></td>
+            </tr>
+            <tr className="dropdown-divider">
+              <td className="pr-5">Geography</td>
+              <td className="pr-5"></td>
+              <td className="pr-5"></td>
+              <td className="pr-5"></td>
+              <td className="pl-5"><div className="markrow">
+                  <input 
+                    className="form-control"
+                    required
+                    variant="outlined"
+                    type="number"
+                    id="mark"
+                    autoComplete="false"
+                  />
+                </div></td>
+            </tr>
+            <tr className="dropdown-divider">
+              <td className="pr-5">IT</td>
+              <td className="pr-5"></td>
+              <td className="pr-5"></td>
+              <td className="pr-5"></td>
+              <td className="pl-5">
+                <div className="markrow">
+                  <input 
+                    className="form-control"
+                    required
+                    variant="outlined"
+                    type="number"
+                    id="mark"
+                    autoComplete="false"
+                  />
+                  {/* &nbsp;&nbsp; &nbsp; */}
+                <button
+                  className={classes.addmore}
+                  variant="contained"
+                  onClick={() => addFormFields()}
+                >
+                  Add More
+                </button>
+                </div></td>
+                <td className="pr-5">
+                
+                </td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+
+      {/* <TableContainer>
         <Table className={classes.table}>
           <TableHead>
             <TableRow>
@@ -199,9 +374,7 @@ const ClassX = () => {
           <TableBody>
             <TableRow>
               <TableCell> English</TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
+
               <TableCell align="right">
                 <div className="markrow">
                   <TextField
@@ -356,7 +529,7 @@ const ClassX = () => {
               <TableCell></TableCell>
               <TableCell></TableCell>
               <TableCell></TableCell>
-              
+
               <TableCell align="right">
                 <div className="markrow">
                   <TextField
@@ -380,27 +553,29 @@ const ClassX = () => {
             </TableRow>
           </TableBody>
         </Table>
-      </TableContainer>
+      </TableContainer> */}
       <br />
 
       {formValues.map((element, index) => (
-        <div className="form-inline" key={index}>
-          <TextField
-            style={{ width: "16%", paddingTop: "1%" }}
+        <div className="form-inline pr-5" key={index}>
+          <input
+          className="form-control "
+            style={{ width: "16", paddingTop: "1%" }}
             type="text"
             variant="outlined"
             value={element.subject || ""}
             onChange={(e) => handleChange(index, e)}
           />
-          <TextField
-            style={{ width: "13%", paddingTop: "1%", paddingLeft: "7%" }}
+          &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input
+          className="form-control"
+            style={{ width: "8%", paddingTop: "1%", marginright: "-2%" }}
             type="number"
             variant="outlined"
             value={element.mark}
             onChange={(e) => handleChange(index, e)}
           />
-          &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
-       
+          &nbsp;&nbsp; &nbsp;
           <button
             type="button"
             className={classes.remove}
@@ -422,13 +597,10 @@ const ClassX = () => {
           // value={}
           onChange={(e) => handleChange()}
         />
-       &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
-       &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-       &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
-       &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-       &nbsp; &nbsp; &nbsp;&nbsp;  &nbsp; &nbsp; &nbsp;&nbsp;  &nbsp; 
-
-     
+        &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+        &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+        &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
       </div>
     </div>
   );
