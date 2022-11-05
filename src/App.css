@@ -161,6 +161,21 @@ a {
   cursor: pointer;
 }
 
+.required {
+  content: " *";
+  color: red;
+}
+
+.button {
+  width: 150px !important;
+  height: 40px !important;
+  /* border-radius: 60px;
+  background-color: #000000;
+  color: white;
+  font-size: 20px;
+  border: none;
+  margin-top: 10px; */
+}
 
 /* .MuiButton-containedPrimary {
   color: #fff;

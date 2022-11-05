@@ -28,11 +28,6 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import AddIcon from "@material-ui/icons/Add";
 
-import { withStyles, makeStyles } from "@material-ui/core/styles";
-
-import TableCell from "@material-ui/core/TableCell";
-
-import TableRow from "@material-ui/core/TableRow";
 import experienceService from "../services/experience.service";
 import { Alert, Snackbar } from "@mui/material";
 import moment from "moment";
@@ -58,6 +53,7 @@ import {
   faUnlock,
   faDownload
 } from "@fortawesome/free-solid-svg-icons";
+import classXService from "../services/classX.service";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -80,6 +76,8 @@ const Profile = () => {
   const [inputs, setInputs] = useState({});
   const [experienceList, setExperienceList] = useState([]);
   const [referenceList, setReferenceList] = useState([]);
+  const [classXList, setClassXList] = useState([]);
+
 
   const handleCloseSuccess = () => {
     setOpenSuccess(false);
@@ -133,6 +131,7 @@ const Profile = () => {
   useEffect(() => {
     getAllExperience();
     getAllExperienceByUserId();
+    getAllClassXDetailsByUserId();
   }, []);
 
   //======for experience ====//
@@ -181,6 +180,19 @@ const Profile = () => {
     setInputs(item)
     setRefereeModel(!refereeModel);
   }
+  //=======================================//
+
+  //======for Class X =====
+  const getAllClassXDetailsByUserId = () => {
+    classXService.getAllClassXDetailsByUserId().then((response) => {
+      setClassXList(response.data);
+    });
+  };
+
+  // const populateReferenceDate=(e,item)=>{
+  //   setInputs(item)
+  //   setRefereeModel(!refereeModel);
+  // }
   //=======================================//
 
   if (!currentUser) {
@@ -478,9 +490,6 @@ const Profile = () => {
               <div className="h7  text-left">
                 {" "}
                 <AddIcon />
-                {/* <Link to="/classten" onClick={toggleEducationModel}>
-                  Education{" "}
-                </Link> */}
                 <Link to="/classten" onClick={toggleEducationModel}>
                   Class X{" "}
                 </Link>
@@ -495,14 +504,45 @@ const Profile = () => {
                   <th align="left">Certificate</th>
                 </thead>
                 <tbody>
-                  {/* {row1.map((row1) => (
-                    <tr key={row1.school}>
-                      <td>{row1.school}</td>
-                      <td align="left">{row1.year}</td>
-                      <td align="left">{row1.academic}</td>
-                      <td align="left">{row1.certificate}</td>
+                  {classXList.map((item) => (
+                    <tr key={item.classXId}>
+                      <td>{item.schoolName}</td>
+                      <td align="left">{item.yearOfCompletion}</td>
+                      <td align="left"><span className="custom-link"><FontAwesomeIcon icon={faDownload} />Academic</span></td>
+                      <td align="left"><span  className="custom-link"><FontAwesomeIcon icon={faDownload} />Mark Sheet</span></td>
                     </tr>
-                  ))} */}
+                  ))}
+                </tbody>
+              </table>
+              <p>Marks</p>
+              <table className="table table-bordered">
+                <thead>
+                  <th>English</th>
+                  <th align="left">Dzongkha</th>
+                  <th align="left">Maths</th>
+                  <th align="left">Physics</th>
+                  <th align="left">Chemistry</th>
+                  <th align="left">Biology</th>
+                  <th align="left">Economics</th>
+                  <th align="left">History</th>
+                  <th align="left">Geography</th>
+                  <th align="left">IT</th>
+                </thead>
+                <tbody>
+                  {classXList.map((item) => (
+                    <tr>
+                      <td>{item.english}</td>
+                      <td>{item.dzongkha}</td>
+                      <td>{item.maths}</td>
+                      <td>{item.physics}</td>
+                      <td>{item.chemistry}</td>
+                      <td>{item.biology}</td>
+                      <td>{item.economics}</td>
+                      <td>{item.history}</td>
+                      <td>{item.geography}</td>
+                      <td>{item.it}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
