@@ -28,134 +28,6 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import AddIcon from "@material-ui/icons/Add";
 
-<<<<<<< HEAD
-import { withStyles, makeStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
-
-const StyledTableCell = withStyles((theme) => ({
-  head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-    fontSize: 10,
-  },
-  body: {
-    fontSize: 9,
-  },
-}))(TableCell);
-
-const StyledTableRow = withStyles((theme) => ({
-  root: {
-    "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.action.hover,
-    },
-  },
-}))(TableRow);
-
-function createData1(school,year,academic,certificate) {
-  return { school,year,academic,certificate };
-}
-
-const row1 = [
-  createData1(
-    "CST",
-    2022,
-    "IT",
-    "attached"
-  ),
-];
-function createData2(school,year,academic,certificate) {
-  return { school,year,academic,certificate };
-}
-
-const row2 = [
-  createData2(
-    "CST",
-    2017,
-    "IT",
-    "attached"
-  ),
-];
-function createData3(college,year,percentage,academic,certificate) {
-  return { college,year,percentage,academic,certificate};
-}
-
-const row3 = [
-  createData3(
-    "CST",
-    2022,
-    "IT",
-    "IT",
-    "attached"
-  ),
-];
-function createData4(college,year,percentage,academic,certificate) {
-  return { college,year,percentage,academic,certificate };
-}
-
-const row4 = [
-  createData4(
-    "CST",
-    2022,
-    "IT",
-    "IT",
-    "attached"
-  ),
-];
-function createData5(college,year,percentage,academic,certificate) {
-  return { college,year,percentage,academic,certificate};
-}
-
-const row5 = [
-  createData5(
-    "CST",
-    2022,
-    "IT",
-    "IT",
-    "attached"
-  ),
-];
-function createData6(company, designation, from, to, country, certificate) {
-  return { company, designation, from, to, country, certificate };
-}
-
-const row6 = [
-  createData6(
-    "Ditt",
-    "developer",
-    "13/ 2 / 2022",
-    14 / 56 / 2022,
-    "Bhutan",
-    "attached"
-  ),
-];
-function createData7(name, title, position, relation, address, mobile, email) {
-  return { name, title, position, relation, address, mobile, email };
-}
-
-const row7 = [
-  createData7(
-    "Thinley",
-    "association",
-    "developer",
-    "employee",
-    "Town",
-    17839405,
-    "thinleydema@gmail.com"
-  ),
-];
-
-const useStyles = makeStyles({
-  table: {
-    maxWidth: 700,
-  },
-});
-=======
 import experienceService from "../services/experience.service";
 import { Alert, Snackbar } from "@mui/material";
 import moment from "moment";
@@ -182,7 +54,6 @@ import {
   faDownload
 } from "@fortawesome/free-solid-svg-icons";
 import classXService from "../services/classX.service";
->>>>>>> f77b72d976f3455438379fa636571695525f132e
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -624,34 +495,6 @@ const Profile = () => {
                 </Link>
               </div>
             </div>
-<<<<<<< HEAD
-            <TableContainer component={Paper}>
-              <Table className={classes.table} size="small" aria-label="a dense table">
-                <TableHead>
-                  <TableRow>
-                    <StyledTableCell>SCHOOL</StyledTableCell>
-                    <StyledTableCell align="left">YEAR</StyledTableCell>
-                    <StyledTableCell align="left">ACADEMIC</StyledTableCell>
-                    <StyledTableCell align="left">CERTIFICATE</StyledTableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {row1.map((row1) => (
-                    <StyledTableRow key={row1.school}>
-                      <StyledTableCell component="th" scope="row">
-                        {row1.school}
-                      </StyledTableCell>
-                      <StyledTableCell align="left">
-                        {row1.year}
-                      </StyledTableCell>
-                      <StyledTableCell align="left">
-                        {row1.academic}
-                      </StyledTableCell>
-                      <StyledTableCell align="left">
-                        {row1.certificate}
-                      </StyledTableCell>
-                    </StyledTableRow>
-=======
             <div className="table-responsive ">
               <table className="table table-bordered">
                 <thead className="custum-thead">
@@ -668,7 +511,6 @@ const Profile = () => {
                       <td align="left"><span className="custom-link"><FontAwesomeIcon icon={faDownload} />Academic</span></td>
                       <td align="left"><span  className="custom-link"><FontAwesomeIcon icon={faDownload} />Mark Sheet</span></td>
                     </tr>
->>>>>>> f77b72d976f3455438379fa636571695525f132e
                   ))}
                 </tbody>
               </table>
@@ -707,27 +549,6 @@ const Profile = () => {
 
             <br />
             <div className="h7  text-left">
-<<<<<<< HEAD
-                {" "}
-                <AddIcon />
-                <Link to= "/classxll" onClick={toggleEducationModel}>Class XII </Link>
-              </div>
-              <TableContainer component={Paper}>
-              <Table className={classes.table} size="small" aria-label="a dense table">
-                <TableHead>
-                  <TableRow>
-                    <StyledTableCell>SCHOOL</StyledTableCell>
-                    <StyledTableCell align="left">Year</StyledTableCell>
-                    <StyledTableCell align="left">ACADEMIC</StyledTableCell>
-                    <StyledTableCell align="left">CERTIFICATE</StyledTableCell>
-                    
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {row2.map((row2) => (
-                    <StyledTableRow key={row2.school}>
-                      <StyledTableCell component="th" scope="row">
-=======
               {" "}
               <AddIcon />
               <Link to="/classxll" onClick={toggleEducationModel}>
@@ -747,7 +568,6 @@ const Profile = () => {
                   {/* {row2.map((row2) => (
                     <tr key={row2.school}>
                       <td component="th" scope="row">
->>>>>>> f77b72d976f3455438379fa636571695525f132e
                         {row2.school}
                       </td>
                       <td align="left">{row2.year}</td>
@@ -760,28 +580,6 @@ const Profile = () => {
             </div>
             <br />
             <div className="h7  text-left">
-<<<<<<< HEAD
-                {" "}
-                <AddIcon />
-                <Link to= "/diploma" onClick={toggleEducationModel}>Diploma</Link>
-              </div>
-              <TableContainer component={Paper}>
-              <Table className={classes.table} size="small" aria-label="a dense table">
-                <TableHead>
-                  <TableRow>
-                    <StyledTableCell>COLLEGE</StyledTableCell>
-                    <StyledTableCell align="left">Year</StyledTableCell>
-                    <StyledTableCell align="left">PERCENTAGE</StyledTableCell>
-                    <StyledTableCell align="left">ACADEMIC</StyledTableCell>
-                    <StyledTableCell align="left">CERTIFICATE</StyledTableCell>
-                    
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {row3.map((row3) => (
-                    <StyledTableRow key={row3.college}>
-                      <StyledTableCell component="th" scope="row">
-=======
               {" "}
               <AddIcon />
               <Link to="/diploma" onClick={toggleEducationModel}>
@@ -801,7 +599,6 @@ const Profile = () => {
                   {/* {row3.map((row3) => (
                     <tr key={row3.college}>
                       <td component="th" scope="row">
->>>>>>> f77b72d976f3455438379fa636571695525f132e
                         {row3.college}
                       </td>
                       <td align="left">{row3.year}</td>
@@ -815,28 +612,6 @@ const Profile = () => {
             </div>
             <br />
             <div className="h7  text-left">
-<<<<<<< HEAD
-                {" "}
-                <AddIcon />
-                <Link to= "/degree" onClick={toggleEducationModel}>Degree</Link>
-              </div>
-              <TableContainer component={Paper}>
-              <Table className={classes.table} size="small" aria-label="a dense table">
-                <TableHead>
-                  <TableRow>
-                    <StyledTableCell>COLLEGE</StyledTableCell>
-                    <StyledTableCell align="left">Year</StyledTableCell>
-                    <StyledTableCell align="left">PERCENTAGE</StyledTableCell>
-                    <StyledTableCell align="left">ACADEMIC</StyledTableCell>
-                    <StyledTableCell align="left">CERTIFICATE</StyledTableCell>
-                    
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {row4.map((row4) => (
-                    <StyledTableRow key={row4.college}>
-                      <StyledTableCell component="th" scope="row">
-=======
               {" "}
               <AddIcon />
               <Link to="/degree" onClick={toggleEducationModel}>
@@ -856,7 +631,6 @@ const Profile = () => {
                   {/* {row4.map((row4) => (
                     <tr key={row4.college}>
                       <td component="th" scope="row">
->>>>>>> f77b72d976f3455438379fa636571695525f132e
                         {row4.college}
                       </td>
                       <td align="left">{row4.year}</td>
@@ -871,28 +645,6 @@ const Profile = () => {
 
             <br />
             <div className="h7  text-left">
-<<<<<<< HEAD
-                {" "}
-                <AddIcon />
-                <Link to= "/master" onClick={toggleEducationModel}>Master</Link>
-              </div>
-              <TableContainer component={Paper}>
-              <Table className={classes.table} size="small" aria-label="a dense table">
-                <TableHead>
-                  <TableRow>
-                    <StyledTableCell>COLLEGE</StyledTableCell>
-                    <StyledTableCell align="left">Year</StyledTableCell>
-                    <StyledTableCell align="left">PERCENTAGE</StyledTableCell>
-                    <StyledTableCell align="left">ACADEMIC</StyledTableCell>
-                    <StyledTableCell align="left">CERTIFICATE</StyledTableCell>
-                    
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {row5.map((row5) => (
-                    <StyledTableRow key={row5.college}>
-                      <StyledTableCell component="th" scope="row">
-=======
               {" "}
               <AddIcon />
               <Link to="/master" onClick={toggleEducationModel}>
@@ -912,7 +664,6 @@ const Profile = () => {
                   {/* {row5.map((row5) => (
                     <tr key={row5.college}>
                       <td component="th" scope="row">
->>>>>>> f77b72d976f3455438379fa636571695525f132e
                         {row5.college}
                       </td>
                       <td align="left">{row5.year}</td>
@@ -1056,46 +807,6 @@ const Profile = () => {
                 </form>
               </Dialog>
             </div>
-<<<<<<< HEAD
-            <TableContainer component={Paper}>
-              <Table className={classes.table} size="small" aria-label="a dense table">
-                <TableHead>
-                  <TableRow>
-                    <StyledTableCell>COMPANY</StyledTableCell>
-                    <StyledTableCell align="left"> DESIGNATION. </StyledTableCell>
-                    <StyledTableCell align="left">FROM DATE</StyledTableCell>
-                    <StyledTableCell align="left">TO DATE</StyledTableCell>
-                    <StyledTableCell align="left">COUNTRY</StyledTableCell>
-                    <StyledTableCell align="left">CERTIFICATE</StyledTableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {row6.map((row6) => (
-                    <StyledTableRow key={row6.company}>
-                      <StyledTableCell component="th" scope="row">
-                        {row6.company}
-                      </StyledTableCell>
-                      <StyledTableCell align="left">
-                        {row6.designation}
-                      </StyledTableCell>
-                      <StyledTableCell align="left">
-                        {row6.from}
-                      </StyledTableCell>
-                      <StyledTableCell align="left">{row6.to}</StyledTableCell>
-                      <StyledTableCell align="left">
-                        {row6.country}
-                      </StyledTableCell>
-                      <StyledTableCell align="left">
-                        {row6.certificate}
-                      </StyledTableCell>
-                    </StyledTableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-            <br/>
-=======
->>>>>>> f77b72d976f3455438379fa636571695525f132e
 
             <div className="table-responsive ">
               <table className="table table-bordered">
@@ -1272,44 +983,6 @@ const Profile = () => {
                 </form>
               </Dialog>
             </div>
-<<<<<<< HEAD
-            <TableContainer component={Paper}>
-              <Table className={classes.table}size="small" aria-label="a dense table">
-                <TableHead>
-                  <TableRow>
-                    <StyledTableCell>NAME</StyledTableCell>
-                    <StyledTableCell align="left">TITLE.</StyledTableCell>
-                    <StyledTableCell align="left">POSITION</StyledTableCell>
-                    <StyledTableCell align="left">REL.TO APPLICANT</StyledTableCell>
-                    <StyledTableCell align="left">ADDRESS</StyledTableCell>
-                    <StyledTableCell align="left">MOBILE NO</StyledTableCell>
-                    <StyledTableCell align="left">EMAIL</StyledTableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {row7.map((row7) => (
-                    <StyledTableRow key={row7.name}>
-                      <StyledTableCell component="th" scope="row">
-                        {row7.name}
-                      </StyledTableCell>
-                      <StyledTableCell align="left">
-                        {row7.title}
-                      </StyledTableCell>
-                      <StyledTableCell align="left">
-                        {row7.position}
-                      </StyledTableCell>
-                      <StyledTableCell align="left">{row7.relation}</StyledTableCell>
-                      <StyledTableCell align="left">
-                        {row7.address}
-                      </StyledTableCell>
-                      <StyledTableCell align="left">
-                        {row7.mobile}
-                      </StyledTableCell>
-                      <StyledTableCell align="left">
-                        {row7.email}
-                      </StyledTableCell>
-                    </StyledTableRow>
-=======
             <div className="table-responsive ">
               <table className="table table-bordered">
                 <thead className="custum-thead">
@@ -1341,7 +1014,6 @@ const Profile = () => {
                         </span>
                       </td>
                     </tr>
->>>>>>> f77b72d976f3455438379fa636571695525f132e
                   ))}
                 </tbody>
               </table>
