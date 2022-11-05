@@ -121,8 +121,9 @@ a {
   margin-left: 520px;
   margin-top: 10px;
 }
+
 /* profile */
-.gendersize{
+.gendersize {
   width: 271px;
 }
 
@@ -132,12 +133,51 @@ a {
 }
 
 /* education */
-.choosefile{
+.choosefile {
   width: 400px;
- 
- 
+
+
 }
-.markrow{
+
+.markrow {
   width: 70px;
 
 }
+
+.table td,
+.table th {
+  padding: 0.4rem !important;
+}
+
+.custum-thead {
+  background-color: #000000;
+  color: #f7f7f7;
+  font-size: 13px;
+}
+
+.custom-link{
+  text-decoration: underline;
+  color: rgba(1, 81, 252, 0.507);
+  cursor: pointer;
+}
+
+.required {
+  content: " *";
+  color: red;
+}
+
+.button {
+  width: 150px !important;
+  height: 40px !important;
+  /* border-radius: 60px;
+  background-color: #000000;
+  color: white;
+  font-size: 20px;
+  border: none;
+  margin-top: 10px; */
+}
+
+/* .MuiButton-containedPrimary {
+  color: #fff;
+  background-color: #e7b323 !important;
+} */

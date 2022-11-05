@@ -176,7 +176,7 @@ export default function Header(props) {
                 </ListItem>
 
                 <ListItem button  onClick={logOut}>
-                  <ExitToAppIcon></ExitToAppIcon>
+                  <ExitToAppIcon/>
                   <ListItemText primary=" Logout" />
                 </ListItem>
                 <Divider />
