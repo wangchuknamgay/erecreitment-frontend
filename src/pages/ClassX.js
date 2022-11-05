@@ -180,256 +180,235 @@ const ClassX = () => {
         </Grid>
       </div>
 
-      <TableContainer>
-        <Table className={classes.table}>
-          <TableHead>
-            <TableRow>
-              <TableCell>
-                {" "}
-                <b>Subjects</b>
-              </TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell align="left">
-                <b>Marks</b>
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <TableRow>
-              <TableCell> English</TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell align="right">
-                <div className="markrow">
-                  <TextField
-                    required
-                    variant="outlined"
-                    type="number"
-                    id="mark"
-                    autoComplete="false"
-                  />
-                </div>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell> Dzongkha</TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell align="right">
-                <div className="markrow">
-                  <TextField
-                    required
-                    variant="outlined"
-                    type="number"
-                    id="mark"
-                    autoComplete="false"
-                  />
-                </div>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell> Maths</TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell align="right">
-                <div className="markrow">
-                  <TextField
-                    required
-                    variant="outlined"
-                    type="number"
-                    id="mark"
-                    autoComplete="false"
-                  />
-                </div>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell> Physics</TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell align="right">
-                <div className="markrow">
-                  <TextField
-                    required
-                    variant="outlined"
-                    type="number"
-                    id="mark"
-                    autoComplete="false"
-                  />
-                </div>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell> Chemistry</TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell align="right">
-                <div className="markrow">
-                  <TextField
-                    required
-                    variant="outlined"
-                    type="number"
-                    id="mark"
-                    autoComplete="false"
-                  />
-                </div>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell> Biology</TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell align="right">
-                <div className="markrow">
-                  <TextField
-                    required
-                    variant="outlined"
-                    type="number"
-                    id="mark"
-                    autoComplete="false"
-                  />
-                </div>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell> Economics</TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell align="right">
-                <div className="markrow">
-                  <TextField
-                    required
-                    variant="outlined"
-                    type="number"
-                    id="mark"
-                    autoComplete="false"
-                  />
-                </div>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell> History</TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell align="right">
-                <div className="markrow">
-                  <TextField
-                    required
-                    variant="outlined"
-                    type="number"
-                    id="mark"
-                    autoComplete="false"
-                  />
-                </div>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell> Geography</TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell align="right">
-                <div className="markrow">
-                  <TextField
-                    required
-                    variant="outlined"
-                    type="number"
-                    id="mark"
-                    autoComplete="false"
-                  />
-                </div>
-              </TableCell>
-              <TableCell></TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell> IT</TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              
-              <TableCell align="right">
-                <div className="markrow">
-                  <TextField
-                    required
-                    variant="outlined"
-                    type="number"
-                    id="mark"
-                    autoComplete="false"
-                  />
-                </div>
-              </TableCell>
-              <TableCell>
-                <button
-                  className={classes.addmore}
-                  variant="contained"
-                  onClick={() => addFormFields()}
-                >
-                  Add More
-                </button>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <br />
+      <div className="sciencestream">
+          <TableContainer>
+            <Table className={classes.table}>
+              <TableHead>
+                <TableRow>
+                  <TableCell>
+                    {" "}
+                    <b>Subjects</b>
+                  </TableCell>
+                  <TableCell align="left">
+                    <b>Marks</b>
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableRow>
+                  <TableCell> English</TableCell>
+                  <TableCell align="right">
+                    <div className="markrow">
+                      <input
+                        className="form-control"
+                        required
+                        variant="outlined"
+                        type="number"
+                        id="mark"
+                        autoComplete="false"
+                      />
+                    </div>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell> Dzongkha</TableCell>
+                  <TableCell align="right">
+                    <div className="markrow">
+                      <input
+                        className="form-control"
+                        required
+                        variant="outlined"
+                        type="number"
+                        id="mark"
+                        autoComplete="false"
+                      />
+                    </div>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell> Maths</TableCell>
+                  <TableCell align="right">
+                    <div className="markrow">
+                      <input
+                        className="form-control"
+                        required
+                        variant="outlined"
+                        type="number"
+                        id="mark"
+                        autoComplete="false"
+                      />
+                    </div>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell> Physics</TableCell>
+                  <TableCell align="right">
+                    <div className="markrow">
+                      <input
+                        className="form-control"
+                        required
+                        variant="outlined"
+                        type="number"
+                        id="mark"
+                        autoComplete="false"
+                      />
+                    </div>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell> Chemistry</TableCell>
+                  <TableCell align="right">
+                    <div className="markrow">
+                      <input
+                        className="form-control"
+                        required
+                        variant="outlined"
+                        type="number"
+                        id="mark"
+                        autoComplete="false"
+                      />
+                    </div>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell> Biology</TableCell>
+                  <TableCell align="right">
+                    <div className="markrow">
+                      <input
+                        className="form-control"
+                        required
+                        variant="outlined"
+                        type="number"
+                        id="mark"
+                        autoComplete="false"
+                      />
+                    </div>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell> Economic</TableCell>
+                  <TableCell align="right">
+                    <div className="markrow">
+                      <input
+                        className="form-control"
+                        required
+                        variant="outlined"
+                        type="number"
+                        id="mark"
+                        autoComplete="false"
+                      />
+                    </div>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell> History</TableCell>
+                  <TableCell align="right">
+                    <div className="markrow">
+                      <input
+                        className="form-control"
+                        required
+                        variant="outlined"
+                        type="number"
+                        id="mark"
+                        autoComplete="false"
+                      />
+                    </div>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell> Geography</TableCell>
+                  <TableCell align="right">
+                    <div className="markrow">
+                      <input
+                        className="form-control"
+                        required
+                        variant="outlined"
+                        type="number"
+                        id="mark"
+                        autoComplete="false"
+                      />
+                    </div>
+                  </TableCell>
+                </TableRow>
+                
+                <TableRow>
+                  <TableCell> IT</TableCell>
+                  <TableCell align="right">
+                    <div className="markrow">
+                      <input
+                        className="form-control"
+                        required
+                        variant="outlined"
+                        type="number"
+                        id="mark"
+                        autoComplete="false"
+                      />
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    <button
+                      className={classes.addmore}
+                      variant="contained"
+                      onClick={() => addFormFields()}
+                    >
+                      Add More
+                    </button>
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <br />
 
-      {formValues.map((element, index) => (
-        <div className="form-inline" key={index}>
-          <TextField
-            style={{ width: "16%", paddingTop: "1%" }}
-            type="text"
-            variant="outlined"
-            value={element.subject || ""}
-            onChange={(e) => handleChange(index, e)}
-          />
-          <TextField
-            style={{ width: "13%", paddingTop: "1%", paddingLeft: "7%" }}
-            type="number"
-            variant="outlined"
-            value={element.mark}
-            onChange={(e) => handleChange(index, e)}
-          />
-          &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
-       
-          <button
-            type="button"
-            className={classes.remove}
-            onClick={() => removeFormFields()}
-          >
-            Remove
-          </button>
+          {formValues.map((element, index) => (
+            <div className="form-inline" key={index}>
+              <input
+                className="form-control"
+                style={{ width: "13%",  }}
+                type="text"
+                variant="outlined"
+                value={element.subject || ""}
+                onChange={(e) => handleChange(index, e)}
+              /> &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+              <input
+                className="form-control"
+                style={{ width: "4%", paddingTop: "1%", paddingRight: "5%" }}
+                type="number"
+                variant="outlined"
+                value={element.mark}
+                onChange={(e) => handleChange(index, e)}
+              />
+              &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 
+              <button
+                type="button"
+                className={classes.remove}
+                onClick={() => removeFormFields()}
+              >
+                Remove
+              </button>
+            </div>
+          ))}
+          <br />
+          <div>
+            <InputLabel id="demo-simple-select-outlined-label">
+              <b>Percentages</b>
+            </InputLabel>
+            <input
+              className="form-control"
+              style={{ width: "9%", paddingTop: "0%", paddingLeft: "0%" }}
+              type="number"
+              variant="outlined"
+              // value={}
+              onChange={(e) => handleChange()}
+            />
+            &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+            &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
+            
+          </div>
         </div>
-      ))}
-      <br />
-      <div>
-        <InputLabel id="demo-simple-select-outlined-label">
-          <b>Percentages</b>
-        </InputLabel>
-        <TextField
-          style={{ width: "9%", paddingTop: "0%", paddingLeft: "0%" }}
-          type="number"
-          variant="outlined"
-          // value={}
-          onChange={(e) => handleChange()}
-        />
-       &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
-       &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-       &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
-       &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-       &nbsp; &nbsp; &nbsp;&nbsp;  &nbsp; &nbsp; &nbsp;&nbsp;  &nbsp; 
-
-     
-      </div>
+   
     </div>
   );
 };

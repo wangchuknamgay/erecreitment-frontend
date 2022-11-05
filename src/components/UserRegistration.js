@@ -385,7 +385,7 @@ const UserRegistration = () => {
               </div>
 
               <div className="form-group">
-                <button className="btn">Sign Up</button>
+                <button className="regbtn">Sign Up</button>
               </div>
               <p className="reglink">
                 <a href="#">Already have account</a>{" "}

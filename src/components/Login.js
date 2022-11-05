@@ -3,11 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate, Link  } from 'react-router-dom';
 import logpic from "../images/log.jpg";
 import Form from "react-validation/build/form";
-//import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import TextField from '@material-ui/core/TextField';
 import Grid from "@material-ui/core/Grid";
-
 import { login } from "../actions/auth";
 
 const required = (value) => {
@@ -110,29 +108,8 @@ const Login = (props) => {
               />
             </Grid>
             </Grid>
-            {/* <label htmlFor="username">Username</label>
-            <Input
-              type="text"
-              className="form-control"
-              name="username"
-              value={username}
-              onChange={onChangeUsername}
-              validations={[required]}
-            /> */}
+           
           </div>
-
-          {/* <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <Input
-              type="password"
-              className="form-control"
-              name="password"
-              value={password}
-              onChange={onChangePassword}
-              validations={[required]}
-            />
-          </div> */}
-
           <div className="form-group">
             <button className="login-button" disabled={loading}>
               {loading && (

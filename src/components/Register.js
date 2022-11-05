@@ -7,24 +7,14 @@ import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
-//import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
-//import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { register } from "../actions/auth";
-import registerService from "../services/register.service"
+import registerService from "../services/register.service";
 
-// const useStyles = makeStyles((theme) => ({
-//   formControl: {
-//     margin: theme.spacing(1),
-//     minWidth: 120,
-//   },
-//   selectEmpty: {
-//     marginTop: theme.spacing(2),
-//   },
-// }));
+
 
 const required = (value) => {
   if (!value) {
@@ -70,10 +60,9 @@ const Register = () => {
   const form = useRef();
   const checkBtn = useRef();
 
-  // const [username, setFullname] = useState("");
-   const [fullname, setFullname] = useState("");
+ 
+  const [fullname, setFullname] = useState("");
   const [gender, setGender] = React.useState("");
-
   const [cid, setCid] = useState("");
   const [dzongkhag, setDzongkhag] = useState("");
   const [gewog, setGewog] = useState("");
@@ -85,7 +74,6 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmpassword] = useState("");
   const [successful, setSuccessful] = useState(false);
-
   const { message } = useSelector((state) => state.message);
   const dispatch = useDispatch();
 
@@ -100,32 +88,31 @@ const Register = () => {
     const cid = e.target.value;
     setCid(cid);
   };
-  const onChangeDzongkhag= (e) => {
+  const onChangeDzongkhag = (e) => {
     const dzongkhag = e.target.value;
     setDzongkhag(dzongkhag);
   };
-  const onChangeGewog= (e) => {
+  const onChangeGewog = (e) => {
     const gewog = e.target.value;
     setGewog(gewog);
   };
-  const onChangeVillage= (e) => {
+  const onChangeVillage = (e) => {
     const village = e.target.value;
     setVillage(village);
   };
-  const onChangeAddress= (e) => {
+  const onChangeAddress = (e) => {
     const address = e.target.value;
     setAddress(address);
   };
 
-  const onChangeDob= (e) => {
+  const onChangeDob = (e) => {
     const dob = e.target.value;
     setDob(dob);
   };
-  const onChangeMobileNo= (e) => {
+  const onChangeMobileNo = (e) => {
     const mobileNo = e.target.value;
     setMobileNo(mobileNo);
   };
-  
 
   const onChangeEmail = (e) => {
     const email = e.target.value;
@@ -149,23 +136,22 @@ const Register = () => {
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
-      const data = {  
-                      fullname,
-                      cid,
-                      gender,
-                      dzongkhag,
-                      gewog,
-                      village,
-                      address,
-                      dob,
-                      mobileNo,
-                      email,
-                      password,
-                      confirmpassword
-       };
-       
-      dispatch(
-        register(data))
+      const data = {
+        fullname,
+        cid,
+        gender,
+        dzongkhag,
+        gewog,
+        village,
+        address,
+        dob,
+        mobileNo,
+        email,
+        password,
+        confirmpassword,
+      };
+
+      dispatch(register(data))
         .then(() => {
           setSuccessful(true);
         })
@@ -174,7 +160,7 @@ const Register = () => {
         });
     }
   };
-  // const classes = useStyles();
+
   return (
     <div className="col-md-12">
       <div className="regcard regcard-container">
@@ -189,7 +175,6 @@ const Register = () => {
                       autoComplete="fname"
                       type="text"
                       name="fName"
-                     
                       value={fullname}
                       variant="outlined"
                       required
@@ -292,7 +277,6 @@ const Register = () => {
                       id="current address"
                       label="Current Address"
                       name="current address"
-                      
                       value={address}
                       onChange={onChangeAddress}
                       autoComplete="current address"
@@ -321,7 +305,6 @@ const Register = () => {
                       id="Mno"
                       label="Mobile No."
                       name="Mno"
-                 
                       value={mobileNo}
                       onChange={onChangeMobileNo}
                       autoComplete="Mno"
@@ -377,7 +360,8 @@ const Register = () => {
                     <TextField
                       variant="outlined"
                       required
-                      Passport Photo 
+                      Passport
+                      Photo
                       fullWidth
                       type="file"
                       id="file"

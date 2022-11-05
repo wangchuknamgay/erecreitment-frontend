@@ -48,9 +48,14 @@ const ClassXll = () => {
   const [year, setYear] = React.useState("");
   const [formValues, setFormValues] = useState([{ subject: "", mark: "" }]);
   const [stream, setStream] = useState("A");
+  const [value, setValue] = useState("arts");
 
   const toggleStream = (value) => {
     setStream(value);
+  };
+
+  const handleStreamChange = (event) => {
+    setValue(event.target.value);
   };
 
   const handleChange = (i, e) => {
@@ -75,10 +80,6 @@ const ClassXll = () => {
   const handleYearChange = (event) => {
     setYear(event.target.value);
   };
-
-  // const handleAddModel = () => {
-  //  console.log("in add more")
-  // };
 
   return (
     <div>
@@ -178,23 +179,22 @@ const ClassXll = () => {
               Stream *
               <RadioGroup
                 aria-label="stream"
-                // value={value}
-                // onChange={handleChange}
+                value={value}
+                onChange={handleStreamChange}
                 row
               >
                 <FormControlLabel
-                  value="A"
+                  value="arts"
                   name="stream"
                   onClick={(e) => toggleStream("A")}
-                  control={<Radio  />}
+                  control={<Radio />}
                   label="Arts"
-                  
                 />
                 <FormControlLabel
                   value="C"
                   name="stream"
                   onClick={(e) => toggleStream("C")}
-                  control={<Radio  />}
+                  control={<Radio />}
                   label="Commerece"
                 />
                 <FormControlLabel
@@ -211,172 +211,7 @@ const ClassXll = () => {
       </div>
 
       <div hidden={stream !== "A"}>
-      
         <div className="artstream">
-        <TableContainer>
-          <Table className={classes.table}>
-            <TableHead>
-              <TableRow>
-                <TableCell>
-                  {" "}
-                  <b>Subjects</b>
-                </TableCell>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
-                <TableCell align="left">
-                  <b>Marks</b>
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              <TableRow>
-                <TableCell> English</TableCell>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
-                <TableCell align="right">
-                  <div className="markrow">
-                    <TextField
-                      required
-                      variant="outlined"
-                      type="number"
-                      id="mark"
-                      autoComplete="false"
-                    />
-                  </div>
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell> Dzongkha</TableCell>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
-                <TableCell align="right">
-                  <div className="markrow">
-                    <TextField
-                      required
-                      variant="outlined"
-                      type="number"
-                      id="mark"
-                      autoComplete="false"
-                    />
-                  </div>
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell> Maths</TableCell>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
-                <TableCell align="right">
-                  <div className="markrow">
-                    <TextField
-                      required
-                      variant="outlined"
-                      type="number"
-                      id="mark"
-                      autoComplete="false"
-                    />
-                  </div>
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell> Geography</TableCell>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
-                <TableCell align="right">
-                  <div className="markrow">
-                    <TextField
-                      required
-                      variant="outlined"
-                      type="number"
-                      id="mark"
-                      autoComplete="false"
-                    />
-                  </div>
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell> History</TableCell>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
-
-                <TableCell align="right">
-                  <div className="markrow">
-                    <TextField
-                      required
-                      variant="outlined"
-                      type="number"
-                      id="mark"
-                      autoComplete="false"
-                    />
-                  </div>
-                </TableCell>
-                <TableCell>
-                  <button
-                    className={classes.addmore}
-                    variant="contained"
-                    onClick={() => addFormFields()}
-                  >
-                    Add More
-                  </button>
-                </TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <br />
-
-        {formValues.map((element, index) => (
-          <div className="form-inline" key={index}>
-            <TextField
-              style={{ width: "16%", paddingTop: "1%" }}
-              type="text"
-              variant="outlined"
-              value={element.subject || ""}
-              onChange={(e) => handleChange(index, e)}
-            />
-            <TextField
-              style={{ width: "13%", paddingTop: "1%", paddingLeft: "7%" }}
-              type="number"
-              variant="outlined"
-              value={element.mark}
-              onChange={(e) => handleChange(index, e)}
-            />
-            &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
-            <button
-              type="button"
-              className={classes.remove}
-              onClick={() => removeFormFields()}
-            >
-              Remove
-            </button>
-          </div>
-        ))}
-        <br />
-        <div>
-          <InputLabel id="demo-simple-select-outlined-label">
-            <b>Percentages</b>
-          </InputLabel>
-          <TextField
-            style={{ width: "9%", paddingTop: "0%", paddingLeft: "0%" }}
-            type="number"
-            variant="outlined"
-            // value={}
-            onChange={(e) => handleChange()}
-          />
-          &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
-          &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
-          &nbsp;&nbsp; &nbsp; &nbsp;
-        </div>
-      </div> 
-      </div>
-
-      <div hidden={stream !== "C"}>
-        <div className="commercestream">
           <TableContainer>
             <Table className={classes.table}>
               <TableHead>
@@ -385,9 +220,8 @@ const ClassXll = () => {
                     {" "}
                     <b>Subjects</b>
                   </TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
+                
+                
                   <TableCell align="left">
                     <b>Marks</b>
                   </TableCell>
@@ -396,12 +230,12 @@ const ClassXll = () => {
               <TableBody>
                 <TableRow>
                   <TableCell> English</TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
+                
+                  
                   <TableCell align="right">
                     <div className="markrow">
-                      <TextField
+                      <input
+                        className="form-control"
                         required
                         variant="outlined"
                         type="number"
@@ -413,12 +247,12 @@ const ClassXll = () => {
                 </TableRow>
                 <TableRow>
                   <TableCell> Dzongkha</TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
+                
+                  
                   <TableCell align="right">
                     <div className="markrow">
-                      <TextField
+                      <input
+                        className="form-control"
                         required
                         variant="outlined"
                         type="number"
@@ -430,12 +264,12 @@ const ClassXll = () => {
                 </TableRow>
                 <TableRow>
                   <TableCell> Maths</TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
+               
+                 
                   <TableCell align="right">
                     <div className="markrow">
-                      <TextField
+                      <input
+                        className="form-control"
                         required
                         variant="outlined"
                         type="number"
@@ -446,13 +280,13 @@ const ClassXll = () => {
                   </TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell> Commerce</TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
+                  <TableCell> Geography</TableCell>
+                 
+              
                   <TableCell align="right">
                     <div className="markrow">
-                      <TextField
+                      <input
+                        className="form-control"
                         required
                         variant="outlined"
                         type="number"
@@ -463,31 +297,13 @@ const ClassXll = () => {
                   </TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell> Economic</TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
-                  <TableCell align="right">
-                    <div className="markrow">
-                      <TextField
-                        required
-                        variant="outlined"
-                        type="number"
-                        id="mark"
-                        autoComplete="false"
-                      />
-                    </div>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell> Accountancy</TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
+                  <TableCell> History</TableCell>
+                  
 
                   <TableCell align="right">
                     <div className="markrow">
-                      <TextField
+                      <input
+                        className="form-control"
                         required
                         variant="outlined"
                         type="number"
@@ -513,21 +329,24 @@ const ClassXll = () => {
 
           {formValues.map((element, index) => (
             <div className="form-inline" key={index}>
-              <TextField
-                style={{ width: "16%", paddingTop: "1%" }}
+              <input
+                className="form-control"
+                style={{ width: "13%",  }}
                 type="text"
                 variant="outlined"
                 value={element.subject || ""}
                 onChange={(e) => handleChange(index, e)}
-              />
-              <TextField
-                style={{ width: "13%", paddingTop: "1%", paddingLeft: "7%" }}
+              /> &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+              <input
+                className="form-control"
+                style={{ width: "4%", paddingTop: "1%", paddingRight: "5%" }}
                 type="number"
                 variant="outlined"
                 value={element.mark}
                 onChange={(e) => handleChange(index, e)}
               />
               &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 
               <button
                 type="button"
                 className={classes.remove}
@@ -542,7 +361,179 @@ const ClassXll = () => {
             <InputLabel id="demo-simple-select-outlined-label">
               <b>Percentages</b>
             </InputLabel>
-            <TextField
+            <input
+              className="form-control"
+              style={{ width: "9%", paddingTop: "0%", paddingLeft: "0%" }}
+              type="number"
+              variant="outlined"
+              // value={}
+              onChange={(e) => handleChange()}
+            />
+            &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+            &nbsp;&nbsp; &nbsp; &nbsp;
+          </div>
+        </div>
+      </div>
+
+      <div hidden={stream !== "C"}>
+      <div className="commercestream">
+          <TableContainer>
+            <Table className={classes.table}>
+              <TableHead>
+                <TableRow>
+                  <TableCell>
+                    {" "}
+                    <b>Subjects</b>
+                  </TableCell>
+                
+                
+                  <TableCell align="left">
+                    <b>Marks</b>
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableRow>
+                  <TableCell> English</TableCell>
+                  <TableCell align="right">
+                    <div className="markrow">
+                      <input
+                        className="form-control"
+                        required
+                        variant="outlined"
+                        type="number"
+                        id="mark"
+                        autoComplete="false"
+                      />
+                    </div>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell> Dzongkha</TableCell>
+                  <TableCell align="right">
+                    <div className="markrow">
+                      <input
+                        className="form-control"
+                        required
+                        variant="outlined"
+                        type="number"
+                        id="mark"
+                        autoComplete="false"
+                      />
+                    </div>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell> Maths</TableCell>
+                  <TableCell align="right">
+                    <div className="markrow">
+                      <input
+                        className="form-control"
+                        required
+                        variant="outlined"
+                        type="number"
+                        id="mark"
+                        autoComplete="false"
+                      />
+                    </div>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell> Commerce</TableCell>
+                  <TableCell align="right">
+                    <div className="markrow">
+                      <input
+                        className="form-control"
+                        required
+                        variant="outlined"
+                        type="number"
+                        id="mark"
+                        autoComplete="false"
+                      />
+                    </div>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell> Economic</TableCell>
+                  <TableCell align="right">
+                    <div className="markrow">
+                      <input
+                        className="form-control"
+                        required
+                        variant="outlined"
+                        type="number"
+                        id="mark"
+                        autoComplete="false"
+                      />
+                    </div>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell> Accountancy</TableCell>
+                  <TableCell align="right">
+                    <div className="markrow">
+                      <input
+                        className="form-control"
+                        required
+                        variant="outlined"
+                        type="number"
+                        id="mark"
+                        autoComplete="false"
+                      />
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    <button
+                      className={classes.addmore}
+                      variant="contained"
+                      onClick={() => addFormFields()}
+                    >
+                      Add More
+                    </button>
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <br />
+
+          {formValues.map((element, index) => (
+            <div className="form-inline" key={index}>
+              <input
+                className="form-control"
+                style={{ width: "14%",  }}
+                type="text"
+                variant="outlined"
+                value={element.subject || ""}
+                onChange={(e) => handleChange(index, e)}
+              /> &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+              <input
+                className="form-control"
+                style={{ width: "4%", paddingTop: "1%", paddingRight: "5%" }}
+                type="number"
+                variant="outlined"
+                value={element.mark}
+                onChange={(e) => handleChange(index, e)}
+              />
+              &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 
+              <button
+                type="button"
+                className={classes.remove}
+                onClick={() => removeFormFields()}
+              >
+                Remove
+              </button>
+            </div>
+          ))}
+          <br />
+          <div>
+            <InputLabel id="demo-simple-select-outlined-label">
+              <b>Percentages</b>
+            </InputLabel>
+            <input
+              className="form-control"
               style={{ width: "9%", paddingTop: "0%", paddingLeft: "0%" }}
               type="number"
               variant="outlined"
@@ -557,7 +548,7 @@ const ClassXll = () => {
       </div>
 
       <div hidden={stream !== "S"}>
-        <div className="sciencestream">
+      <div className="sciencestream">
           <TableContainer>
             <Table className={classes.table}>
               <TableHead>
@@ -566,9 +557,6 @@ const ClassXll = () => {
                     {" "}
                     <b>Subjects</b>
                   </TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
                   <TableCell align="left">
                     <b>Marks</b>
                   </TableCell>
@@ -577,12 +565,10 @@ const ClassXll = () => {
               <TableBody>
                 <TableRow>
                   <TableCell> English</TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
                   <TableCell align="right">
                     <div className="markrow">
-                      <TextField
+                      <input
+                        className="form-control"
                         required
                         variant="outlined"
                         type="number"
@@ -594,12 +580,10 @@ const ClassXll = () => {
                 </TableRow>
                 <TableRow>
                   <TableCell> Dzongkha</TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
                   <TableCell align="right">
                     <div className="markrow">
-                      <TextField
+                      <input
+                        className="form-control"
                         required
                         variant="outlined"
                         type="number"
@@ -611,12 +595,10 @@ const ClassXll = () => {
                 </TableRow>
                 <TableRow>
                   <TableCell> Maths</TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
                   <TableCell align="right">
                     <div className="markrow">
-                      <TextField
+                      <input
+                        className="form-control"
                         required
                         variant="outlined"
                         type="number"
@@ -628,12 +610,10 @@ const ClassXll = () => {
                 </TableRow>
                 <TableRow>
                   <TableCell> Physics</TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
                   <TableCell align="right">
                     <div className="markrow">
-                      <TextField
+                      <input
+                        className="form-control"
                         required
                         variant="outlined"
                         type="number"
@@ -645,12 +625,10 @@ const ClassXll = () => {
                 </TableRow>
                 <TableRow>
                   <TableCell> Chemistry</TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
                   <TableCell align="right">
                     <div className="markrow">
-                      <TextField
+                      <input
+                        className="form-control"
                         required
                         variant="outlined"
                         type="number"
@@ -662,12 +640,10 @@ const ClassXll = () => {
                 </TableRow>
                 <TableRow>
                   <TableCell> Biology</TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
                   <TableCell align="right">
                     <div className="markrow">
-                      <TextField
+                      <input
+                        className="form-control"
                         required
                         variant="outlined"
                         type="number"
@@ -677,15 +653,13 @@ const ClassXll = () => {
                     </div>
                   </TableCell>
                 </TableRow>
+                
                 <TableRow>
                   <TableCell> IT</TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
-
                   <TableCell align="right">
                     <div className="markrow">
-                      <TextField
+                      <input
+                        className="form-control"
                         required
                         variant="outlined"
                         type="number"
@@ -711,21 +685,24 @@ const ClassXll = () => {
 
           {formValues.map((element, index) => (
             <div className="form-inline" key={index}>
-              <TextField
-                style={{ width: "16%", paddingTop: "1%" }}
+              <input
+                className="form-control"
+                style={{ width: "12%",  }}
                 type="text"
                 variant="outlined"
                 value={element.subject || ""}
                 onChange={(e) => handleChange(index, e)}
-              />
-              <TextField
-                style={{ width: "13%", paddingTop: "1%", paddingLeft: "7%" }}
+              /> &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+              <input
+                className="form-control"
+                style={{ width: "4%", paddingTop: "1%", paddingRight: "5%" }}
                 type="number"
                 variant="outlined"
                 value={element.mark}
                 onChange={(e) => handleChange(index, e)}
               />
               &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
               <button
                 type="button"
                 className={classes.remove}
@@ -740,7 +717,8 @@ const ClassXll = () => {
             <InputLabel id="demo-simple-select-outlined-label">
               <b>Percentages</b>
             </InputLabel>
-            <TextField
+            <input
+              className="form-control"
               style={{ width: "9%", paddingTop: "0%", paddingLeft: "0%" }}
               type="number"
               variant="outlined"

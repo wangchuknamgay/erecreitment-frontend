@@ -42,7 +42,7 @@ const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: theme.palette.common.black,
     color: theme.palette.common.white,
-    fontSize: 8,
+    fontSize: 10,
   },
   body: {
     fontSize: 9,
@@ -724,7 +724,7 @@ const Profile = () => {
               </Dialog> */}
             </div>
             <TableContainer component={Paper}>
-              <Table className={classes.table} aria-label="customized table">
+              <Table className={classes.table} size="small" aria-label="a dense table">
                 <TableHead>
                   <TableRow>
                     <StyledTableCell>SCHOOL</StyledTableCell>
@@ -761,7 +761,7 @@ const Profile = () => {
                 <Link to= "/classxll" onClick={toggleEducationModel}>Class XII </Link>
               </div>
               <TableContainer component={Paper}>
-              <Table className={classes.table} aria-label="customized table">
+              <Table className={classes.table} size="small" aria-label="a dense table">
                 <TableHead>
                   <TableRow>
                     <StyledTableCell>SCHOOL</StyledTableCell>
@@ -799,7 +799,7 @@ const Profile = () => {
                 <Link to= "/diploma" onClick={toggleEducationModel}>Diploma</Link>
               </div>
               <TableContainer component={Paper}>
-              <Table className={classes.table} aria-label="customized table">
+              <Table className={classes.table} size="small" aria-label="a dense table">
                 <TableHead>
                   <TableRow>
                     <StyledTableCell>COLLEGE</StyledTableCell>
@@ -841,7 +841,7 @@ const Profile = () => {
                 <Link to= "/degree" onClick={toggleEducationModel}>Degree</Link>
               </div>
               <TableContainer component={Paper}>
-              <Table className={classes.table} aria-label="customized table">
+              <Table className={classes.table} size="small" aria-label="a dense table">
                 <TableHead>
                   <TableRow>
                     <StyledTableCell>COLLEGE</StyledTableCell>
@@ -883,7 +883,7 @@ const Profile = () => {
                 <Link to= "/master" onClick={toggleEducationModel}>Master</Link>
               </div>
               <TableContainer component={Paper}>
-              <Table className={classes.table} aria-label="customized table">
+              <Table className={classes.table} size="small" aria-label="a dense table">
                 <TableHead>
                   <TableRow>
                     <StyledTableCell>COLLEGE</StyledTableCell>
@@ -1042,7 +1042,7 @@ const Profile = () => {
               </Dialog>
             </div>
             <TableContainer component={Paper}>
-              <Table className={classes.table} aria-label="customized table">
+              <Table className={classes.table} size="small" aria-label="a dense table">
                 <TableHead>
                   <TableRow>
                     <StyledTableCell>COMPANY</StyledTableCell>
@@ -1216,7 +1216,7 @@ const Profile = () => {
               </Dialog>
             </div>
             <TableContainer component={Paper}>
-              <Table className={classes.table} aria-label="customized table">
+              <Table className={classes.table}size="small" aria-label="a dense table">
                 <TableHead>
                   <TableRow>
                     <StyledTableCell>NAME</StyledTableCell>
