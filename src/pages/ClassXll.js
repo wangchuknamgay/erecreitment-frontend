@@ -42,13 +42,26 @@ function createData(subjects, marks) {
   return { subjects, marks };
 }
 
+
 const ClassXll = () => {
   const classes = useStyles();
   const [school, setSchool] = React.useState("");
   const [year, setYear] = React.useState("");
-  const [formValues, setFormValues] = useState([{ subject: "", mark: "" }]);
+  //const [formValues, setFormValues] = useState([{ subject: "", mark: "" }]);
+  const [formFields, setFormFields] = useState([{ subject: "", mark: "" }]);
   const [stream, setStream] = useState("A");
   const [value, setValue] = useState("arts");
+  const [inputs, setInputs] = useState({});
+
+
+
+
+
+  const changeHandle = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs((values) => ({ ...values, [name]: value }));
+  };
 
   const toggleStream = (value) => {
     setStream(value);
@@ -58,20 +71,24 @@ const ClassXll = () => {
     setValue(event.target.value);
   };
 
-  const handleChange = (i, e) => {
-    let newFormValues = [...formValues];
-    newFormValues[i][e.target.subject] = e.target.value;
-    setFormValues(newFormValues);
+  const handleFormChange = (event, index) => {
+    let data = [...formFields];
+    data[index][event.target.name] = event.target.value;
+    setFormFields(data);
+  };
+  const addFields = () => {
+    let object = {
+      subject: "",
+      mark: "",
+    };
+
+    setFormFields([...formFields, object]);
   };
 
-  const addFormFields = () => {
-    setFormValues([...formValues, { subject: "", mark: "" }]);
-  };
-
-  const removeFormFields = (i) => {
-    let newFormValues = [...formValues];
-    newFormValues.splice(i, 1);
-    setFormValues(newFormValues);
+  const removeFields = (index) => {
+    let data = [...formFields];
+    data.splice(index, 1);
+    setFormFields(data);
   };
 
   const handleSchoolChange = (event) => {
@@ -212,523 +229,610 @@ const ClassXll = () => {
 
       <div hidden={stream !== "A"}>
         <div className="artstream">
-          <TableContainer>
-            <Table className={classes.table}>
-              <TableHead>
-                <TableRow>
-                  <TableCell>
-                    {" "}
-                    <b>Subjects</b>
-                  </TableCell>
-                
-                
-                  <TableCell align="left">
-                    <b>Marks</b>
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                <TableRow>
-                  <TableCell> English</TableCell>
-                
-                  
-                  <TableCell align="right">
-                    <div className="markrow">
-                      <input
-                        className="form-control"
-                        required
-                        variant="outlined"
-                        type="number"
-                        id="mark"
-                        autoComplete="false"
-                      />
-                    </div>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell> Dzongkha</TableCell>
-                
-                  
-                  <TableCell align="right">
-                    <div className="markrow">
-                      <input
-                        className="form-control"
-                        required
-                        variant="outlined"
-                        type="number"
-                        id="mark"
-                        autoComplete="false"
-                      />
-                    </div>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell> Maths</TableCell>
-               
-                 
-                  <TableCell align="right">
-                    <div className="markrow">
-                      <input
-                        className="form-control"
-                        required
-                        variant="outlined"
-                        type="number"
-                        id="mark"
-                        autoComplete="false"
-                      />
-                    </div>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell> Geography</TableCell>
-                 
-              
-                  <TableCell align="right">
-                    <div className="markrow">
-                      <input
-                        className="form-control"
-                        required
-                        variant="outlined"
-                        type="number"
-                        id="mark"
-                        autoComplete="false"
-                      />
-                    </div>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell> History</TableCell>
-                  
+        <div className="table-responsive pl-2">
+          <table className={classes.table}>
+            <thead>
+              <tr>
+                <th className="pr-5">Subjects</th>
+                <th className="pr-5"></th>
+                <th className="pr-5"></th>
+                <th className="pr-5"></th>
+                <th className="pl-5">Marks</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="dropdown-">
+                <td className="pr-5">English</td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pl-5">
+                  <div className="markrow">
+                    <input
+                      className="form-control"
+                      required
+                      variant="outlined"
+                      type="number"
+                      name="english"
+                      value={inputs.english || ""}
+                      onChange={changeHandle}
+                      autoComplete="false"
+                    />
+                  </div>
+                </td>
+              </tr>
+              <tr className="dropdown-">
+                <td className="pr-5">Dzongkha</td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pl-5">
+                  <div className="markrow">
+                    <input
+                      className="form-control"
+                      required
+                      variant="outlined"
+                      type="number"
+                      name="dzongkha"
+                      value={inputs.dzongkha || ""}
+                      onChange={changeHandle}
+                      autoComplete="false"
+                    />
+                  </div>
+                </td>
+              </tr>
+              <tr className="dropdown-">
+                <td className="pr-5">Maths</td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pl-5">
+                  <div className="markrow">
+                    <input
+                      className="form-control"
+                      required
+                      variant="outlined"
+                      type="number"
+                      name="maths"
+                      value={inputs.maths || ""}
+                      onChange={changeHandle}
+                      autoComplete="false"
+                    />
+                  </div>
+                </td>
+                {/* <td className="pr-5"></td> */}
+              </tr>
+              <tr className="dropdown-">
+                <td className="pr-5">Geography</td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pl-5">
+                  <div className="markrow">
+                    <input
+                      className="form-control"
+                      required
+                      variant="outlined"
+                      type="number"
+                      name="physics"
+                      value={inputs.geography || ""}
+                      onChange={changeHandle}
+                      autoComplete="false"
+                    />
+                  </div>
+                </td>
+              </tr>
+              <tr className="dropdown-">
+                <td className="pr-5">History</td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
 
-                  <TableCell align="right">
-                    <div className="markrow">
-                      <input
-                        className="form-control"
-                        required
-                        variant="outlined"
-                        type="number"
-                        id="mark"
-                        autoComplete="false"
-                      />
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <button
-                      className={classes.addmore}
-                      variant="contained"
-                      onClick={() => addFormFields()}
-                    >
-                      Add More
-                    </button>
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </TableContainer>
-          <br />
+                <td className="pl-5">
+                  <div className="markrow">
+                    <input
+                      className="form-control"
+                      required
+                      variant="outlined"
+                      type="number"
+                      name="it"
+                      value={inputs.history || ""}
+                      onChange={changeHandle}
+                      autoComplete="false"
+                    />
+                  </div>
+                </td>
+                <td className="pl-3">
+                  <button
+                    className={classes.addmore}
+                    variant="contained"
+                    onClick={() => addFields()}
+                  >
+                    Add More
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <br />
 
-          {formValues.map((element, index) => (
-            <div className="form-inline" key={index}>
+        {/* {!isTextHidden && ( */}
+        {formFields.map((form, index) => {
+          return (
+            <div  className="form-inline pr-5" key={index}>
               <input
+                style={{ width: "18%"}}
                 className="form-control"
-                style={{ width: "13%",  }}
+                name="subject"
                 type="text"
-                variant="outlined"
-                value={element.subject || ""}
-                onChange={(e) => handleChange(index, e)}
-              /> &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-              <input
-                className="form-control"
-                style={{ width: "4%", paddingTop: "1%", paddingRight: "5%" }}
-                type="number"
-                variant="outlined"
-                value={element.mark}
-                onChange={(e) => handleChange(index, e)}
+                onChange={(event) => handleFormChange(event, index)}
+                value={form.subject}
               />
-              &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
-              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 
-              <button
-                type="button"
-                className={classes.remove}
-                onClick={() => removeFormFields()}
-              >
-                Remove
-              </button>
+              &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input
+                style={{ width: "6%"}}
+                className="form-control"
+                name="mark" 
+                type="number"          
+                onChange={(event) => handleFormChange(event, index)}
+                value={form.mark}
+              /> &nbsp;&nbsp; &nbsp;
+              <button 
+               className={classes.remove}
+               onClick={() => removeFields(index)}>Remove</button>
             </div>
-          ))}
-          <br />
-          <div>
-            <InputLabel id="demo-simple-select-outlined-label">
-              <b>Percentages</b>
-            </InputLabel>
-            <input
-              className="form-control"
-              style={{ width: "9%", paddingTop: "0%", paddingLeft: "0%" }}
-              type="number"
-              variant="outlined"
-              // value={}
-              onChange={(e) => handleChange()}
-            />
-            &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
-            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
-            &nbsp;&nbsp; &nbsp; &nbsp;
-          </div>
+          );
+        })}
+
+        
+
+        <br />
+        <div>
+          <InputLabel id="demo-simple-select-outlined-label">
+            <b>Percentages</b>
+          </InputLabel>
+          <input
+            className="form-control"
+            style={{ width: "18%", paddingTop: "0%", paddingLeft: "0%" }}
+            type="number"
+            variant="outlined"
+            disabled
+            name="percentage"
+            value={inputs.percentage}
+            onChange={(e) => handleFormChange()}
+          />
+        </div>
+        <br />
+
+
+  
         </div>
       </div>
 
       <div hidden={stream !== "C"}>
-      <div className="commercestream">
-          <TableContainer>
-            <Table className={classes.table}>
-              <TableHead>
-                <TableRow>
-                  <TableCell>
-                    {" "}
-                    <b>Subjects</b>
-                  </TableCell>
-                
-                
-                  <TableCell align="left">
-                    <b>Marks</b>
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                <TableRow>
-                  <TableCell> English</TableCell>
-                  <TableCell align="right">
-                    <div className="markrow">
-                      <input
-                        className="form-control"
-                        required
-                        variant="outlined"
-                        type="number"
-                        id="mark"
-                        autoComplete="false"
-                      />
-                    </div>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell> Dzongkha</TableCell>
-                  <TableCell align="right">
-                    <div className="markrow">
-                      <input
-                        className="form-control"
-                        required
-                        variant="outlined"
-                        type="number"
-                        id="mark"
-                        autoComplete="false"
-                      />
-                    </div>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell> Maths</TableCell>
-                  <TableCell align="right">
-                    <div className="markrow">
-                      <input
-                        className="form-control"
-                        required
-                        variant="outlined"
-                        type="number"
-                        id="mark"
-                        autoComplete="false"
-                      />
-                    </div>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell> Commerce</TableCell>
-                  <TableCell align="right">
-                    <div className="markrow">
-                      <input
-                        className="form-control"
-                        required
-                        variant="outlined"
-                        type="number"
-                        id="mark"
-                        autoComplete="false"
-                      />
-                    </div>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell> Economic</TableCell>
-                  <TableCell align="right">
-                    <div className="markrow">
-                      <input
-                        className="form-control"
-                        required
-                        variant="outlined"
-                        type="number"
-                        id="mark"
-                        autoComplete="false"
-                      />
-                    </div>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell> Accountancy</TableCell>
-                  <TableCell align="right">
-                    <div className="markrow">
-                      <input
-                        className="form-control"
-                        required
-                        variant="outlined"
-                        type="number"
-                        id="mark"
-                        autoComplete="false"
-                      />
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <button
-                      className={classes.addmore}
-                      variant="contained"
-                      onClick={() => addFormFields()}
-                    >
-                      Add More
-                    </button>
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </TableContainer>
-          <br />
+        <div className="commercestream">
+        <div className="table-responsive pl-2">
+          <table className={classes.table}>
+            <thead>
+              <tr>
+                <th className="pr-5">Subjects</th>
+                <th className="pr-5"></th>
+                <th className="pr-5"></th>
+                <th className="pr-5"></th>
+                <th className="pl-5">Marks</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="dropdown-">
+                <td className="pr-5">English</td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pl-5">
+                  <div className="markrow">
+                    <input
+                      className="form-control"
+                      required
+                      variant="outlined"
+                      type="number"
+                      name="english"
+                      value={inputs.english || ""}
+                      onChange={changeHandle}
+                      autoComplete="false"
+                    />
+                  </div>
+                </td>
+              </tr>
+              <tr className="dropdown-">
+                <td className="pr-5">Dzongkha</td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pl-5">
+                  <div className="markrow">
+                    <input
+                      className="form-control"
+                      required
+                      variant="outlined"
+                      type="number"
+                      name="dzongkha"
+                      value={inputs.dzongkha || ""}
+                      onChange={changeHandle}
+                      autoComplete="false"
+                    />
+                  </div>
+                </td>
+              </tr>
+              <tr className="dropdown-">
+                <td className="pr-5">Maths</td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pl-5">
+                  <div className="markrow">
+                    <input
+                      className="form-control"
+                      required
+                      variant="outlined"
+                      type="number"
+                      name="maths"
+                      value={inputs.maths || ""}
+                      onChange={changeHandle}
+                      autoComplete="false"
+                    />
+                  </div>
+                </td>
+                {/* <td className="pr-5"></td> */}
+              </tr>
+              <tr className="dropdown-">
+                <td className="pr-5">Commerece</td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pl-5">
+                  <div className="markrow">
+                    <input
+                      className="form-control"
+                      required
+                      variant="outlined"
+                      type="number"
+                      name="physics"
+                      value={inputs.commerce || ""}
+                      onChange={changeHandle}
+                      autoComplete="false"
+                    />
+                  </div>
+                </td>
+              </tr>
+              <tr className="dropdown-">
+                <td className="pr-5">Economic</td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pl-5">
+                  <div className="markrow">
+                    <input
+                      className="form-control"
+                      required
+                      variant="outlined"
+                      type="number"
+                      name="physics"
+                      value={inputs.economic || ""}
+                      onChange={changeHandle}
+                      autoComplete="false"
+                    />
+                  </div>
+                </td>
+              </tr>
+              <tr className="dropdown-">
+                <td className="pr-5">Accountancy</td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pl-5">
+                  <div className="markrow">
+                    <input
+                      className="form-control"
+                      required
+                      variant="outlined"
+                      type="number"
+                      name="it"
+                      value={inputs.account || ""}
+                      onChange={changeHandle}
+                      autoComplete="false"
+                    />
+                  </div>
+                </td>
+                <td className="pl-3">
+                  <button
+                    className={classes.addmore}
+                    variant="contained"
+                    onClick={() => addFields()}
+                  >
+                    Add More
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <br />
 
-          {formValues.map((element, index) => (
-            <div className="form-inline" key={index}>
+        {/* {!isTextHidden && ( */}
+        {formFields.map((form, index) => {
+          return (
+            <div  className="form-inline pr-5" key={index}>
               <input
+                style={{ width: "18.9%"}}
                 className="form-control"
-                style={{ width: "14%",  }}
+                name="subject"
                 type="text"
-                variant="outlined"
-                value={element.subject || ""}
-                onChange={(e) => handleChange(index, e)}
-              /> &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-              <input
-                className="form-control"
-                style={{ width: "4%", paddingTop: "1%", paddingRight: "5%" }}
-                type="number"
-                variant="outlined"
-                value={element.mark}
-                onChange={(e) => handleChange(index, e)}
+                onChange={(event) => handleFormChange(event, index)}
+                value={form.subject}
               />
-              &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
-              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 
-              <button
-                type="button"
-                className={classes.remove}
-                onClick={() => removeFormFields()}
-              >
-                Remove
-              </button>
+              &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input
+                style={{ width: "6%"}}
+                className="form-control"
+                name="mark" 
+                type="number"          
+                onChange={(event) => handleFormChange(event, index)}
+                value={form.mark}
+              /> &nbsp;&nbsp; &nbsp;
+              <button 
+               className={classes.remove}
+               onClick={() => removeFields(index)}>Remove</button>
             </div>
-          ))}
-          <br />
-          <div>
-            <InputLabel id="demo-simple-select-outlined-label">
-              <b>Percentages</b>
-            </InputLabel>
-            <input
-              className="form-control"
-              style={{ width: "9%", paddingTop: "0%", paddingLeft: "0%" }}
-              type="number"
-              variant="outlined"
-              // value={}
-              onChange={(e) => handleChange()}
-            />
-            &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
-            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
-            &nbsp;&nbsp; &nbsp; &nbsp;
-          </div>
+          );
+        })}
+
+        
+
+        <br />
+        <div>
+          <InputLabel id="demo-simple-select-outlined-label">
+            <b>Percentages</b>
+          </InputLabel>
+          <input
+            className="form-control"
+            style={{ width: "18%", paddingTop: "0%", paddingLeft: "0%" }}
+            type="number"
+            variant="outlined"
+            disabled
+            name="percentage"
+            value={inputs.percentage }
+            onChange={(e) => handleFormChange()}
+          />
+        </div>
+        <br />
+
+
+  
         </div>
       </div>
 
       <div hidden={stream !== "S"}>
-      <div className="sciencestream">
-          <TableContainer>
-            <Table className={classes.table}>
-              <TableHead>
-                <TableRow>
-                  <TableCell>
-                    {" "}
-                    <b>Subjects</b>
-                  </TableCell>
-                  <TableCell align="left">
-                    <b>Marks</b>
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                <TableRow>
-                  <TableCell> English</TableCell>
-                  <TableCell align="right">
-                    <div className="markrow">
-                      <input
-                        className="form-control"
-                        required
-                        variant="outlined"
-                        type="number"
-                        id="mark"
-                        autoComplete="false"
-                      />
-                    </div>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell> Dzongkha</TableCell>
-                  <TableCell align="right">
-                    <div className="markrow">
-                      <input
-                        className="form-control"
-                        required
-                        variant="outlined"
-                        type="number"
-                        id="mark"
-                        autoComplete="false"
-                      />
-                    </div>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell> Maths</TableCell>
-                  <TableCell align="right">
-                    <div className="markrow">
-                      <input
-                        className="form-control"
-                        required
-                        variant="outlined"
-                        type="number"
-                        id="mark"
-                        autoComplete="false"
-                      />
-                    </div>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell> Physics</TableCell>
-                  <TableCell align="right">
-                    <div className="markrow">
-                      <input
-                        className="form-control"
-                        required
-                        variant="outlined"
-                        type="number"
-                        id="mark"
-                        autoComplete="false"
-                      />
-                    </div>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell> Chemistry</TableCell>
-                  <TableCell align="right">
-                    <div className="markrow">
-                      <input
-                        className="form-control"
-                        required
-                        variant="outlined"
-                        type="number"
-                        id="mark"
-                        autoComplete="false"
-                      />
-                    </div>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell> Biology</TableCell>
-                  <TableCell align="right">
-                    <div className="markrow">
-                      <input
-                        className="form-control"
-                        required
-                        variant="outlined"
-                        type="number"
-                        id="mark"
-                        autoComplete="false"
-                      />
-                    </div>
-                  </TableCell>
-                </TableRow>
-                
-                <TableRow>
-                  <TableCell> IT</TableCell>
-                  <TableCell align="right">
-                    <div className="markrow">
-                      <input
-                        className="form-control"
-                        required
-                        variant="outlined"
-                        type="number"
-                        id="mark"
-                        autoComplete="false"
-                      />
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <button
-                      className={classes.addmore}
-                      variant="contained"
-                      onClick={() => addFormFields()}
-                    >
-                      Add More
-                    </button>
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </TableContainer>
-          <br />
+        <div className="sciencestream">
+        <div className="table-responsive pl-2">
+          <table className={classes.table}>
+            <thead>
+              <tr>
+                <th className="pr-5">Subjects</th>
+                <th className="pr-5"></th>
+                <th className="pr-5"></th>
+                <th className="pr-5"></th>
+                <th className="pl-5">Marks</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="dropdown-">
+                <td className="pr-5">English</td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pl-5">
+                  <div className="markrow">
+                    <input
+                      className="form-control"
+                      required
+                      variant="outlined"
+                      type="number"
+                      name="english"
+                      value={inputs.english || ""}
+                      onChange={changeHandle}
+                      autoComplete="false"
+                    />
+                  </div>
+                </td>
+              </tr>
+              <tr className="dropdown-">
+                <td className="pr-5">Dzongkha</td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pl-5">
+                  <div className="markrow">
+                    <input
+                      className="form-control"
+                      required
+                      variant="outlined"
+                      type="number"
+                      name="dzongkha"
+                      value={inputs.dzongkha || ""}
+                      onChange={changeHandle}
+                      autoComplete="false"
+                    />
+                  </div>
+                </td>
+              </tr>
+              <tr className="dropdown-">
+                <td className="pr-5">Maths</td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pl-5">
+                  <div className="markrow">
+                    <input
+                      className="form-control"
+                      required
+                      variant="outlined"
+                      type="number"
+                      name="maths"
+                      value={inputs.maths || ""}
+                      onChange={changeHandle}
+                      autoComplete="false"
+                    />
+                  </div>
+                </td>
+                {/* <td className="pr-5"></td> */}
+              </tr>
+              <tr className="dropdown-">
+                <td className="pr-5">Physics</td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pl-5">
+                  <div className="markrow">
+                    <input
+                      className="form-control"
+                      required
+                      variant="outlined"
+                      type="number"
+                      name="physics"
+                      value={inputs.physics || ""}
+                      onChange={changeHandle}
+                      autoComplete="false"
+                    />
+                  </div>
+                </td>
+              </tr>
+              <tr className="dropdown-">
+                <td className="pr-5">Chemistry</td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pl-5">
+                  <div className="markrow">
+                    <input
+                      className="form-control"
+                      required
+                      variant="outlined"
+                      type="number"
+                      name="physics"
+                      value={inputs.chemistry || ""}
+                      onChange={changeHandle}
+                      autoComplete="false"
+                    />
+                  </div>
+                </td>
+              </tr>
+              <tr className="dropdown-">
+                <td className="pr-5">Biology</td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pl-5">
+                  <div className="markrow">
+                    <input
+                      className="form-control"
+                      required
+                      variant="outlined"
+                      type="number"
+                      name="physics"
+                      value={inputs.biology || ""}
+                      onChange={changeHandle}
+                      autoComplete="false"
+                    />
+                  </div>
+                </td>
+              </tr>
+              <tr className="dropdown-">
+                <td className="pr-5">IT</td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
+                <td className="pr-5"></td>
 
-          {formValues.map((element, index) => (
-            <div className="form-inline" key={index}>
+                <td className="pl-5">
+                  <div className="markrow">
+                    <input
+                      className="form-control"
+                      required
+                      variant="outlined"
+                      type="number"
+                      name="it"
+                      value={inputs.it || ""}
+                      onChange={changeHandle}
+                      autoComplete="false"
+                    />
+                  </div>
+                </td>
+                <td className="pl-3">
+                  <button
+                    className={classes.addmore}
+                    variant="contained"
+                    onClick={() => addFields()}
+                  >
+                    Add More
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <br />
+
+        {/* {!isTextHidden && ( */}
+        {formFields.map((form, index) => {
+          return (
+            <div  className="form-inline pr-5" key={index}>
               <input
+                style={{ width: "17.5%"}}
                 className="form-control"
-                style={{ width: "12%",  }}
+                name="subject"
                 type="text"
-                variant="outlined"
-                value={element.subject || ""}
-                onChange={(e) => handleChange(index, e)}
-              /> &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-              <input
-                className="form-control"
-                style={{ width: "4%", paddingTop: "1%", paddingRight: "5%" }}
-                type="number"
-                variant="outlined"
-                value={element.mark}
-                onChange={(e) => handleChange(index, e)}
+                onChange={(event) => handleFormChange(event, index)}
+                value={form.subject}
               />
-              &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
-              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-              <button
-                type="button"
-                className={classes.remove}
-                onClick={() => removeFormFields()}
-              >
-                Remove
-              </button>
+              &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input
+                style={{ width: "6%"}}
+                className="form-control"
+                name="mark" 
+                type="number"          
+                onChange={(event) => handleFormChange(event, index)}
+                value={form.mark}
+              /> &nbsp;&nbsp; &nbsp;
+              <button 
+               className={classes.remove}
+               onClick={() => removeFields(index)}>Remove</button>
             </div>
-          ))}
-          <br />
-          <div>
-            <InputLabel id="demo-simple-select-outlined-label">
-              <b>Percentages</b>
-            </InputLabel>
-            <input
-              className="form-control"
-              style={{ width: "9%", paddingTop: "0%", paddingLeft: "0%" }}
-              type="number"
-              variant="outlined"
-              // value={}
-              onChange={(e) => handleChange()}
-            />
-            &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
-            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
-            &nbsp;&nbsp; &nbsp; &nbsp;
-          </div>
+          );
+        })}
+
+
+        <br />
+        <div>
+          <InputLabel id="demo-simple-select-outlined-label">
+            <b>Percentages</b>
+          </InputLabel>
+          <input
+            className="form-control"
+            style={{ width: "17%" }}
+            type="number"
+            variant="outlined"
+            name="percentage"
+            value={inputs.percentage}
+            onChange={(e) => handleFormChange()}
+          />
+        </div>
+        <br />
+
+
+  
         </div>
       </div>
     </div>

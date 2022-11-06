@@ -9,7 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import classXService from "../services/classX.service";
 import { Alert, Snackbar } from "@mui/material";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -35,18 +35,13 @@ const useStyles = makeStyles((theme) => ({
 const ClassX = () => {
   const classes = useStyles();
   const [yearOfCompletion, setYear] = React.useState("");
-  const [formValues, setFormValues] = useState([{ subject: "", mark: "" }]);
+  //const [formValues, setFormValues] = useState([{ subject: "", mark: "" }]);
+  const [formFields, setFormFields] = useState([{ subject: "", mark: "" }]);
   const [isTextHidden, setTextHidden] = useState(true);
   const [inputs, setInputs] = useState({});
   const [responseMessage, setResponseMessage] = React.useState("");
   const [openSuccess, setOpenSuccess] = useState(false);
   const navigate = useNavigate();
-
-  const handleChange = (i, e) => {
-    let newFormValues = [...formValues];
-    newFormValues[i][e.target.subject] = e.target.value;
-    // setFormValues(newFormValues);
-  };
 
   const changeHandle = (event) => {
     const name = event.target.name;
@@ -58,15 +53,24 @@ const ClassX = () => {
     setOpenSuccess(false);
   };
 
-  const addFormFields = () => {
-    setFormValues([...formValues, { subject: "", mark: "" }]);
-    setTextHidden(!isTextHidden);
+  const handleFormChange = (event, index) => {
+    let data = [...formFields];
+    data[index][event.target.name] = event.target.value;
+    setFormFields(data);
+  };
+  const addFields = () => {
+    let object = {
+      subject: "",
+      mark: "",
+    };
+
+    setFormFields([...formFields, object]);
   };
 
-  const removeFormFields = (i) => {
-    let newFormValues = [...formValues];
-    newFormValues.splice(i, 1);
-    setFormValues(newFormValues);
+  const removeFields = (index) => {
+    let data = [...formFields];
+    data.splice(index, 1);
+    setFormFields(data);
   };
 
   const handleYearChange = (event) => {
@@ -76,8 +80,8 @@ const ClassX = () => {
   const submitForm = (event) => {
     event.preventDefault();
     classXService.saveData(inputs).then((response) => {
-      if(response.data == "saved"){
-        navigate('/profile');   
+      if (response.data == "saved") {
+        navigate("/profile");
       }
     });
   };
@@ -125,8 +129,8 @@ const ClassX = () => {
                   type="number"
                   name="yearOfCompletion"
                   id="yearOfCompletion"
-                  value={yearOfCompletion|| ""}
-                  onChange={ handleYearChange }
+                  value={yearOfCompletion || ""}
+                  onChange={handleYearChange}
                   label="year"
                 >
                   <option aria-label="None" value="" />
@@ -386,7 +390,7 @@ const ClassX = () => {
                   <button
                     className={classes.addmore}
                     variant="contained"
-                    onClick={() => addFormFields()}
+                    onClick={() => addFields()}
                   >
                     Add More
                   </button>
@@ -398,7 +402,7 @@ const ClassX = () => {
         <br />
 
         {/* {!isTextHidden && ( */}
-        {formValues.map((element, index) => (
+        {/* {formValues.map((element, index) => (
           <div className="form-inline pr-5" key={index}>
             <input
               className="form-control "
@@ -408,6 +412,7 @@ const ClassX = () => {
               name="subjects"
               value={element.subject || ""}
               onChange={(e) => handleChange(index, e)}
+              
             />
             &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -418,8 +423,10 @@ const ClassX = () => {
                 type="number"
                 variant="outlined"
                 name="marks"
-                value={element.mark}
+                value={element.mark || ""}
                 onChange={(e) => handleChange(index, e)}
+                
+
               />
             </div>
             &nbsp;&nbsp; &nbsp;
@@ -431,8 +438,35 @@ const ClassX = () => {
               Remove
             </button>
           </div>
-        ))}
-        {/* )}  */}
+        ))} */}
+
+        {formFields.map((form, index) => {
+          return (
+            <div  className="form-inline pr-5" key={index}>
+              <input
+                style={{ width: "18%"}}
+                className="form-control"
+                name="subject"
+                type="text"
+                onChange={(event) => handleFormChange(event, index)}
+                value={form.subject}
+              />
+              &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input
+                style={{ width: "6%"}}
+                className="form-control"
+                name="mark" 
+                type="number"          
+                onChange={(event) => handleFormChange(event, index)}
+                value={form.mark}
+              /> &nbsp;&nbsp; &nbsp;
+              <button 
+               className={classes.remove}
+               onClick={() => removeFields(index)}>Remove</button>
+            </div>
+          );
+        })}
 
         <br />
         <div>
@@ -447,7 +481,7 @@ const ClassX = () => {
             disabled
             name="percentage"
             value={inputs.percentage || ""}
-            onChange={(e) => handleChange()}
+            // onChange={(e) => handleChange()}
           />
         </div>
         <br />
@@ -470,16 +504,16 @@ const ClassX = () => {
       </form>
 
       <Snackbar
-            open={openSuccess}
-            autoHideDuration={2000}
-            onClose={handleCloseSuccess}
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "right",
-            }}
-          >
-            <Alert severity="success">{responseMessage}</Alert>
-          </Snackbar>
+        open={openSuccess}
+        autoHideDuration={2000}
+        onClose={handleCloseSuccess}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+      >
+        <Alert severity="success">{responseMessage}</Alert>
+      </Snackbar>
     </div>
   );
 };
