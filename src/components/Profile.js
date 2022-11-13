@@ -559,10 +559,10 @@ const Profile = () => {
             <div className="table-responsive ">
               <table className="table table-bordered">
                 <thead className="custum-thead">
-                  <th>SCHOOL</th>
-                  <th align="left">YEAR</th>
-                  <th align="left">ACADEMIC</th>
-                  <th align="left">CERTIFICATE</th>
+                  <th>School</th>
+                  <th align="left">Year</th>
+                  <th align="left">Academic</th>
+                  <th align="left">Certificate</th>
                 </thead>
                 <tbody>
                   {/* {row2.map((row2) => (
