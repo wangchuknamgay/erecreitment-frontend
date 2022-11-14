@@ -52,6 +52,7 @@ import {
   faLocation,
   faUnlock,
   faDownload,
+  faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import classXService from "../services/classX.service";
 
@@ -73,9 +74,11 @@ const Profile = () => {
   const [educationModel, setEducationModel] = React.useState(false);
   const [experienceModel, setExperienceModel] = React.useState(false);
   const [refereeModel, setRefereeModel] = React.useState(false);
+  const [masterModel, setMasterModel] = React.useState(false);
   const [inputs, setInputs] = useState({});
   const [experienceList, setExperienceList] = useState([]);
   const [referenceList, setReferenceList] = useState([]);
+  const [masterList, setMasterList] = useState([]);
   const [classXList, setClassXList] = useState([]);
 
   const handleCloseSuccess = () => {
@@ -129,6 +132,7 @@ const Profile = () => {
 
   useEffect(() => {
     getAllExperience();
+    getAllMasterList();
     getAllExperienceByUserId();
     getAllClassXDetailsByUserId();
   }, []);
@@ -188,18 +192,24 @@ const Profile = () => {
     });
   };
 
-  // const populateReferenceDate=(e,item)=>{
-  //   setInputs(item)
-  //   setRefereeModel(!refereeModel);
-  // }
-  //=======================================//
+
+  //==============Master===========//
+  const populateMasterDate = (e, item) => {
+    setInputs(item);
+    setMasterModel(!masterModel);
+  };
+  const getAllMasterList = () => {
+    experienceService.getAll().then((response) => {
+      setMasterList(response.data);
+    });
+  };
 
   if (!currentUser) {
     return <Navigate to="/home" />;
   }
 
   return (
-    <div className="col-md-12 row p-0">
+    <div className="col-md-12 row ">
       <div className="col-md-4">
         <div className="card">
           <div className="card-body">
@@ -666,6 +676,8 @@ const Profile = () => {
             </div>
 
             <br />
+
+ {/*================= Master ==================*/}
             <div className="h7  text-left">
               {" "}
               <AddIcon />
@@ -674,32 +686,64 @@ const Profile = () => {
               </Link>
             </div>
             <div className="table-responsive ">
-              <table className="table table-bordered">
+              <table className="table table-striped table-bordered">
                 <thead className="custum-thead">
+                  <tr>
                   <th>College</th>
                   <th align="left">Year</th>
                   <th align="left">Percentage</th>
                   <th align="left">Academic</th>
                   <th align="left">Certificate</th>
+                  <th align="left">Action</th>
+                  </tr>
                 </thead>
-                <tbody>
-                  {/* {row5.map((row5) => (
-                    <tr key={row5.college}>
+                  <tbody>
+                  {masterList.map((item) => (
+                    <tr key={item.masterId}>
                       <td component="th" scope="row">
-                        {row5.college}
+                        {item.collegeName}
                       </td>
-                      <td align="left">{row5.year}</td>
-                      <td align="left">{row5.percentage}</td>
-                      <td align="left">{row5.academic}</td>
-                      <td align="left">{row5.certificate}</td>
+                      <td>{item.year}</td>
+                      <td>{item.percentage}</td>
+                      <td>
+                        <span className="custom-link">
+                          <FontAwesomeIcon icon={faDownload} />
+                          Academic
+                        </span>
+                      </td>
+                      <td>
+                        <span className="custom-link">
+                          <FontAwesomeIcon icon={faDownload} />
+                         Marksheet
+                        </span>
+                      </td>
+                      <td align="center">
+                        <span
+                          onClick={(e) => populateMasterDate(e, item)}
+                          className="custom-link"
+                        >
+                         <FontAwesomeIcon icon={faEdit} />
+                         Edit
+                        </span>
+                        &nbsp; &nbsp;&nbsp;
+                        <span
+                          onClick={(e) => populateMasterDate(e, item)}
+                          className="custom-link"
+                        >
+                         <FontAwesomeIcon icon={faTrash} /> 
+                          Delete
+                        </span>
+                      </td>
                     </tr>
-                  ))} */}
+                  ))}
+                
                 </tbody>
               </table>
             </div>
             <br />
 
-            {/**Experience Section */}
+     {/**=========Experience Section ====================*/}
+
             <div className="experience">
               <div className="h7  text-left">
                 {" "}
@@ -874,7 +918,7 @@ const Profile = () => {
               </table>
             </div>
             <br />
-
+{/* ===============Refree Section======================= */}
             <div className="Referee">
               <div className="h7  text-left">
                 {" "}

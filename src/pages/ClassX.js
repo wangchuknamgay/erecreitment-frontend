@@ -88,7 +88,9 @@ const ClassX = () => {
 
   return (
     <div>
-      <div className="mb-3">
+       <div className="card degree-card">
+        <div className="card-body">
+      <div className="mb-4">
         <div className="h4"> ACADEMIC </div>
         <div className="h5"> Class X </div>
         <div className="h7">
@@ -172,6 +174,7 @@ const ClassX = () => {
             </Grid>
           </Grid>
         </div>
+        <br/> <br/>
 
         <div className="table-responsive pl-2">
           <table className={classes.table}>
@@ -244,7 +247,7 @@ const ClassX = () => {
                     />
                   </div>
                 </td>
-                {/* <td className="pr-5"></td> */}
+            
               </tr>
               <tr className="dropdown-">
                 <td className="pr-5">Physics</td>
@@ -444,7 +447,7 @@ const ClassX = () => {
           return (
             <div  className="form-inline pr-5" key={index}>
               <input
-                style={{ width: "18%"}}
+                style={{ width: "26.3%"}}
                 className="form-control"
                 name="subject"
                 type="text"
@@ -454,7 +457,7 @@ const ClassX = () => {
               &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <input
-                style={{ width: "6%"}}
+                style={{ width: "8.6%"}}
                 className="form-control"
                 name="mark" 
                 type="number"          
@@ -467,15 +470,13 @@ const ClassX = () => {
             </div>
           );
         })}
-
-        <br />
         <div>
           <InputLabel id="demo-simple-select-outlined-label">
             <b>Percentages</b>
           </InputLabel>
           <input
             className="form-control"
-            style={{ width: "20%", paddingTop: "0%", paddingLeft: "0%" }}
+            style={{ width: "25%", paddingTop: "0%", paddingLeft: "0%" }}
             type="number"
             variant="outlined"
             disabled
@@ -514,6 +515,8 @@ const ClassX = () => {
       >
         <Alert severity="success">{responseMessage}</Alert>
       </Snackbar>
+      </div>
+      </div>
     </div>
   );
 };
