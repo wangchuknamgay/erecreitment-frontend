@@ -14,6 +14,7 @@ import AssessmentIcon from "@material-ui/icons/Assessment";
 import EditIcon from "@material-ui/icons/Edit";
 import BrandingWatermarkIcon from "@material-ui/icons/BrandingWatermark";
 import Button from "@material-ui/core/Button";
+
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -27,7 +28,6 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import AddIcon from "@material-ui/icons/Add";
-
 import experienceService from "../services/experience.service";
 import { Alert, Snackbar } from "@mui/material";
 import moment from "moment";
@@ -51,7 +51,7 @@ import {
   faLink,
   faLocation,
   faUnlock,
-  faDownload
+  faDownload,
 } from "@fortawesome/free-solid-svg-icons";
 import classXService from "../services/classX.service";
 
@@ -77,7 +77,6 @@ const Profile = () => {
   const [experienceList, setExperienceList] = useState([]);
   const [referenceList, setReferenceList] = useState([]);
   const [classXList, setClassXList] = useState([]);
-
 
   const handleCloseSuccess = () => {
     setOpenSuccess(false);
@@ -151,10 +150,10 @@ const Profile = () => {
     });
   };
 
-  const populateExperienceDate=(e,item)=>{
-    setInputs(item)
+  const populateExperienceDate = (e, item) => {
+    setInputs(item);
     setExperienceModel(!refereeModel);
-  }
+  };
 
   // =====================================//
 
@@ -176,10 +175,10 @@ const Profile = () => {
     });
   };
 
-  const populateReferenceDate=(e,item)=>{
-    setInputs(item)
+  const populateReferenceDate = (e, item) => {
+    setInputs(item);
     setRefereeModel(!refereeModel);
-  }
+  };
   //=======================================//
 
   //======for Class X =====
@@ -215,6 +214,7 @@ const Profile = () => {
             </div>
             <div className="mb-4">
               <div className="h7 text-center">USER INFORMATION</div>
+             
             </div>
             <div className="mb-2">
               <div className="text-muted">
@@ -489,7 +489,17 @@ const Profile = () => {
             <div className="education">
               <div className="h7  text-left">
                 {" "}
-                <AddIcon />
+                {/* <button
+                  onClick={toggleEducationModel}
+                  variant="contained"
+                  className="btn btn-success"
+                >
+                  <i className="material-icons">&#xE147;</i>{" "}
+                  <Link to="/classten" onClick={toggleEducationModel}>
+                  Class X{" "}
+                </Link>
+                </button> */}
+                <AddIcon/>
                 <Link to="/classten" onClick={toggleEducationModel}>
                   Class X{" "}
                 </Link>
@@ -498,18 +508,30 @@ const Profile = () => {
             <div className="table-responsive ">
               <table className="table table-bordered">
                 <thead className="custum-thead">
+                  <tr>
                   <th>School</th>
                   <th align="left">Year</th>
                   <th align="left">Academic</th>
                   <th align="left">Certificate</th>
+                  </tr>
                 </thead>
                 <tbody>
                   {classXList.map((item) => (
                     <tr key={item.classXId}>
                       <td>{item.schoolName}</td>
                       <td align="left">{item.yearOfCompletion}</td>
-                      <td align="left"><span className="custom-link"><FontAwesomeIcon icon={faDownload} />Academic</span></td>
-                      <td align="left"><span  className="custom-link"><FontAwesomeIcon icon={faDownload} />Mark Sheet</span></td>
+                      <td align="left">
+                        <span className="custom-link">
+                          <FontAwesomeIcon icon={faDownload} />
+                          Academic
+                        </span>
+                      </td>
+                      <td align="left">
+                        <span className="custom-link">
+                          <FontAwesomeIcon icon={faDownload} />
+                          Mark Sheet
+                        </span>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -831,9 +853,17 @@ const Profile = () => {
                       <td>{moment(item.fromDate).format("MMM DD, YYYY")}</td>
                       <td>{moment(item.toDate).format("MMM DD, YYYY")}</td>
                       <td>{item.country}</td>
-                      <td><span  className="custom-link"><FontAwesomeIcon icon={faDownload} />Exp letter</span></td>
+                      <td>
+                        <span className="custom-link">
+                          <FontAwesomeIcon icon={faDownload} />
+                          Exp letter
+                        </span>
+                      </td>
                       <td align="left">
-                        <span onClick={e =>populateExperienceDate(e,item)} className="custom-link">
+                        <span
+                          onClick={(e) => populateExperienceDate(e, item)}
+                          className="custom-link"
+                        >
                           <FontAwesomeIcon icon={faEdit} />
                           Edit
                         </span>
@@ -1008,7 +1038,10 @@ const Profile = () => {
                       <td align="left">{item.email}</td>
                       <td align="left">{item.address}</td>
                       <td align="left">
-                        <span onClick={e =>populateReferenceDate(e,item)} className="custom-link">
+                        <span
+                          onClick={(e) => populateReferenceDate(e, item)}
+                          className="custom-link"
+                        >
                           <FontAwesomeIcon icon={faEdit} />
                           Edit
                         </span>

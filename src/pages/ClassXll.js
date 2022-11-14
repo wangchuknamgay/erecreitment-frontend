@@ -365,7 +365,7 @@ const ClassXll = () => {
                 style={{ width: "18%"}}
                 className="form-control"
                 name="subject"
-                type="text"
+                type="number"
                 onChange={(event) => handleFormChange(event, index)}
                 value={form.subject}
               />
