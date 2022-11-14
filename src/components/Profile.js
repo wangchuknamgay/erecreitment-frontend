@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { ChangeEvent, useState, useEffect, useCallback } from "react";
 import { Navigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import EventBus from "../common/EventBus";
@@ -78,8 +78,24 @@ const Profile = () => {
   const [referenceList, setReferenceList] = useState([]);
   const [classXList, setClassXList] = useState([]);
 
+  //for experience
+  const [experienceCertificate, setExperienceCertificate] = useState([]);
+  const [companyName, setCompanyName] = useState("");
+  const [designation, setDesignation] = useState("");
+  const [country, setCountry] = useState("");
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
+
+  const formData = new FormData();
+
   const handleCloseSuccess = () => {
     setOpenSuccess(false);
+  };
+
+  const handleFileChange = (e) => {
+    if (e.target.files[0]) {
+      setExperienceCertificate(e.target.files[0]);
+    }
   };
 
   const handleChange = (event) => {
@@ -135,8 +151,17 @@ const Profile = () => {
 
   //======for experience ====//
   const submitForm = (event) => {
+    formData.append("companyName", companyName);
+    formData.append("designation", designation);
+    formData.append("fromDate", fromDate);
+    formData.append("toDate", toDate);
+    formData.append("country", country);
+    formData.append("experienceCertificate", experienceCertificate);
+
+    // const data = {}
+
     event.preventDefault();
-    experienceService.save(inputs).then((response) => {
+    experienceService.save(formData).then((response) => {
       setResponseMessage(response.data);
       setOpenSuccess(true);
       setExperienceModel(!experienceModel);
@@ -214,7 +239,6 @@ const Profile = () => {
             </div>
             <div className="mb-4">
               <div className="h7 text-center">USER INFORMATION</div>
-             
             </div>
             <div className="mb-2">
               <div className="text-muted">
@@ -499,7 +523,7 @@ const Profile = () => {
                   Class X{" "}
                 </Link>
                 </button> */}
-                <AddIcon/>
+                <AddIcon />
                 <Link to="/classten" onClick={toggleEducationModel}>
                   Class X{" "}
                 </Link>
@@ -509,10 +533,10 @@ const Profile = () => {
               <table className="table table-bordered">
                 <thead className="custum-thead">
                   <tr>
-                  <th>School</th>
-                  <th align="left">Year</th>
-                  <th align="left">Academic</th>
-                  <th align="left">Certificate</th>
+                    <th>School</th>
+                    <th align="left">Year</th>
+                    <th align="left">Academic</th>
+                    <th align="left">Certificate</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -726,11 +750,12 @@ const Profile = () => {
                               autoComplete="Cname"
                               type="text"
                               name="companyName"
-                              value={inputs.companyName || ""}
+                              // value={inputs.companyName || ""}
+                              value={companyName}
                               variant="outlined"
                               required
                               fullWidth
-                              onChange={handleChange}
+                              onChange={(e) => setCompanyName(e.target.value)}
                               label="Company Name"
                             />
                           </Grid>
@@ -740,11 +765,11 @@ const Profile = () => {
                                 autoComplete="designation"
                                 type="text"
                                 name="designation"
-                                value={inputs.designation || ""}
+                                value={designation}
                                 variant="outlined"
                                 required
                                 fullWidth
-                                onChange={handleChange}
+                                onChange={(e) => setDesignation(e.target.value)}
                                 label="Designation"
                               />
                             </div>
@@ -753,11 +778,11 @@ const Profile = () => {
                                 autoComplete="country"
                                 type="text"
                                 name="country"
-                                value={inputs.country || ""}
+                                value={country}
                                 variant="outlined"
                                 required
                                 fullWidth
-                                onChange={handleChange}
+                                onChange={(e) => setCountry(e.target.value)}
                                 label="Country"
                               />
                             </div>
@@ -772,9 +797,9 @@ const Profile = () => {
                                 variant="outlined"
                                 required
                                 name="fromDate"
-                                value={inputs.fromDate || ""}
+                                value={fromDate}
                                 fullWidth
-                                onChange={handleChange}
+                                onChange={(e) => setFromDate(e.target.value)}
                               />
                             </div>
                             <div className="col-md-6">
@@ -785,9 +810,9 @@ const Profile = () => {
                                 variant="outlined"
                                 required
                                 name="toDate"
-                                value={inputs.toDate || ""}
+                                value={toDate}
                                 fullWidth
-                                onChange={handleChange}
+                                onChange={(e) => setToDate(e.target.value)}
                               />
                             </div>
                           </div>
@@ -800,6 +825,7 @@ const Profile = () => {
                               variant="outlined"
                               required
                               fullWidth
+                              onChange={handleFileChange}
                               type="file"
                               id="file"
                               autoComplete="file"
@@ -855,8 +881,9 @@ const Profile = () => {
                       <td>{item.country}</td>
                       <td>
                         <span className="custom-link">
+                          {/* const val = item.exFileName; */}
                           <FontAwesomeIcon icon={faDownload} />
-                          Exp letter
+                          {item.exFileName}
                         </span>
                       </td>
                       <td align="left">
