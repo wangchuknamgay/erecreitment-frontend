@@ -52,7 +52,7 @@ label {
   background-color: #f7f7f7;
   padding: 20px 25px 30px;
   margin: 0 auto 25px;
-  margin-top: 50px;
+  margin-top: 10px;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   border-radius: 2px;
@@ -170,5 +170,67 @@ a {
   width: 150px !important;
   height: 40px !important;
  
+}
+
+/* ==========for degree========= */
+.degree-card.card{
+  background-color: #f7f7f7;
+  padding: 20px 70px 30px;
+  margin: 0 auto 25px;
+  width: 85%;
+  margin-top: 10px;
+  margin-left: 10px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+
+}
+.degree-button{
+  
+  width: 160px !important;
+  height: 50px !important;
+}
+/* ==========DIPLOMA========= */
+.diploma-card.card{
+  background-color: #f7f7f7;
+  padding: 20px 70px 30px;
+  margin: 0 auto 25px;
+  width: 85%;
+  margin-top: 10px;
+  margin-left: 10px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+.diploma-button{
+  
+  width: 160px !important;
+  height: 50px !important;
+}
+/* ==========Master========= */
+.master-card.card{
+  background-color: #f7f7f7;
+  padding: 20px 70px 30px;
+  margin: 0 auto 25px;
+  width: 85%;
+  margin-top: 10px;
+  margin-left: 10px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+.master-button{
+
+  width: 160px !important;
+  height: 50px !important;
 }
 

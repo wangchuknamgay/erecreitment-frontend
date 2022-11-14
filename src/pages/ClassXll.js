@@ -100,7 +100,9 @@ const ClassXll = () => {
 
   return (
     <div>
-      <div className="mb-3">
+      <div className="card degree-card">
+        <div className="card-body">
+      <div className="mb-4">
         <div className="h4"> ACADEMIC </div>
         <div className="h5"> Class XII </div>
         <div className="h7">
@@ -362,7 +364,7 @@ const ClassXll = () => {
           return (
             <div  className="form-inline pr-5" key={index}>
               <input
-                style={{ width: "18%"}}
+                style={{ width: "26%"}}
                 className="form-control"
                 name="subject"
                 type="number"
@@ -372,7 +374,7 @@ const ClassXll = () => {
               &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <input
-                style={{ width: "6%"}}
+                style={{ width: "8.5%"}}
                 className="form-control"
                 name="mark" 
                 type="number"          
@@ -395,7 +397,7 @@ const ClassXll = () => {
           </InputLabel>
           <input
             className="form-control"
-            style={{ width: "18%", paddingTop: "0%", paddingLeft: "0%" }}
+            style={{ width: "25%", paddingTop: "0%", paddingLeft: "0%" }}
             type="number"
             variant="outlined"
             disabled
@@ -405,12 +407,27 @@ const ClassXll = () => {
           />
         </div>
         <br />
+        <div className=" row col-md-6 p-3">
+          <Button variant="contained" color="secondary" className="button">
+            Cancel
+          </Button>
+          <div className="col-md-3">
+            <Button
+              variant="contained"
+              // onClick={submitForm}
+              color="primary"
+              className="button"
+            >
+              Save
+            </Button>
+          </div>
+        </div>
 
 
   
         </div>
       </div>
-
+{/* ===================COMMERECE================== */}
       <div hidden={stream !== "C"}>
         <div className="commercestream">
         <div className="table-responsive pl-2">
@@ -565,7 +582,7 @@ const ClassXll = () => {
           return (
             <div  className="form-inline pr-5" key={index}>
               <input
-                style={{ width: "18.9%"}}
+                style={{ width: "27.3%"}}
                 className="form-control"
                 name="subject"
                 type="text"
@@ -575,7 +592,7 @@ const ClassXll = () => {
               &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <input
-                style={{ width: "6%"}}
+                style={{ width: "8.5%"}}
                 className="form-control"
                 name="mark" 
                 type="number"          
@@ -598,7 +615,7 @@ const ClassXll = () => {
           </InputLabel>
           <input
             className="form-control"
-            style={{ width: "18%", paddingTop: "0%", paddingLeft: "0%" }}
+            style={{ width: "25%", paddingTop: "0%", paddingLeft: "0%" }}
             type="number"
             variant="outlined"
             disabled
@@ -608,12 +625,27 @@ const ClassXll = () => {
           />
         </div>
         <br />
+        <div className=" row col-md-6 p-3">
+          <Button variant="contained" color="secondary" className="button">
+            Cancel
+          </Button>
+          <div className="col-md-3">
+            <Button
+              variant="contained"
+              // onClick={submitForm}
+              color="primary"
+              className="button"
+            >
+              Save
+            </Button>
+          </div>
+        </div>
 
 
   
         </div>
       </div>
-
+{/* ===================SCIENCE================== */}
       <div hidden={stream !== "S"}>
         <div className="sciencestream">
         <div className="table-responsive pl-2">
@@ -789,7 +821,7 @@ const ClassXll = () => {
           return (
             <div  className="form-inline pr-5" key={index}>
               <input
-                style={{ width: "17.5%"}}
+                style={{ width: "25.5%"}}
                 className="form-control"
                 name="subject"
                 type="text"
@@ -799,7 +831,7 @@ const ClassXll = () => {
               &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <input
-                style={{ width: "6%"}}
+                style={{ width: "8.5%"}}
                 className="form-control"
                 name="mark" 
                 type="number"          
@@ -821,7 +853,7 @@ const ClassXll = () => {
           </InputLabel>
           <input
             className="form-control"
-            style={{ width: "17%" }}
+            style={{ width: "24%" }}
             type="number"
             variant="outlined"
             name="percentage"
@@ -830,10 +862,27 @@ const ClassXll = () => {
           />
         </div>
         <br />
+        <div className=" row col-md-6 p-3">
+          <Button variant="contained" color="secondary" className="button">
+            Cancel
+          </Button>
+          <div className="col-md-3">
+            <Button
+              variant="contained"
+              // onClick={submitForm}
+              color="primary"
+              className="button"
+            >
+              Save
+            </Button>
+          </div>
+        </div>
 
 
   
         </div>
+      </div>
+      </div>
       </div>
     </div>
   );
